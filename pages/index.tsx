@@ -8,7 +8,7 @@ export default function Home() {
                 <meta name="keywords" content="isl notes engineering shareef" />
             </Head>
             <div>
-                <h1>Hello</h1>
+                <h1 className="">Hello</h1>
             </div>
         </>
     );

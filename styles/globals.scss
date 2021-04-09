@@ -1,0 +1,52 @@
+html,
+body {
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    li {
+        list-style: none;
+        padding: 0%;
+        margin: 0%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.Container {
+    max-width: 90%;
+    margin: 50px auto;
+    @media (min-width: 475px) {
+    }
+    @media (min-width: 640px) {
+        max-width: 85%;
+    }
+    @media (min-width: 1024px) {
+        max-width: 80%;
+    }
+}
+
+.paddingContainer {
+    max-width: 90%;
+    margin: 50px auto;
+    @media (min-width: 475px) {
+    }
+    @media (min-width: 640px) {
+        max-width: 85%;
+    }
+    @media (min-width: 1024px) {
+        max-width: 80%;
+    }
+}

@@ -35,10 +35,19 @@ module.exports = {
                     dark: "#16161a",
                 },
             },
+            spacing: {
+                "9/10": "90%",
+                "1/10": "10%",
+                "5%": "5%",
+                "7.5%": "7.5%",
+            },
         },
         screens: {
             xs: "475px",
             ...defaultTheme.screens,
+        },
+        maxWidth: {
+            "9/10": "90%",
         },
     },
     variants: {

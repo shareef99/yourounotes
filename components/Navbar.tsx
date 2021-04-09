@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import Link from "next/link";
 // import { useHistory, Link } from "react-router-dom";
 // import { useAuth } from "../contexts/AuthContext";
 // import IconButton from "@material-ui/core/IconButton";
@@ -72,7 +73,7 @@ const Navbar = (props: Props) => {
         <>
             <nav
                 id="Navbar"
-                className={`flex max-w-full w-full justify-between px-10% sm:px-10% h-16 items-center 
+                className={`flex justify-between h-16 items-center px-5% sm:px-7.5% xl:px-1/10 mx-auto
                     bg-transparent transition duration-500 ease-in sticky top-0  border-opacity-0 ${
                         isAtTop &&
                         `transition duration-500 ease-in bg-blue-500 text-whiteShade z-20
@@ -90,6 +91,9 @@ const Navbar = (props: Props) => {
                 {/* {currentUser ? ( */}
                 <>
                     <div>
+                        <Link href="/signup">
+                            <a>signup</a>
+                        </Link>
                         {/* <IconButton
                             aria-label="account of current user"
                             aria-haspopup="true"

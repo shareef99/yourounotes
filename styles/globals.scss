@@ -1,3 +1,16 @@
+$background: #fffffe;
+$background-dark: #16161a;
+$heading: #2b2c34; // sub-heading, card-heading(dark also), card-paragraph = light mode
+$heading-dark: #fffffe;
+$paragraph: #2b2c34;
+$paragraph-dark: #94a1b2; // sub-heading, card-paragraph = dark mode
+$button: #6246ea;
+$button-dark: #7f5af0;
+$button-text: #fffffe;
+$button-text-dark: #fffffe;
+$card-background: #d1d1e9;
+$card-background-dark: #16161a;
+
 html,
 body {
     scroll-behavior: smooth;
@@ -5,6 +18,7 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: $background;
 }
 
 a {
@@ -25,28 +39,6 @@ ol {
     box-sizing: border-box;
 }
 
-.Container {
-    max-width: 90%;
-    margin: 50px auto;
-    @media (min-width: 475px) {
-    }
-    @media (min-width: 640px) {
-        max-width: 85%;
-    }
-    @media (min-width: 1024px) {
-        max-width: 80%;
-    }
-}
-
-.paddingContainer {
-    max-width: 90%;
-    margin: 50px auto;
-    @media (min-width: 475px) {
-    }
-    @media (min-width: 640px) {
-        max-width: 85%;
-    }
-    @media (min-width: 1024px) {
-        max-width: 80%;
-    }
+p {
+    margin-bottom: 1rem;
 }

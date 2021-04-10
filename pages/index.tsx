@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Main from "../components/Main";
 
 export default function Home() {
     return (
@@ -7,9 +8,9 @@ export default function Home() {
                 <title>YourNotes | Home</title>
                 <meta name="keywords" content="isl notes engineering shareef" />
             </Head>
-            <div>
-                <h1 className="">Hello</h1>
-            </div>
+            <section>
+                <Main />
+            </section>
         </>
     );
 }

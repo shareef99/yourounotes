@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .flexCenter {
+        @apply flex justify-center items-center;
+    }
+    .colCenter {
+        @apply flexCenter flex-col;
+    }
+    .rowCenter {
+        @apply flexCenter flex-row;
+    }
+}

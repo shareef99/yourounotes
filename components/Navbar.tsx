@@ -1,20 +1,12 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-// import { useHistory, Link } from "react-router-dom";
-// import { useAuth } from "../contexts/AuthContext";
-// import IconButton from "@material-ui/core/IconButton";
-// import AccountCircle from "@material-ui/icons/AccountCircle";
-// import Menu from "@material-ui/core/Menu";
-// import MenuItem from "@material-ui/core/MenuItem";
+import Image from "next/image";
 
 interface Props {}
 
 const Navbar = (props: Props) => {
     const [isAtTop, setIsAtTop] = useState<any>();
-    // const history = useHistory();
-    // const { currentUser, user, logout } = useAuth();
-    const [anchorEl, setAnchorEl] = useState<any>(null);
-    const open = Boolean(anchorEl);
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
     const handleScroll = () => {
         window.addEventListener("scroll", () => {
@@ -26,42 +18,6 @@ const Navbar = (props: Props) => {
         });
     };
 
-    const handleMenu = (event: any) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleProfile = () => {
-        // history.push("/pages/profile");
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleNotes = () => {
-        // history.push(`/student/year=${user.year}/sem=${user.sem}`);
-    };
-
-    const handleUpload = () => {
-        // history.push("/pages/upload");
-    };
-
-    const handleRequest = () => {
-        // history.push("/pages/request");
-    };
-
-    const handleAbout = () => {
-        // history.push("/pages/about-us");
-    };
-
-    const handleHome = () => {
-        // history.push("/");
-    };
-
-    const handleAllSubjects = () => {
-        // history.push("/student/all-subjects");
-    };
-
     useEffect(() => {
         handleScroll();
         return () => {
@@ -69,85 +25,76 @@ const Navbar = (props: Props) => {
         };
     }, []);
 
+    const handleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+        console.log(isMenuOpen);
+    };
+
     return (
         <>
             <nav
                 id="Navbar"
                 className={`flex justify-between h-16 items-center px-5% sm:px-7.5% xl:px-1/10 mx-auto
-                    bg-transparent transition duration-500 ease-in sticky top-0  border-opacity-0 ${
+                    bg-transparent transition duration-500 ease-in sticky top-0 border-opacity-0 ${
                         isAtTop &&
-                        `transition duration-500 ease-in bg-blue-500 text-whiteShade z-20
+                        `transition duration-500 ease-in bg-btn text-bg z-20
                       border-b-2 shadow-xl `
                     }`}
             >
                 <div>
-                    <p
-                        onClick={handleHome}
-                        className="hover:cursor-pointer font-medium text-midBlack"
-                    >
-                        Your Notes
-                    </p>
+                    <Link href="/">
+                        <a className="flex justify-center items-center space-x-2 text-xl">
+                            <Image
+                                width="24"
+                                height="24"
+                                src="/images/books.png"
+                            />
+                            <span>Your OU Notes</span>
+                        </a>
+                    </Link>
                 </div>
-                {/* {currentUser ? ( */}
-                <>
-                    <div>
-                        <Link href="/signup">
-                            <a>signup</a>
-                        </Link>
-                        {/* <IconButton
-                            aria-label="account of current user"
-                            aria-haspopup="true"
-                            onClick={handleMenu}
-                            className="focus:outline-none text-midBlack"
-                        >
-                            <AccountCircle />
-                        </IconButton> */}
-                        {/* <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: "top",
-                                    horizontal: "right",
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: "top",
-                                    horizontal: "center",
-                                }}
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleProfile}>
-                                    Profile
-                                </MenuItem>
-                                <MenuItem onClick={handleNotes}>
-                                    Your Subjects
-                                </MenuItem>
-                                <MenuItem onClick={handleAllSubjects}>
-                                    All Subjects
-                                </MenuItem>
-                                <MenuItem onClick={handleUpload}>
-                                    Upload Notes
-                                </MenuItem>
-                                <MenuItem onClick={handleRequest}>
-                                    Request Notes
-                                </MenuItem>
-                                <MenuItem onClick={handleAbout}>
-                                    About us
-                                </MenuItem>
-                                <MenuItem onClick={logout}>Sign out</MenuItem>
-                            </Menu> */}
+                <div className="relative">
+                    <div
+                        className={`space-y-2 cursor-pointer focus:hidden `}
+                        onClick={handleMenu}
+                    >
+                        <div
+                            className={`w-6 h-1 rounded  ${
+                                isAtTop ? `bg-bg` : `bg-heading`
+                            } ${
+                                isMenuOpen
+                                    ? `transition-transform transform duration-500 ease-in rotate-45
+                                        translate-y-3 -translate-x-4`
+                                    : `transition-transform transform duration-500 ease-in rotate-0
+                                        translate-y-0 -translate-x-0`
+                            }`}
+                        ></div>
+                        <div
+                            className={`w-6 h-1 rounded ${
+                                isAtTop ? `bg-bg` : `bg-heading`
+                            } ${
+                                isMenuOpen
+                                    ? `transition-transform transform duration-500 ease-in -rotate-45`
+                                    : `transition-transform transform duration-500 ease-in -rotate-0`
+                            }`}
+                        ></div>
                     </div>
-                </>
-                {/* ) : ( */}
-                <>
-                    <div>
-                        <button>
-                            {/* <Link to="/login">Sign in</Link> */}
-                        </button>
-                    </div>
-                </>
-                {/* )} */}
+                    <ul
+                        className={`z-50 bg-bg text-heading bg-opacity-75 font-medium text-lg
+                            absolute top-10 -left-20 sm:-left-10 w-28 ${
+                                isMenuOpen
+                                    ? `transition-all duration-700 ease-in opacity-100 
+                                        `
+                                    : `transition-all duration-700 ease-in opacity-0`
+                            }`}
+                    >
+                        <li>Your Notes 1</li>
+                        <li>Your Notes 2</li>
+                        <li>Your Notes 3</li>
+                        <li>Your Notes 4</li>
+                        <li>Your Notes 5</li>
+                    </ul>
+                </div>
             </nav>
         </>
     );

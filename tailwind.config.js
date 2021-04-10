@@ -9,7 +9,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                background: {
+                bg: {
                     DEFAULT: "#fffffe",
                     dark: "#16161a",
                 },
@@ -18,19 +18,19 @@ module.exports = {
                     DEFAULT: "#2b2c34",
                     dark: "#fffffe",
                 },
-                paragraph: {
+                para: {
                     DEFAULT: "#2b2c34",
                     dark: "#94a1b2", // sub-heading, card-paragraph = dark mode
                 },
-                button: {
+                btn: {
                     DEFAULT: "#6246ea",
                     dark: "#7f5af0",
                 },
-                buttonText: {
+                btnText: {
                     DEFAULT: "#fffffe",
                     dark: "#fffffe",
                 },
-                cardBackground: {
+                cardBg: {
                     DEFAULT: "#d1d1e9",
                     dark: "#16161a",
                 },
@@ -41,13 +41,33 @@ module.exports = {
                 "5%": "5%",
                 "7.5%": "7.5%",
             },
+            maxWidth: {
+                "9/10": "90%",
+            },
+            transitionProperty: {
+                display: "display",
+            },
         },
         screens: {
             xs: "475px",
             ...defaultTheme.screens,
         },
-        maxWidth: {
-            "9/10": "90%",
+        container: {
+            center: true,
+            padding: "2rem",
+        },
+        backgroundPosition: {
+            bottom: "bottom",
+            "bottom-4": "center bottom 4rem",
+            center: "center",
+            left: "left",
+            "left-bottom": "left bottom",
+            "left-top": "left top",
+            right: "right",
+            "right-bottom": "right bottom",
+            "right-top": "right top",
+            top: "top",
+            "top-4": "center top 1rem",
         },
     },
     variants: {

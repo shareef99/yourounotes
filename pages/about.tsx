@@ -18,31 +18,31 @@ const about = (props: Props) => {
             id: 0,
             name: "Nadeem Shareef",
             role: "Designer and Coder",
-            imgURL: "/images/user.png",
+            imgURL: "/images/team/nadeem.png",
         },
         {
             id: 1,
             name: "Noor Ahmed",
             role: "Resources Provider",
-            imgURL: "/images/user.png",
+            imgURL: "/images/team/noor.png",
         },
         {
             id: 2,
-            name: "Shoieb",
+            name: "Nikhat Sultana",
             role: "Resources Provider",
-            imgURL: "/images/user.png",
+            imgURL: "/images/team/nikhat.png",
         },
         {
             id: 3,
-            name: "Nikhat Sultana",
+            name: "Shoaib Ahmed",
             role: "Resources Provider",
-            imgURL: "/images/user.png",
+            imgURL: "/images/team/shoaib.png",
         },
         {
             id: 4,
-            name: "Mirza",
+            name: "Mirza Baig",
             role: "Resources Provider",
-            imgURL: "/images/user.png",
+            imgURL: "/images/team/mirza.png",
         },
     ];
 
@@ -148,7 +148,7 @@ const about = (props: Props) => {
                                     src={teamMember.imgURL}
                                     width="160"
                                     height="160"
-                                    alt="By bqlqn from flaticon.com"
+                                    alt={teamMember.name}
                                 />
                                 <div className="text-center">
                                     <h3 className="subHeadingSpace font-medium text-lg">

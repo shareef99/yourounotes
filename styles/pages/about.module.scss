@@ -1,0 +1,32 @@
+.wave {
+    background-image: url("https://cdn.shopify.com/s/files/1/0279/9277/files/wave-neutral-edit.svg?v=1588246129");
+    background-repeat: repeat-x;
+    position: absolute;
+    top: 0%;
+    width: 5200px;
+    height: 56px;
+    animation: wave 40s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translateZ(0);
+}
+
+.waveReversed {
+    background-image: url("https://cdn.shopify.com/s/files/1/0279/9277/files/wave-neutral-edit.svg?v=1588246129");
+    background-repeat: repeat-x;
+    position: absolute;
+    top: 0%;
+    width: 5200px;
+    height: 56px;
+    animation: wave 40s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translateZ(0);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+}
+
+@keyframes wave {
+    0% {
+        margin-left: 0%;
+    }
+    100% {
+        margin-left: -1600px;
+    }
+}

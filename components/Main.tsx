@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {}
 
@@ -28,31 +29,30 @@ const Main = (props: Props) => {
                         </h1>
                     </div>
                     <div className="space-x-4 flexCenter sm:justify-start absolute bottom-56">
-                        <button
-                            className="border-2 rounded-md px-3 py-2 bg-btn text-btnText
+                        <Link href="/subjects">
+                            <a
+                                className="border-2 rounded-md px-3 py-2 bg-btn text-btnText
                                 hover:text-heading hover:border-btn hover:bg-btnText
                                 md:self-start text-lg font-semibold transition duration-500 
                                 ease-in border-transparent"
-                        >
-                            Notes
-                        </button>
-                        <button
-                            className="border-2 rounded-md px-3 py-2  leading-7 
+                            >
+                                Notes
+                            </a>
+                        </Link>
+                        <Link href="/about">
+                            <a
+                                className="border-2 rounded-md px-3 py-2  leading-7 
                                 hover:bg-btn hover:text-btnText font-semibold
                                 transition duration-500 ease-in w-max border-btn"
-                        >
-                            About US
-                        </button>
+                            >
+                                About US
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </div>
-            <div className="container mb-14 mt-28">
-                <h2
-                    className="text-center font-semibold text-2xl sm:text-3xl md:text-4xl 
-                        tracking-wider my-14 text-heading"
-                >
-                    HOW IT WORK
-                </h2>
+            <div id="how-it-work" className="container colCenter mb-14 mt-28">
+                <h2 className="md:text-4xl my-14">HOW IT WORK</h2>
                 <div
                     className="colCenter md:flex-row md:items-baseline md:justify-around
                         xl:justify-between flex-wrap"
@@ -66,7 +66,7 @@ const Main = (props: Props) => {
                             className=""
                         />
                         <div className="">
-                            <h3 className="text-center font-normal text-xl mb-4 mt-8 text-heading">
+                            <h3 className="text-center font-normal text-xl subHeadingSpace text-heading">
                                 What we do?
                             </h3>
                             <p className="font-light text-base text-para">
@@ -84,7 +84,7 @@ const Main = (props: Props) => {
                             alt="Icon made by Flat Icon from flatIcon"
                         />
                         <div className="">
-                            <h3 className="text-center font-normal text-xl mb-4 mt-8 text-heading">
+                            <h3 className="text-center font-normal text-xl subHeadingSpace text-heading">
                                 How we do?
                             </h3>
                             <p className="font-light text-base text-para">

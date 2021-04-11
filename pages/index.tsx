@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>YourNotes | Home</title>
+                <title>Your OU Notes | Home</title>
                 <meta name="keywords" content="isl notes engineering shareef" />
             </Head>
             <section>

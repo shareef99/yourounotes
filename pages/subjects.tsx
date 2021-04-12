@@ -100,7 +100,15 @@ const Subjects = (props: Props) => {
                                                 key={index}
                                                 className="list-item list-disc "
                                             >
-                                                <Link href="/">
+                                                <Link
+                                                    href={{
+                                                        pathname: `/notes/${subject}`,
+                                                        query: {
+                                                            sem: x.sem,
+                                                            group: x.group,
+                                                        },
+                                                    }}
+                                                >
                                                     <a>{subject}</a>
                                                 </Link>
                                             </li>

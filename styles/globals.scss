@@ -18,7 +18,7 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: $background;
+    @apply bg-bg;
 }
 
 a {
@@ -37,8 +37,21 @@ ol {
 
 * {
     box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
 }
 
 p {
     margin-bottom: 1rem;
+}
+
+select {
+    @apply bg-bg;
+    @apply text-heading;
+    option {
+        // scss-lint:disable css-semicolonexpected
+        @apply bg-cardBg;
+        @apply text-heading;
+    }
 }

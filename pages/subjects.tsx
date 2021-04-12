@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import { Controller, useForm } from "react-hook-form";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
 import details from "../public/details.json";
 
 interface Props {}
@@ -16,25 +17,23 @@ const Subjects = (props: Props) => {
     const group = watch("group");
     const sem = watch("sem");
 
-    console.log(sem);
-
     return (
         <>
             <Head>
                 <title>Select Subject | Your OU Notes</title>
             </Head>
-            <section className="colCenter">
-                <form action="">
-                    filter by
+            <section className="colCenter ">
+                <form action="" className="mt-14 space-x-4">
+                    <span className=" font-medium text-lg  text-btn">
+                        filter by
+                    </span>
                     <label htmlFor="group">
                         <select
                             id="group"
                             defaultValue="default"
                             {...register("group", { required: true })}
                         >
-                            <option value="default" disabled>
-                                Group
-                            </option>
+                            <option value="default">Group</option>
                             <option value="CSE">CSE</option>
                             <option value="IT">IT</option>
                             <option value="ECE">ECE</option>
@@ -49,44 +48,68 @@ const Subjects = (props: Props) => {
                             defaultValue="default"
                             {...register("sem", { required: true })}
                         >
-                            <option value="default" disabled>
-                                Semester
-                            </option>
+                            <option value="default">Sem</option>
                             <option value="first">Ist</option>
-                            <option value="second">IIst</option>
-                            <option value="third">IIIst</option>
-                            <option value="forth">IVst</option>
+                            <option value="second">IInd</option>
+                            <option value="third">IIIrd</option>
+                            <option value="forth">IVth</option>
                         </select>
                     </label>
                 </form>
-                {details
-                    .filter((x) => {
-                        if (sem === undefined && group === undefined) {
-                            return x;
-                        }
-                        if (sem === "default" && group === "default") {
-                            return x;
-                        }
-                        if (sem !== "default" && group !== "default") {
-                            return x.group === group && x.sem === sem;
-                        }
-                        if (sem === "default") {
-                            return x.group === group;
-                        }
-                        if (group === "default") {
-                            return x.sem === sem;
-                        }
-                    })
-                    .map((x, index) => (
-                        <div key={index}>
-                            <p>
-                                {x.group} {x.sem}
-                            </p>
-                            {x.subjects.map((subject, index) => (
-                                <p key={index}>{subject}</p>
+                <section className="container flex flex-col items-baseline md:items-center">
+                    <div>
+                        {details
+                            .filter((x) => {
+                                if (sem === undefined && group === undefined) {
+                                    return x;
+                                }
+                                if (sem === "default" && group === "default") {
+                                    return x;
+                                }
+                                if (sem !== "default" && group !== "default") {
+                                    return x.group === group && x.sem === sem;
+                                }
+                                if (sem === "default") {
+                                    return x.group === group;
+                                }
+                                if (group === "default") {
+                                    return x.sem === sem;
+                                }
+                            })
+                            .map((x, index) => (
+                                <div
+                                    key={index}
+                                    className="colCenter items-start my-10"
+                                >
+                                    <h2 className="text-xl ">
+                                        {x.group}{" "}
+                                        {x.sem === "first"
+                                            ? "Ist"
+                                            : x.sem === "second"
+                                            ? "IInd"
+                                            : x.sem === "third"
+                                            ? "IIIrd"
+                                            : x.sem === "forth"
+                                            ? "IVth"
+                                            : ""}{" "}
+                                        sem
+                                    </h2>
+                                    <ul className="ml-8 mt-4 space-y-2">
+                                        {x.subjects.map((subject, index) => (
+                                            <li
+                                                key={index}
+                                                className="list-item list-disc "
+                                            >
+                                                <Link href="/">
+                                                    <a>{subject}</a>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             ))}
-                        </div>
-                    ))}
+                    </div>
+                </section>
             </section>
         </>
     );

@@ -205,21 +205,21 @@
         "sem": "first",
         "group": "CE",
         "subjects": [
-            "Indian Constitution",
-            "Physics",
+            "EVS (Environmental Science)",
+            "EITK (Essence of Indian Traditions)",
             "Mathematics (M-I)",
-            "Basic Electrical Engineering"
+            "Chemistry",
+            "PPS (Programming for problem solving)"
         ]
     },
     {
         "sem": "second",
         "group": "CE",
         "subjects": [
-            "IC (Indian Constitution)",
             "English",
             "Mathematics (M-II)",
             "Physics",
-            "BEE (Basic Electronic Engineering)"
+            "Engineering Mechanics"
         ]
     },
     {

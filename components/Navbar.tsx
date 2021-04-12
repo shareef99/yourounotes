@@ -34,7 +34,7 @@ const Navbar = (props: Props) => {
         <>
             <nav
                 id="Navbar"
-                className={`flex justify-between h-16 items-center px-5% sm:px-7.5% xl:px-1/10 mx-auto
+                className={`flexCenter h-16 px-5% sm:px-7.5% xl:px-1/10 mx-auto
                     bg-transparent transition duration-500 ease-in sticky top-0 border-opacity-0 ${
                         isAtTop &&
                         `transition duration-500 ease-in bg-btn text-bg z-20
@@ -43,7 +43,7 @@ const Navbar = (props: Props) => {
             >
                 <div>
                     <Link href="/">
-                        <a className="flex justify-center items-center space-x-2 text-xl">
+                        <a className="flexCenter space-x-2 text-xl">
                             <Image
                                 width="24"
                                 height="24"
@@ -53,7 +53,7 @@ const Navbar = (props: Props) => {
                         </a>
                     </Link>
                 </div>
-                <div className="relative">
+                {/* <div className="relative">
                     <div
                         className={`space-y-2 cursor-pointer focus:hidden `}
                         onClick={handleMenu}
@@ -94,7 +94,7 @@ const Navbar = (props: Props) => {
                         <li>Your Notes 4</li>
                         <li>Your Notes 5</li>
                     </ul>
-                </div>
+                </div> */}
             </nav>
         </>
     );

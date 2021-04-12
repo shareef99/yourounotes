@@ -18,14 +18,12 @@ const Main = (props: Props) => {
             >
                 <div className="space-y-8 flex flex-col items-center h-screen relative">
                     <div
-                        className="absolute top-1/4 xs:top-3/10 sm:top-4/10 w-max z-10 
+                        className="absolute top-[30%] xs:top-[35%] sm:top-[40%] md:top-[35%] w-max z-10 
                             opacity-100 bg-opacity-50 bg-bg rounded-md px-4"
                     >
-                        <h1
-                            className="text-2xl sm:text-3xl md:text-5xl lg:text-5xl font-bold 
-                                text-heading "
-                        >
-                            Your needs in one place.
+                        <h1 className="text-2xl xs:text-4xl sm:text-5xl font-bold">
+                            {/* Your needs in one place. */}
+                            All "Your OU Notes" in one place.
                         </h1>
                     </div>
                     <div className="space-x-4 flexCenter sm:justify-start absolute bottom-56">
@@ -36,12 +34,12 @@ const Main = (props: Props) => {
                                 md:self-start text-lg font-semibold transition duration-500 
                                 ease-in border-transparent"
                             >
-                                Notes
+                                Subjects
                             </a>
                         </Link>
                         <Link href="/about">
                             <a
-                                className="border-2 rounded-md px-3 py-2  leading-7 
+                                className="border-2 rounded-md px-3 py-2 leading-7 
                                 hover:bg-btn hover:text-btnText font-semibold
                                 transition duration-500 ease-in w-max border-btn"
                             >

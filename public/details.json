@@ -1,0 +1,163 @@
+[
+    {
+        "sem": "first",
+        "group": "CSE",
+        "subjects": [
+            "EVS (Environmental Science)",
+            "EITK (Essence of Indian Traditions)",
+            "Mathematics (M-I)",
+            "Chemistry",
+            "PPS (Programming for problem solving)"
+        ]
+    },
+    {
+        "sem": "second",
+        "group": "CSE",
+        "subjects": [
+            "IC (Indian Constitution)",
+            "English",
+            "Mathematics (M-II)",
+            "Physics",
+            "BEE (Basic Electronic Engineering)"
+        ]
+    },
+    {
+        "sem": "third",
+        "group": "CSE",
+        "subjects": [
+            "OR (Operation Research)",
+            "Biology for Engineers",
+            "BE (Basic Electronics)",
+            "DE (Digital Electronics)",
+            "DSA (Data Structures and Algorithms)",
+            "DM (Discrete Mathematics)",
+            "PL (Programming Language)"
+        ]
+    },
+    {
+        "sem": "forth",
+        "group": "CSE",
+        "subjects": [
+            "IC (Indian Constitution)",
+            "Effective Technical Communication in English",
+            "Finance and Accounting",
+            "Mathematics (M-III)",
+            "Signal and System",
+            "Java",
+            "Computer Organization",
+            "DBMS (Database Management System)"
+        ]
+    },
+    {
+        "sem": "first",
+        "group": "IT",
+        "subjects": [
+            "Indian Constitution",
+            "Physics",
+            "Mathematics (M-I)",
+            "Basic Electrical Engineering"
+        ]
+    },
+    {
+        "sem": "second",
+        "group": "IT",
+        "subjects": [
+            "EVS (Environmental Science)",
+            "EITK (Essence of Indian Traditions)",
+            "English",
+            "Mathematics (M-II)",
+            "Chemistry",
+            "PPS (Programming for problem solving)"
+        ]
+    },
+    {
+        "sem": "third",
+        "group": "IT",
+        "subjects": []
+    },
+    {
+        "sem": "forth",
+        "group": "IT",
+        "subjects": []
+    },
+    {
+        "sem": "first",
+        "group": "ECE",
+        "subjects": []
+    },
+    {
+        "sem": "second",
+        "group": "ECE",
+        "subjects": []
+    },
+    {
+        "sem": "third",
+        "group": "ECE",
+        "subjects": []
+    },
+    {
+        "sem": "forth",
+        "group": "ECE",
+        "subjects": []
+    },
+    {
+        "sem": "first",
+        "group": "ME",
+        "subjects": []
+    },
+    {
+        "sem": "second",
+        "group": "ME",
+        "subjects": []
+    },
+    {
+        "sem": "third",
+        "group": "ME",
+        "subjects": []
+    },
+    {
+        "sem": "forth",
+        "group": "ME",
+        "subjects": []
+    },
+    {
+        "sem": "first",
+        "group": "CE",
+        "subjects": []
+    },
+    {
+        "sem": "second",
+        "group": "CE",
+        "subjects": []
+    },
+    {
+        "sem": "third",
+        "group": "CE",
+        "subjects": []
+    },
+    {
+        "sem": "forth",
+        "group": "CE",
+        "subjects": []
+    },
+    {
+        "sem": "first",
+        "group": "EEE",
+        "subjects": []
+    },
+    {
+        "sem": "second",
+        "group": "EEE",
+        "subjects": []
+    },
+    {
+        "sem": "third",
+        "group": "EEE",
+        "subjects": []
+    },
+    {
+        "sem": "forth",
+        "group": "EEE",
+        "subjects": []
+    }
+]

@@ -28,7 +28,7 @@ const about = (props: Props) => {
         },
         {
             id: 2,
-            name: "Nikhat Sultana",
+            name: "Nikhath Sultana",
             role: "Resources Provider",
             imgURL: "/images/team/nikhat.png",
         },

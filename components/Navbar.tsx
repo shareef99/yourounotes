@@ -34,11 +34,11 @@ const Navbar = (props: Props) => {
         <>
             <nav
                 id="Navbar"
-                className={`flexCenter h-16 px-5% sm:px-7.5% xl:px-1/10 mx-auto
+                className={`flexCenter justify-between h-16 px-5% sm:px-7.5% xl:px-1/10 mx-auto
                     bg-transparent transition duration-500 ease-in sticky top-0 border-opacity-0 ${
                         isAtTop &&
                         `transition duration-500 ease-in bg-btn text-bg z-20
-                      border-b-2 shadow-xl `
+                      border-b-2 shadow-xl`
                     }`}
             >
                 <div>

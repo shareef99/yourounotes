@@ -12,6 +12,11 @@ const Footer = (props: Props) => {
                         py-14 sm:space-x-8 space-y-8 sm:space-y-0"
                 >
                     <li className="underline hover:no-underline">
+                        <Link href="/about">
+                            <a href="">Home</a>
+                        </Link>
+                    </li>
+                    <li className="underline hover:no-underline">
                         <a
                             href="https://onlineounotes.web.app/pages/request"
                             target="_blank"

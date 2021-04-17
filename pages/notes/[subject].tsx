@@ -82,8 +82,12 @@ const Subject = (props: Props) => {
                     content={`${allNotes.map(
                         (note) => note.name
                     )} ${allNotes.map(
-                        (note) => note.name
-                    )} ${subject} ${sem} ${group} `}
+                        (note) => note.newName
+                    )} ${subject}, ${sem} sem, ${sem} sem question papers, ${subject} question papers ,
+                    ${subject} important questions, ${subject} syllabus, ${subject} notes ,${group} question papers,
+                    ${group} important questions, ${group} syllabus, ${group} notes,  
+                    isl, notes, engineering, shareef, shareef99, ou, be, question papers, osmania university
+                    students, ou students, engineering notes, be notes, important questions, be syllabus`}
                 />
             </Head>
             <section className="container">

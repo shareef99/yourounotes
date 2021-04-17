@@ -9,9 +9,8 @@ const Main = (props: Props) => {
         <section>
             <div
                 id="hereSection"
-                className="h-screen -mt-16 flex justify-around items-center flex-col 
-                    md:flex-row-reverse w-full md:w-9/10 mx-auto bg-bottom-4
-                    xs:bg-bottom bg-contain bg-clip-padding bg-no-repeat"
+                className="h-screen -mt-16 sm:mt-0 colCenter justify-around md:flex-row-reverse w-full 
+                    md:w-9/10 mx-auto bg-bottom-4 xs:bg-bottom bg-contain bg-clip-padding bg-no-repeat"
                 style={{
                     backgroundImage: "url(/images/books.png)",
                 }}
@@ -23,7 +22,7 @@ const Main = (props: Props) => {
                     >
                         <h1
                             className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-center max-w-[90%] 
-                                mx-auto sm:max-w-none"
+                                mx-auto sm:max-w-none tracking-tighter"
                         >
                             {/* Your needs in one place. */}
                             All "Your OU Notes" in one place.
@@ -32,9 +31,9 @@ const Main = (props: Props) => {
                     <div className="space-x-4 flexCenter sm:justify-start absolute bottom-56">
                         <Link href="/subjects">
                             <a
-                                className="border-2 rounded-md px-3 py-2 bg-btn text-btnText
+                                className="border-2 rounded-md px-3 py-2 bg-btn text-btnText fadeIn
                                 hover:text-heading hover:border-btn hover:bg-btnText
-                                text-base sm:text-lg font-semibold border-transparent fadeIn"
+                                text-base sm:text-lg font-semibold border-transparent "
                             >
                                 Subjects
                             </a>
@@ -52,16 +51,13 @@ const Main = (props: Props) => {
             </div>
             <div id="how-it-work" className="container colCenter mb-14 mt-28">
                 <h2 className="md:text-4xl my-14">HOW IT WORK</h2>
-                <div
-                    className="colCenter md:flex-row md:items-baseline md:justify-around
-                        xl:justify-between flex-wrap"
-                >
+                <div className="colCenter md:flex-row md:items-baseline md:justify-around xl:justify-between flex-wrap">
                     <div className="colCenter sm:max-w-xs">
                         <Image
                             src="/images/whatWeDo.png"
                             alt="Icon made by ultimatearm from flaticon"
-                            width="100"
-                            height="100"
+                            width="64"
+                            height="64"
                             className=""
                         />
                         <div className="">
@@ -78,8 +74,8 @@ const Main = (props: Props) => {
                     <div className="colCenter my-14 md:mx-4 sm:max-w-xs">
                         <Image
                             src="/images/howWeDo.png"
-                            width="100"
-                            height="100"
+                            width="64"
+                            height="64"
                             alt="Icon made by Flat Icon from flatIcon"
                         />
                         <div className="">
@@ -98,8 +94,8 @@ const Main = (props: Props) => {
                         <Image
                             src="/images/WhatYouCanDo.png"
                             alt="Icon made by freepik from flatIcon"
-                            width="100"
-                            height="100"
+                            width="64"
+                            height="64"
                         />
                         <div className="">
                             <h3 className="text-center font-normal text-xl mb-4 mt-8 text-heading">

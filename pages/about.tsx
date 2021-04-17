@@ -22,7 +22,7 @@ const about = (props: Props) => {
         {
             id: 1,
             name: "Noor Ahmed",
-            role: "Resources Provider",
+            role: "Ideas, Feedback",
             imgURL: "/images/team/noor.png",
         },
         {
@@ -34,7 +34,7 @@ const about = (props: Props) => {
         {
             id: 3,
             name: "Shoaib Ahmed",
-            role: "Resources Provider",
+            role: "Ideas, Feedback",
             imgURL: "/images/team/shoaib.png",
         },
         {
@@ -49,6 +49,11 @@ const about = (props: Props) => {
         <>
             <Head>
                 <title>About us | Your OU Notes</title>
+                <meta
+                    name="keywords"
+                    content="isl, notes, engineering, shareef, shareef99, ou, be, question papers, osmania university
+                        students, ou students, engineering notes, be notes, important questions, be syllabus"
+                />
             </Head>
             <section>
                 <div
@@ -63,19 +68,11 @@ const about = (props: Props) => {
                             priority={true}
                             alt="Image by Yvette W from Pixabay"
                         />
-                        <h2
-                            className="leading-relaxed text-center mt-4 text-heading-dark w-[80%] 
-                                md:w-full"
-                        >
+                        <h2 className="leading-relaxed text-center mt-4 text-heading-dark w-[80%] md:w-full">
                             We are students, determined to help students!
                         </h2>
                     </div>
                 </div>
-                {/* <div className="relative overflow-hidden h-14 bg-transparent z-10 -mt-14">
-                    <div className="absolute top-0 left-0 w-full">
-                        <div className={`${styles.wave} `}></div>
-                    </div>
-                </div> */}
                 <div
                     id="about-details"
                     className="container colCenter my-14 space-y-20 sm:space-y-30"
@@ -91,7 +88,7 @@ const about = (props: Props) => {
                         <div className="md:max-w-[70%] md:self-center">
                             <h3
                                 className="text-center md:text-left subHeadingSpace md:mb-4 md:mt-0 
-                                font-medium text-2xl "
+                                    font-medium text-2xl "
                             >
                                 Our Mission
                                 <Image
@@ -118,7 +115,7 @@ const about = (props: Props) => {
                         />
                         <div className="md:max-w-[70%] md:self-center">
                             <h3
-                                className="text-center md:text-left subHeadingSpacing md:mb-4 md:mt-0
+                                className="text-center md:text-left subHeadingSpace md:mb-4 md:mt-0
                                 font-medium text-2xl"
                             >
                                 Our Target
@@ -148,6 +145,7 @@ const about = (props: Props) => {
                                     width="160"
                                     height="160"
                                     alt={teamMember.name}
+                                    priority={true}
                                 />
                                 <div className="text-center">
                                     <h3 className="subHeadingSpace font-medium text-lg">

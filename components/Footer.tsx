@@ -12,8 +12,8 @@ const Footer = (props: Props) => {
                         py-14 sm:space-x-8 space-y-8 sm:space-y-0"
                 >
                     <li className="underline hover:no-underline">
-                        <Link href="/about">
-                            <a href="">Home</a>
+                        <Link href="/">
+                            <a>Home</a>
                         </Link>
                     </li>
                     <li className="underline hover:no-underline">
@@ -27,12 +27,12 @@ const Footer = (props: Props) => {
                     </li>
                     <li className="underline hover:no-underline">
                         <Link href="/subjects">
-                            <a href="">All Subjects</a>
+                            <a>All Subjects</a>
                         </Link>
                     </li>
                     <li className="underline hover:no-underline">
                         <Link href="/about">
-                            <a href="">About us</a>
+                            <a>About us</a>
                         </Link>
                     </li>
                     <li className="underline hover:no-underline">

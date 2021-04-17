@@ -31,7 +31,7 @@ const Navbar = (prop: Props) => {
             <nav
                 id="Navbar"
                 className={`flexCenter h-16 px-5% sm:px-7.5% xl:px-1/10 mx-auto sticky top-0
-                    bg-transparent fadeIn ${route === "/" && "hidden"} ${
+                    bg-transparent fadeIn ${route === "/" && "sm:hidden"} ${
                     isAtTop && "fadeIn bg-btn text-bg z-20 border-b-2 shadow-xl"
                 }`}
             >

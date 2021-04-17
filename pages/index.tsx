@@ -11,6 +11,10 @@ export default function Home() {
                     content="isl, notes, engineering, shareef, shareef99, ou, be, question papers, osmania university
                         students, ou students, engineering notes, be notes, important questions, be syllabus"
                 />
+                <meta
+                    name="google-site-verification"
+                    content="yTi3uLVOAq3UgoyLEOPMY8TipeXqPltkryXs122MOCw"
+                />
             </Head>
             <section>
                 <Main />

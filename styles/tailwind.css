@@ -47,4 +47,7 @@
     .subHeadingSpace {
         @apply mb-4 mt-8;
     }
+    .fadeIn {
+        @apply transition duration-500 ease-in;
+    }
 }

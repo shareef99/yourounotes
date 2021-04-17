@@ -16,12 +16,15 @@ const Main = (props: Props) => {
                     backgroundImage: "url(/images/books.png)",
                 }}
             >
-                <div className="space-y-8 flex flex-col items-center h-screen relative">
+                <div className="space-y-8 colCenter h-screen relative">
                     <div
-                        className="absolute top-[30%] xs:top-[35%] sm:top-[40%] md:top-[35%] w-max z-10 
-                            opacity-100 bg-opacity-50 bg-bg rounded-md px-4"
+                        className="opacity-100 bg-opacity-50 bg-bg rounded-md 
+                            absolute top-[30%] xs:top-[35%] sm:top-[40%] md:top-[35%] w-max"
                     >
-                        <h1 className="text-2xl xs:text-4xl sm:text-5xl font-bold">
+                        <h1
+                            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-center max-w-[90%] 
+                                mx-auto sm:max-w-none"
+                        >
                             {/* Your needs in one place. */}
                             All "Your OU Notes" in one place.
                         </h1>
@@ -31,17 +34,15 @@ const Main = (props: Props) => {
                             <a
                                 className="border-2 rounded-md px-3 py-2 bg-btn text-btnText
                                 hover:text-heading hover:border-btn hover:bg-btnText
-                                md:self-start text-lg font-semibold transition duration-500 
-                                ease-in border-transparent"
+                                text-base sm:text-lg font-semibold border-transparent fadeIn"
                             >
                                 Subjects
                             </a>
                         </Link>
                         <Link href="/about">
                             <a
-                                className="border-2 rounded-md px-3 py-2 leading-7 
-                                hover:bg-btn hover:text-btnText font-semibold
-                                transition duration-500 ease-in w-max border-btn"
+                                className="border-2 rounded-md px-3 py-2 hover:bg-btn border-btn text-base 
+                                    sm:text-lg hover:text-btnText font-semibold fadeIn w-max"
                             >
                                 About US
                             </a>

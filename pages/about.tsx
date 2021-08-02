@@ -68,7 +68,13 @@ const about = (props: Props) => {
                             priority={true}
                             alt="Image by Yvette W from Pixabay"
                         />
-                        <h2 className="leading-relaxed text-center mt-4 text-heading-dark w-[80%] md:w-full">
+                        <h3
+                            className="md:hidden leading-relaxed text-center mt-4 text-heading-dark w-[80%] md:w-full
+                                text-3xl font-bold tracking-wider"
+                        >
+                            We are students, determined to help students!
+                        </h3>
+                        <h2 className="hidden md:block leading-relaxed text-center mt-4 text-heading-dark w-[80%] md:w-full">
                             We are students, determined to help students!
                         </h2>
                     </div>

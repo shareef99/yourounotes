@@ -8,8 +8,8 @@ const Footer = (props: Props) => {
         <footer id="footer" className="bg-gray-500">
             <div className="flexCenter">
                 <ul
-                    className="flex flex-wrap flex-col sm:flex-row justify-around items-start 
-                        py-14 sm:space-x-8 space-y-8 sm:space-y-0"
+                    className="flex flex-wrap flex-col sm:flex-row justify-around items-start py-14 
+                        sm:space-x-8 space-y-8 sm:space-y-0 text-bg"
                 >
                     <li className="underline hover:no-underline">
                         <Link href="/">
@@ -27,7 +27,7 @@ const Footer = (props: Props) => {
                     </li>
                     <li className="underline hover:no-underline">
                         <Link href="/subjects">
-                            <a>All Subjects</a>
+                            <a>Subjects</a>
                         </Link>
                     </li>
                     <li className="underline hover:no-underline">
@@ -55,8 +55,8 @@ const Footer = (props: Props) => {
                     </li>
                 </ul>
             </div>
-            <div className="text-center pb-10">
-                <p>
+            <div className="text-center pb-10 font-medium text-bg">
+                <p className="text-bg">
                     Design and Coded by{" "}
                     <a
                         href="https://portfolio.shareef.vercel.app/"
@@ -67,7 +67,9 @@ const Footer = (props: Props) => {
                         Shareef
                     </a>
                 </p>
-                <p>copyright © 2021 Nadeem Shareef</p>
+                <p className="text-bg">
+                    copyright © {new Date().getFullYear()} Nadeem Shareef
+                </p>
             </div>
         </footer>
     );

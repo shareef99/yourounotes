@@ -123,7 +123,7 @@ const Subject = (props: Props) => {
                 {allNotes
                     ?.sort((a, b) => (a.newName! < b.newName! ? -1 : 1))
                     .map((note) => (
-                        <div className="colCenter my-14">
+                        <div className="colCenter my-14" key={note.docId}>
                             <div
                                 key={note.docId}
                                 className="colCenter border-b-2 pb-4 space-y-4"

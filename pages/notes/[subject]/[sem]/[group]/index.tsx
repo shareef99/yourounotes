@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
+import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { db } from "../../firebase/firebase";
+import Head from "next/head";
+import { db } from "../../../../../firebase/firebase";
 
 interface Props {}
 
@@ -19,9 +19,12 @@ interface NotesType {
     newName: string | undefined;
 }
 
-const Subject = (props: Props) => {
+const SubjectNotes: FC<Props> = () => {
     const router = useRouter();
-    const { sem, group, subject }: any = router.query;
+    const { subject, sem, group }: any = router.query;
+    console.log("====================================");
+    console.log(subject, sem, group);
+    console.log("====================================");
 
     const [notes, setNotes] = useState<Array<NotesType>>([]);
     const [importantQuestions, setImportantQuestions] = useState<
@@ -170,4 +173,4 @@ const Subject = (props: Props) => {
     );
 };
 
-export default Subject;
+export default SubjectNotes;

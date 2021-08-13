@@ -7,7 +7,7 @@ interface Props {
 }
 
 const SubjectNote = ({ subject, subjectNotes }: Props) => {
-    console.log({ subject, subjectNotes });
+    // console.log({ subject, subjectNotes });
 
     return (
         <div>
@@ -31,10 +31,13 @@ export default SubjectNote;
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const subjects = fs.readdirSync("public/subjects");
+    // console.log("====================================");
+    console.log(subjects);
+    // console.log("====================================");
 
     const paths = subjects.map((subject) => ({
         params: {
-            subject: `/subjects/${subject}`,
+            subject: `subjects/${subject}`,
         },
     }));
 
@@ -50,9 +53,9 @@ export const getStaticProps: GetStaticProps = async ({
     const { subject } = params;
     const subjectNotes = fs.readdirSync(`public/subjects/${subject}`);
 
-    console.log("====================================");
-    console.log({ subject, subjectNotes });
-    console.log("====================================");
+    // console.log("====================================");
+    // console.log({ subject, subjectNotes });
+    // console.log("====================================");
 
     return {
         props: {

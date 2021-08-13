@@ -37,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     const paths = subjects.map((subject) => ({
         params: {
-            subject: `subjects/${subject}`,
+            subject: `${subject}`,
         },
     }));
 

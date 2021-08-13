@@ -1,17 +1,20 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import fs from "fs";
 import Link from "next/link";
+import axios from "axios";
+import PdfViewer from "../../../components/PdfViewer";
 interface Props {
-    subject: string;
-    subjectNotes: Array<string>;
+    // subject: string;
+    // subjectNotes: Array<string>;
+    // data: any;
 }
 
-const SubjectNote = ({ subject, subjectNotes }: Props) => {
-    // console.log({ subject, subjectNotes });
+const SubjectNote = ({}: Props) => {
+    // console.log(data);
 
     return (
         <div>
-            <ul>
+            {/* <ul>
                 {subjectNotes?.map((x) => (
                     <li key={x}>
                         <Link
@@ -22,45 +25,55 @@ const SubjectNote = ({ subject, subjectNotes }: Props) => {
                         </Link>
                     </li>
                 ))}
-            </ul>
+                {data.map((x) => (
+                    <PdfViewer key={x.sha} url={x.download_url} />
+                ))}
+            </ul> */}
+            lol
         </div>
     );
 };
 
 export default SubjectNote;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    const subjects = fs.readdirSync("public/subjects");
-    // console.log("====================================");
-    console.log(subjects);
-    // console.log("====================================");
+// export const getStaticPaths: GetStaticPaths = async () => {
+//     const subjects = fs.readdirSync("public/subjects");
 
-    const paths = subjects.map((subject) => ({
-        params: {
-            subject: `${subject}`,
-        },
-    }));
+//     const paths = subjects.map((subject) => ({
+//         params: {
+//             subject: `${subject}`,
+//         },
+//     }));
 
-    return {
-        paths,
-        fallback: true,
-    };
-};
+//     return {
+//         paths,
+//         fallback: true,
+//     };
+// };
 
-export const getStaticProps: GetStaticProps = async ({
-    params,
-}: GetStaticPropsContext) => {
-    const { subject } = params;
-    const subjectNotes = fs.readdirSync(`public/subjects/${subject}`);
+// export const getStaticProps: GetStaticProps = async ({
+//     params,
+// }: GetStaticPropsContext) => {
+//     const { subject } = params;
+//     const subjectNotes = fs.readdirSync(`public/subjects/${subject}`);
 
-    // console.log("====================================");
-    // console.log({ subject, subjectNotes });
-    // console.log("====================================");
+//     const response = await axios.get(
+//         "https://api.github.com/repos/shareef99/yournotes/contents/public/notes/Maths"
+//     );
 
-    return {
-        props: {
-            subject,
-            subjectNotes,
-        },
-    };
-};
+//     const { data } = response;
+
+//     console.log("====================================");
+//     console.log(response);
+//     console.log("====================================");
+
+//     console.log({ subject, subjectNotes });
+
+//     return {
+//         props: {
+//             subject,
+//             subjectNotes,
+//             data,
+//         },
+//     };
+// };

@@ -8,6 +8,7 @@
         "start": "next start"
     },
     "dependencies": {
+        "@octokit/rest": "^18.9.0",
         "@react-pdf-viewer/core": "^2.7.1",
         "@react-pdf-viewer/default-layout": "^2.7.1",
         "axios": "^0.21.1",

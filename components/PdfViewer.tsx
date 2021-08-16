@@ -27,6 +27,14 @@ const PdfViewer = ({ url }: Props) => {
                         <Viewer
                             fileUrl={url}
                             plugins={[defaultLayoutPluginInstance]}
+                            httpHeaders={{
+                                // "Access-Control-Allow-Origin": "*",
+                                accept: "*",
+                                // "Access-Control-Request-Headers":
+                                // "access-control-allow-origin",
+                                // "Access-Control-Request-Method": "GET",
+                            }}
+                            // withCredentials={true}
                         />
                     </Worker>
                 </div>

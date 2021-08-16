@@ -10,8 +10,8 @@ export const Layout = ({ children }: Props) => {
     return (
         <>
             <Navbar />
-            <main>{children}</main>
-            {/* <Footer /> */}
+            <main className="h-full">{children}</main>
+            <Footer />
         </>
     );
 };

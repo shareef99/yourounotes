@@ -1,3 +1,4 @@
+import { Box, Input } from "@chakra-ui/react";
 import { FC, useState } from "react";
 // import { storage, timestamp, db } from "../firebase";
 import details from "../public/details.json";
@@ -16,82 +17,15 @@ interface formData {
 const Upload: FC<Props> = () => {
     // const { user, admins } = useAuth();
 
-    const [uploadedFiles, setUploadedFiles] = useState<Array<File>>([]);
-
     // const handleNonAdminUploads = () => {
     //     if (!admins.includes(user.email)) {
     //         setMessage("We will notify you, When it is uploaded");
     //     }
     // };
 
-    const onSubmit = (data: formData) => {
-        // const promises: any = [];
-        // files.forEach((file, index) => {
-        //     let fileRef: firebase.default.storage.Reference;
-        //     if (admins.includes(user.email)) {
-        //         fileRef = storage.ref(
-        //             `${data.sem} sem/${data.group}/${data.subject}/${type}/${file?.name}`
-        //         );
-        //     } else {
-        //         fileRef = storage.ref(
-        //             `unchecked/${data.sem} sem/${data.group}/${data.subject}/${type}/${file?.name}`
-        //         );
-        //     }
-        //     const uploadTask = fileRef.put(file);
-        //     promises.push(uploadTask);
-        //     uploadTask.on(
-        //         "state_changed",
-        //         (snapshot: any) => {
-        //             setMessage(`Uploading file(s)...`);
-        //         },
-        //         (err: any) => {
-        //             setError(`Error while uploading! Try again in a while`);
-        //         },
-        //         async () => {
-        //             const url = await fileRef.getDownloadURL();
-        //             const createdAt = new Date(
-        //                 timestamp.now().seconds * 1000
-        //             ).toLocaleDateString();
-        //             await db
-        //                 .collection("notes")
-        //                 .doc(data.sem)
-        //                 .collection(data.group)
-        //                 .doc(data.subject)
-        //                 .collection(data.type)
-        //                 .add({
-        //                     url,
-        //                     email: user.email,
-        //                     createdBy: user.name,
-        //                     createdAt,
-        //                     group,
-        //                     sem,
-        //                     subject,
-        //                     name: file?.name,
-        //                     type,
-        //                 });
-        //         }
-        //     );
-        //     Promise.all(promises)
-        //         .then(() => {
-        //             setUploadedFiles(files);
-        //             setFiles([]);
-        //             handleNonAdminUploads();
-        //             setIsUploaded(true);
-        //             reset();
-        //             setMessage(undefined);
-        //         })
-        //         .catch((err) => {
-        //             setError(err.message);
-        //         });
-        // });
-    };
-
     return (
-        <section
-            id="popup"
-            className="w-full h-screen colCenter bg-whiteShade text-lightBlack -mt-16"
-        >
-            <div className="border-2 rounded-lg shadow-2xl px-10 py-8 mx-auto w-72 colCenter space-y-4">
+        <section>
+            <Box className="border-2 rounded-lg shadow-2xl px-10 py-8 mx-auto w-72 colCenter space-y-4">
                 <h3 className="font-semibold text-lg">Select Details</h3>
                 <form className="colCenter flex-wrap w-full space-y-2">
                     <label htmlFor="sem" className="w-full">
@@ -186,7 +120,7 @@ const Upload: FC<Props> = () => {
                         />
                     </label>
                     <label htmlFor="submit" className="w-full flexCenter">
-                        <input
+                        <Input
                             type="submit"
                             id="submit"
                             name="submit"
@@ -194,7 +128,7 @@ const Upload: FC<Props> = () => {
                         />
                     </label>
                 </form>
-            </div>
+            </Box>
         </section>
     );
 };

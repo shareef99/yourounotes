@@ -19,6 +19,7 @@ import {
 } from "formik";
 import * as yup from "yup";
 import { ErrorMessage } from "../components/ErrorMessage";
+import { db } from "../firebase/firebase";
 
 interface Props {}
 
@@ -68,12 +69,37 @@ const Upload: FC<Props> = () => {
         notes: [{ name: "", url: "" }],
     };
 
+    const uploadNotesToDb = ({ subject, type, notes }: FormValues) => {
+        notes.map((note) => {
+            const { name, url } = note;
+            console.log({ name, url, subject, type });
+            const id = `${name} + random id: ${Math.floor(
+                Math.random() * 100
+            )}`;
+            db.collection("subjects")
+                .doc(subject)
+                .collection(type)
+                .doc(id)
+                .set({
+                    name,
+                    url,
+                })
+                .then((res) => console.log("update successfully", res))
+                .catch((err) => console.log(err.message || err));
+            console.log("ending......");
+        });
+    };
+
     const submitHandler = (
         values: FormValues,
         formikHelpers: FormikHelpers<FormValues>
     ) => {
         const { setSubmitting, resetForm } = formikHelpers;
+        setSubmitting(true);
         console.log(values);
+
+        uploadNotesToDb(values);
+
         setSubmitting(false);
         // resetForm();
     };

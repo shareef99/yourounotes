@@ -180,7 +180,6 @@ const Upload: FC<Props> = () => {
                             <Text mb={3} className="font-medium text-error">
                                 {errors.group && errors.group}
                             </Text>
-
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
                                 borderColor={borderColor}
@@ -207,7 +206,6 @@ const Upload: FC<Props> = () => {
                             <Text mb={3} className="font-medium text-error">
                                 {errors.subject && errors.subject}
                             </Text>
-
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
                                 borderColor={borderColor}
@@ -231,7 +229,6 @@ const Upload: FC<Props> = () => {
                             <Text mb={3} className="font-medium text-error">
                                 {errors.type && errors.type}
                             </Text>
-
                             <Text fontSize="2xl" mb={1}>
                                 Notes Details
                             </Text>

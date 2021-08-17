@@ -35,6 +35,9 @@ module.exports = {
                     DEFAULT: "#d1d1e9",
                     dark: "#16161a",
                 },
+                error: {
+                    DEFAULT: "#ff0033",
+                },
             },
             spacing: {
                 "9/10": "90%",

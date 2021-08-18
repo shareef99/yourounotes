@@ -8,8 +8,9 @@ import {
     Text,
 } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import * as yup from "yup";
+import { signIn } from "next-auth/client";
 
 interface Props {}
 
@@ -43,42 +44,64 @@ const createUser = async (email: string, password: string) => {
     return data;
 };
 
+const loginUser = async (email: string, password: string) => {
+    const res = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        throw new Error(data.message || "Something went wrong!");
+    }
+    return data;
+};
+
 const Auth = (props: Props) => {
     const initialValues: FormValues = {
         email: "",
         password: "",
     };
-    const confirmPasswordRef = useRef<HTMLInputElement>();
-    const [confirmPasswordErr, setConfirmPasswordErr] = useState<string>();
     const [isLogin, setIsLogin] = useState<boolean>(true);
 
     function switchAuthModeHandler() {
         setIsLogin((prevState) => !prevState);
     }
 
-    const submitHandler = (
+    const submitHandler = async (
         values: FormValues,
         formikHelpers: FormikHelpers<FormValues>
     ) => {
         const { email, password } = values;
-        const confirmPassword = confirmPasswordRef.current.value;
         const { resetForm, setSubmitting } = formikHelpers;
         console.log(values);
 
         setSubmitting(true);
         if (isLogin) {
             // Log the user in
+            try {
+                const result = await loginUser(email, password);
+                console.log(result);
+            } catch (err) {
+                console.log(err.message || err);
+            }
             setSubmitting(false);
             return;
         }
 
         // Signup the user (Create the user)
-        if (password !== confirmPassword) {
-            setConfirmPasswordErr("Password must be same");
-            setSubmitting(false);
-            return;
+        // Creating a new user
+
+        try {
+            const result = await createUser(email, password);
+            console.log(result);
+        } catch (err) {
+            console.log(err.message || err);
         }
-        // createUser()
         setSubmitting(false);
     };
 
@@ -151,28 +174,6 @@ const Auth = (props: Props) => {
                                     </Text>
                                 )}
                             </FormControl>
-                            {!isLogin && (
-                                <FormControl
-                                    id="confirmPassword"
-                                    isRequired
-                                    mb={3}
-                                >
-                                    <FormLabel>Confirm Password</FormLabel>
-                                    <Input
-                                        type="password"
-                                        placeholder="*********"
-                                        ref={confirmPasswordRef}
-                                    />
-                                    {confirmPasswordErr && (
-                                        <Text
-                                            mb={3}
-                                            className="font-medium text-error"
-                                        >
-                                            {confirmPasswordErr}
-                                        </Text>
-                                    )}
-                                </FormControl>
-                            )}
                             <Button
                                 isFullWidth
                                 my={3}

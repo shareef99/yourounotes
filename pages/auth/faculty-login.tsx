@@ -12,6 +12,13 @@ import { Formik, FormikHelpers, Form, FormikProps } from "formik";
 import * as yup from "yup";
 import { useAuth } from "../../context/AuthContext";
 // import { db } from "../../firebase/firebase";
+import {
+    borderColor,
+    focusBorderColor,
+    hoverBorderColor,
+    submitBtnBgColor,
+    submitBtnHoverBgColor,
+} from "../../helpers/colors";
 
 interface Props {}
 
@@ -28,41 +35,41 @@ const validationSchema = yup.object().shape({
         .min(8, "Password must be 8 character"),
 });
 
-const createUser = async (email: string, password: string) => {
-    const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+// const createUser = async (email: string, password: string) => {
+//     const res = await fetch("/api/auth/signup", {
+//         method: "POST",
+//         body: JSON.stringify({ email, password }),
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//     });
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    if (!res.ok) {
-        throw new Error(data.message || "Something went wrong!");
-    }
-    return data;
-};
+//     if (!res.ok) {
+//         throw new Error(data.message || "Something went wrong!");
+//     }
+//     return data;
+// };
 
-const loginUser = async (email: string, password: string) => {
-    const res = await fetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+// const loginUser = async (email: string, password: string) => {
+//     const res = await fetch("/api/auth/login", {
+//         method: "POST",
+//         body: JSON.stringify({ email, password }),
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//     });
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    if (!res.ok) {
-        throw new Error(data.message || "Something went wrong!");
-    }
-    return data;
-};
+//     if (!res.ok) {
+//         throw new Error(data.message || "Something went wrong!");
+//     }
+//     return data;
+// };
 
-const Auth = (props: Props) => {
+const FacultyLogin = (props: Props) => {
     const initialValues: FormValues = {
         email: "",
         password: "",
@@ -154,6 +161,9 @@ const Auth = (props: Props) => {
                             <FormControl id="email" isRequired mb={3}>
                                 <FormLabel>Email Address</FormLabel>
                                 <Input
+                                    _hover={{ borderColor: hoverBorderColor }}
+                                    borderColor={borderColor}
+                                    focusBorderColor={focusBorderColor}
                                     type="email"
                                     placeholder="name@yourounotes.com"
                                     value={values.email}
@@ -173,6 +183,9 @@ const Auth = (props: Props) => {
                             <FormControl id="password" isRequired mb={3}>
                                 <FormLabel>Password</FormLabel>
                                 <Input
+                                    _hover={{ borderColor: hoverBorderColor }}
+                                    borderColor={borderColor}
+                                    focusBorderColor={focusBorderColor}
                                     type="password"
                                     placeholder="*********"
                                     value={values.password}
@@ -194,9 +207,14 @@ const Auth = (props: Props) => {
                                 my={3}
                                 isDisabled={isSubmitting}
                                 type="submit"
+                                className="text-btnText"
+                                backgroundColor={submitBtnBgColor}
+                                _hover={{
+                                    backgroundColor: submitBtnHoverBgColor,
+                                }}
                             >
                                 {/* {isLogin ? "Login" : "Create Account"} */}
-                                Login
+                                Log In
                             </Button>
                             {/* <Button
                                 variant="link"
@@ -217,4 +235,4 @@ const Auth = (props: Props) => {
     );
 };
 
-export default Auth;
+export default FacultyLogin;

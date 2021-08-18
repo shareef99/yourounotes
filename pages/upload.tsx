@@ -20,6 +20,14 @@ import {
 import * as yup from "yup";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { db } from "../firebase/firebase";
+import {
+    borderColor,
+    focusBorderColor,
+    hoverBorderColor,
+    submitBtnBgColor,
+    submitBtnHoverBgColor,
+    placeholderColor,
+} from "../helpers/colors";
 
 interface Props {}
 
@@ -53,14 +61,6 @@ const validationSchema = yup.object().shape({
 });
 
 const Upload: FC<Props> = () => {
-    // Constants
-    const borderColor = "gray.600";
-    const hoverBorderColor = "#6246ea";
-    const focusBorderColor = "#7f5af0";
-    const placeholderColor = "gray.500";
-    const submitBtnBgColor = hoverBorderColor;
-    const submitBtnHoverBgColor = focusBorderColor;
-
     const initialValues: FormValues = {
         sem: "",
         group: "",

@@ -5,3 +5,7 @@ export const focusBorderColor = "#7f5af0";
 export const placeholderColor = "gray.500";
 export const submitBtnBgColor = hoverBorderColor;
 export const submitBtnHoverBgColor = focusBorderColor;
+
+// Button colors
+export const btnBorder = "#6246ea";
+export const btnText = "#fffffe";

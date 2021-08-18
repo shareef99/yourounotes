@@ -10,6 +10,8 @@ interface Props {}
 const Main = (props: Props) => {
     const { currentUser } = useAuth();
 
+    console.log(currentUser);
+
     return (
         <section>
             <div
@@ -81,7 +83,12 @@ const Main = (props: Props) => {
                         }}
                     >
                         {currentUser ? (
-                            <Link href="/upload">Upload</Link>
+                            <Link
+                                href="/admin/faculty/[faculty]"
+                                as={`/admin/faculty/${currentUser.name}`}
+                            >
+                                Upload
+                            </Link>
                         ) : (
                             <Link href="/auth/faculty-login">Log In</Link>
                         )}

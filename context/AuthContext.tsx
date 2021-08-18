@@ -6,7 +6,7 @@ import {
     createContext,
     ReactNode,
 } from "react";
-import { auth } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
 
 interface Props {
     children: ReactNode;
@@ -15,6 +15,7 @@ interface Props {
 interface User {
     email: string;
     uid: string;
+    name: string;
 }
 
 interface authContextType {
@@ -34,6 +35,7 @@ const authContextDefaultValues: authContextType = {
     currentUser: {
         email: "",
         uid: "",
+        name: "",
     },
     signUp: () => new Promise(() => {}),
     login: () => new Promise(() => {}),
@@ -78,10 +80,22 @@ export const AuthProvider = ({ children }: Props) => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 console.log(user);
-                setCurrentUser({ email: user.email, uid: user.uid });
-                console.log(currentUser);
+                const { email } = user;
+                db.collection("users")
+                    .doc(email)
+                    .get()
+                    .then((res) => {
+                        setCurrentUser({
+                            email: res.data().email,
+                            uid: res.data().uid,
+                            name: res.data().name || "no name",
+                        });
+                        setLoading(false);
+                    })
+                    .catch((err) =>
+                        console.log("Error from auth", err.message || err)
+                    );
             }
-            setLoading(false);
         });
 
         return unsubscribe;

@@ -7,5 +7,10 @@ export const submitBtnBgColor = hoverBorderColor;
 export const submitBtnHoverBgColor = focusBorderColor;
 
 // Button colors
-export const btnBorder = "#6246ea";
+export const btnBackground = "#6246ea";
+export const hoverBtn = focusBorderColor;
+export const btnBorder = btnBackground;
 export const btnText = "#fffffe";
+
+// Popover colors
+export const popBg = "#fffffe";

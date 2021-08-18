@@ -8,9 +8,10 @@ import {
     Text,
 } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
-import { useState } from "react";
+// import { useEffect, useState } from "react";
 import * as yup from "yup";
-import { signIn } from "next-auth/client";
+import { useAuth } from "../../context/AuthContext";
+// import { db } from "../../firebase/firebase";
 
 interface Props {}
 
@@ -66,11 +67,13 @@ const Auth = (props: Props) => {
         email: "",
         password: "",
     };
-    const [isLogin, setIsLogin] = useState<boolean>(true);
+    // const [isLogin, setIsLogin] = useState<boolean>(true);
 
-    function switchAuthModeHandler() {
-        setIsLogin((prevState) => !prevState);
-    }
+    // function switchAuthModeHandler() {
+    //     setIsLogin((prevState) => !prevState);
+    // }
+
+    const { login } = useAuth();
 
     const submitHandler = async (
         values: FormValues,
@@ -78,31 +81,42 @@ const Auth = (props: Props) => {
     ) => {
         const { email, password } = values;
         const { resetForm, setSubmitting } = formikHelpers;
-        console.log(values);
 
         setSubmitting(true);
-        if (isLogin) {
-            // Log the user in
-            try {
-                const result = await loginUser(email, password);
-                console.log(result);
-            } catch (err) {
-                console.log(err.message || err);
-            }
-            setSubmitting(false);
-            return;
+        // if (isLogin) {
+        // Log the user in
+        try {
+            // const result = await loginUser(email, password);
+            const result = await login(email, password);
+            console.log(result);
+            resetForm();
+        } catch (err) {
+            resetForm();
+            console.log(err.message || err);
         }
+        resetForm();
+        setSubmitting(false);
+        return;
+        // }
 
         // Signup the user (Create the user)
         // Creating a new user
 
-        try {
-            const result = await createUser(email, password);
-            console.log(result);
-        } catch (err) {
-            console.log(err.message || err);
-        }
-        setSubmitting(false);
+        // try {
+        //     // const result = await createUser(email, password);
+        //     const result = await signUp(email, password);
+        //     if (result) {
+        //         const { user } = result;
+        //         const { email, uid } = user;
+        //         db.collection("users").doc(email).set({
+        //             email,
+        //             uid,
+        //         });
+        //     }
+        // } catch (err) {
+        //     console.log(err.message || err);
+        // }
+        // setSubmitting(false);
     };
 
     return (
@@ -114,7 +128,8 @@ const Auth = (props: Props) => {
                 className="w-full xs:w-9/10 sm:w-[30rem] bg-cardBg"
             >
                 <Heading mb={8} textAlign="center">
-                    {isLogin ? "Login" : "Sign Up"}
+                    {/* {isLogin ? "Login" : "Sign Up"} */}
+                    Faculty login
                 </Heading>
                 <Formik
                     initialValues={initialValues}
@@ -140,7 +155,7 @@ const Auth = (props: Props) => {
                                 <FormLabel>Email Address</FormLabel>
                                 <Input
                                     type="email"
-                                    placeholder="kratos@godOfWar.com"
+                                    placeholder="name@yourounotes.com"
                                     value={values.email}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
@@ -180,9 +195,10 @@ const Auth = (props: Props) => {
                                 isDisabled={isSubmitting}
                                 type="submit"
                             >
-                                {isLogin ? "Login" : "Create Account"}
+                                {/* {isLogin ? "Login" : "Create Account"} */}
+                                Login
                             </Button>
-                            <Button
+                            {/* <Button
                                 variant="link"
                                 isFullWidth
                                 onClick={switchAuthModeHandler}
@@ -191,7 +207,8 @@ const Auth = (props: Props) => {
                                 {isLogin
                                     ? "Create new account"
                                     : "Login with existing account"}
-                            </Button>
+                            </Button> */}
+                            {/* <Button onClick={logout}>logout</Button> */}
                         </Form>
                     )}
                 </Formik>

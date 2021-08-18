@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/firebase";
 import details from "../public/details.json";
 
 interface Props {}
 
 const random = (props: Props) => {
+    const { currentUser } = useAuth();
+
     // useEffect(() => {
     //     const types: Array<string> = [
     //         "notes",
@@ -41,7 +44,9 @@ const random = (props: Props) => {
     //     addSubjectsToFirebase(bestSubjects);
     // }, []);
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        console.log(currentUser);
+    }, []);
 
     return (
         <div>

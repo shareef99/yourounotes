@@ -106,8 +106,8 @@ const Subjects = (props: Props) => {
                                                 className="list-item list-disc "
                                             >
                                                 <Link
-                                                    href="notes/[subject]/[sem]/[group]"
-                                                    as={`notes/${subject}/${x.sem}/${x.group}`}
+                                                    href="subjects/[subject]"
+                                                    as={`subjects/${subject}`}
                                                 >
                                                     <a>{subject}</a>
                                                 </Link>

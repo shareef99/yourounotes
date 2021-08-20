@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DeletePopup from "../../../components/faculty/DeletePopup";
 import { useAuth } from "../../../context/AuthContext";
 import { db } from "../../../firebase/firebase";

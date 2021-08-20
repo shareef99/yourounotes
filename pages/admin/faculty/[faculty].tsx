@@ -1,6 +1,7 @@
 import {
     Box,
     Button,
+    Flex,
     Heading,
     Icon,
     Popover,
@@ -32,12 +33,12 @@ interface Note {
     url: string;
     uploadedBy: string;
     uploadedAt: string;
-    subjectName: string;
+    subject: string;
     type: string;
 }
 
 const DynamicFaculty = (props: Props) => {
-    const { currentUser } = useAuth();
+    const { currentUser, logout } = useAuth();
 
     // States
     const [notes, setNotes] = useState<Array<Note>>([]);
@@ -45,8 +46,10 @@ const DynamicFaculty = (props: Props) => {
 
     // Effects
     useEffect(() => {
+        console.log(currentUser);
+
         db.collection("faculties")
-            .doc("testing3@yourounotes.com")
+            .doc(currentUser.email)
             .collection("notes")
             .onSnapshot((snapShot) => {
                 setNotes(
@@ -56,14 +59,14 @@ const DynamicFaculty = (props: Props) => {
                         url: doc.data().url,
                         uploadedBy: doc.data().uploadedBy,
                         uploadedAt: doc.data().uploadedAt,
-                        subjectName: doc.data().subjectName,
+                        subject: doc.data().subject,
                         type: doc.data().type,
                     }))
                 );
             });
 
         db.collection("faculties")
-            .doc("testing3@yourounotes.com")
+            .doc(currentUser.email)
             .get()
             .then((res) => setSubjects(res.data().subjects));
     }, []);
@@ -81,7 +84,7 @@ const DynamicFaculty = (props: Props) => {
         //     .catch((err) => console.log(err));
 
         // db.collection("subjects")
-        //     .doc(note.subjectName)
+        //     .doc(note.subject)
         //     .collection(note.type)
         //     .doc(note.id)
         //     .delete()
@@ -109,7 +112,7 @@ const DynamicFaculty = (props: Props) => {
                 <ul className="flex flex-wrap">
                     {notes?.map((note) => (
                         <li
-                            key={note.url}
+                            key={note.id}
                             className="bg-cardBg p-4 m-4 rounded-md shadow-md"
                         >
                             <div>
@@ -123,9 +126,9 @@ const DynamicFaculty = (props: Props) => {
                                     URL Link
                                 </a>
                                 <br />
-                                Uploaded at: 18/8/2021
+                                Uploaded at: {note.uploadedAt}
                                 <br />
-                                Subject: {note.subjectName}
+                                Subject: {note.subject}
                                 <br />
                                 Type: {note.type}
                             </div>
@@ -183,19 +186,37 @@ const DynamicFaculty = (props: Props) => {
                     )}
                 </ul>
             </Box>
-            <Button
-                variant="solid"
-                backgroundColor={btnBackground}
-                textColor={btnText}
-                _hover={{
-                    backgroundColor: hoverBorderColor,
-                    transitionProperty: "background-color, border-color, color",
-                    transitionTimingFunction: "cubic-bezier(0.4, 0, 1, 1)",
-                    transitionDuration: "500ms",
-                }}
-            >
-                <Link href="/upload">Upload Notes</Link>
-            </Button>
+            <Flex className="space-x-2">
+                <Button
+                    variant="solid"
+                    backgroundColor={btnBackground}
+                    textColor={btnText}
+                    _hover={{
+                        backgroundColor: hoverBorderColor,
+                        transitionProperty:
+                            "background-color, border-color, color",
+                        transitionTimingFunction: "cubic-bezier(0.4, 0, 1, 1)",
+                        transitionDuration: "500ms",
+                    }}
+                >
+                    <Link href="/upload">Upload Notes</Link>
+                </Button>
+                <Button
+                    variant="solid"
+                    backgroundColor={btnBackground}
+                    textColor={btnText}
+                    _hover={{
+                        backgroundColor: hoverBorderColor,
+                        transitionProperty:
+                            "background-color, border-color, color",
+                        transitionTimingFunction: "cubic-bezier(0.4, 0, 1, 1)",
+                        transitionDuration: "500ms",
+                    }}
+                    onClick={logout}
+                >
+                    <Link href="/upload">Log out</Link>
+                </Button>
+            </Flex>
         </section>
     );
 };

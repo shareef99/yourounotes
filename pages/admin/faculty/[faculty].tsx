@@ -72,24 +72,31 @@ const DynamicFaculty = (props: Props) => {
     }, []);
 
     // Functions
-    const deleteNote = (note: Note) => {
+
+    const deleteNoteFromSubjects = async ({ type, subject, id }: Note) => {
+        db.collection("subjects")
+            .doc(subject)
+            .collection(type)
+            .doc(id)
+            .delete()
+            .then(() => console.log("Deleted from subjects"))
+            .catch((err) => console.log(err));
+    };
+
+    const deleteNoteFromFaculty = async ({ id }: Note) => {
+        db.collection("faculties")
+            .doc(currentUser.email)
+            .collection("notes")
+            .doc(id)
+            .delete()
+            .then(() => console.log("Deleted from faculties"))
+            .catch((err) => console.log(err));
+    };
+
+    const deleteNote = async (note: Note) => {
         console.log(note);
-
-        // db.collection("faculties")
-        //     .doc("testing3@yourounotes.com")
-        //     .collection("notes")
-        //     .doc(note.id)
-        //     .delete()
-        //     .then(() => console.log("deleted"))
-        //     .catch((err) => console.log(err));
-
-        // db.collection("subjects")
-        //     .doc(note.subject)
-        //     .collection(note.type)
-        //     .doc(note.id)
-        //     .delete()
-        //     .then(() => console.log("Deleted from subjects also"))
-        //     .catch((err) => console.log(err));
+        await deleteNoteFromSubjects(note);
+        await deleteNoteFromFaculty(note);
     };
 
     return (

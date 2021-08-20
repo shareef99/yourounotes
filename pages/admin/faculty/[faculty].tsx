@@ -1,33 +1,18 @@
-import {
-    Box,
-    Button,
-    Flex,
-    Heading,
-    Icon,
-    Popover,
-    PopoverArrow,
-    PopoverBody,
-    PopoverCloseButton,
-    PopoverContent,
-    PopoverHeader,
-    PopoverTrigger,
-    Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import DeletePopup from "../../../components/faculty/DeletePopup";
 import { useAuth } from "../../../context/AuthContext";
 import { db } from "../../../firebase/firebase";
 import {
     btnBackground,
-    btnBorder,
     btnText,
     hoverBorderColor,
 } from "../../../helpers/colors";
-import { MdDelete } from "react-icons/md";
 
 interface Props {}
 
-interface Note {
+export interface Note {
     id: string;
     name: string;
     url: string;
@@ -46,8 +31,6 @@ const DynamicFaculty = (props: Props) => {
 
     // Effects
     useEffect(() => {
-        console.log(currentUser);
-
         db.collection("faculties")
             .doc(currentUser.email)
             .collection("notes")
@@ -70,34 +53,6 @@ const DynamicFaculty = (props: Props) => {
             .get()
             .then((res) => setSubjects(res.data().subjects));
     }, []);
-
-    // Functions
-
-    const deleteNoteFromSubjects = async ({ type, subject, id }: Note) => {
-        db.collection("subjects")
-            .doc(subject)
-            .collection(type)
-            .doc(id)
-            .delete()
-            .then(() => console.log("Deleted from subjects"))
-            .catch((err) => console.log(err));
-    };
-
-    const deleteNoteFromFaculty = async ({ id }: Note) => {
-        db.collection("faculties")
-            .doc(currentUser.email)
-            .collection("notes")
-            .doc(id)
-            .delete()
-            .then(() => console.log("Deleted from faculties"))
-            .catch((err) => console.log(err));
-    };
-
-    const deleteNote = async (note: Note) => {
-        console.log(note);
-        await deleteNoteFromSubjects(note);
-        await deleteNoteFromFaculty(note);
-    };
 
     return (
         <section className="my-14 container">
@@ -140,51 +95,10 @@ const DynamicFaculty = (props: Props) => {
                                 Type: {note.type}
                             </div>
                             <div>
-                                <Popover>
-                                    {({ onClose }) => (
-                                        <>
-                                            <PopoverTrigger>
-                                                <Button
-                                                    mt={3}
-                                                    variant="unstyled"
-                                                    className="float-right cursor-pointer"
-                                                >
-                                                    <Icon
-                                                        as={MdDelete}
-                                                        boxSize="7"
-                                                    />
-                                                </Button>
-                                            </PopoverTrigger>
-                                            <PopoverContent
-                                                borderColor={btnBorder}
-                                                borderWidth="2px"
-                                                _focus={{
-                                                    borderColor: btnBorder,
-                                                    borderWidth: "2px",
-                                                }}
-                                                width="fit-content"
-                                            >
-                                                <PopoverArrow />
-                                                <PopoverCloseButton />
-                                                <PopoverHeader>
-                                                    Confirmation!
-                                                </PopoverHeader>
-                                                <PopoverBody className="flex justify-between space-x-4">
-                                                    <Button
-                                                        onClick={() =>
-                                                            deleteNote(note)
-                                                        }
-                                                    >
-                                                        Delete
-                                                    </Button>
-                                                    <Button onClick={onClose}>
-                                                        Cancel
-                                                    </Button>
-                                                </PopoverBody>
-                                            </PopoverContent>
-                                        </>
-                                    )}
-                                </Popover>
+                                <DeletePopup
+                                    currentUserEmail={currentUser.email}
+                                    note={note}
+                                />
                             </div>
                         </li>
                     ))}
@@ -221,7 +135,7 @@ const DynamicFaculty = (props: Props) => {
                     }}
                     onClick={logout}
                 >
-                    <Link href="/upload">Log out</Link>
+                    Log out
                 </Button>
             </Flex>
         </section>

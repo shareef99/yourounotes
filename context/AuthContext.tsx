@@ -77,25 +77,25 @@ export const AuthProvider = ({ children }: Props) => {
     // }
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                console.log(user);
-                const { email } = user;
-                db.collection("users")
-                    .doc(email)
-                    .get()
-                    .then((res) => {
-                        setCurrentUser({
-                            email: res.data().email,
-                            uid: res.data().uid,
-                            name: res.data().name || "no name",
-                        });
-                        setLoading(false);
-                    })
-                    .catch((err) =>
-                        console.log("Error from auth", err.message || err)
-                    );
-            }
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            console.log(user);
+            const { email } = user;
+            await db
+                .collection("users")
+                .doc(email)
+                .get()
+                .then((res) => {
+                    setCurrentUser({
+                        email: res.data().email,
+                        uid: res.data().uid,
+                        name: res.data().name,
+                    });
+                    setLoading(false);
+                })
+                .catch((err) =>
+                    console.log("Error from auth", err.message || err)
+                );
+            setLoading(false);
         });
 
         return unsubscribe;

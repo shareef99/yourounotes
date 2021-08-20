@@ -28,6 +28,8 @@ import {
     submitBtnHoverBgColor,
     placeholderColor,
 } from "../helpers/colors";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/router";
 
 interface Props {}
 
@@ -60,7 +62,15 @@ const validationSchema = yup.object().shape({
         .required("Required"),
 });
 
-const Upload: FC<Props> = () => {
+const Upload = (Props: Props) => {
+    // Context
+    const { currentUser } = useAuth();
+
+    if (!currentUser) {
+        const router = useRouter();
+        return router.push("/");
+    }
+
     const initialValues: FormValues = {
         sem: "",
         group: "",
@@ -69,10 +79,35 @@ const Upload: FC<Props> = () => {
         notes: [{ name: "", url: "" }],
     };
 
-    const uploadNotesToDb = ({ subject, type, notes }: FormValues) => {
+    const uploadNotesToFaculty = (
+        subject: string,
+        type: string,
+        notes: Array<Note>,
+        id: string
+    ) => {
         notes.map((note) => {
             const { name, url } = note;
-            console.log({ name, url, subject, type });
+            db.collection("faculties")
+                // .doc(currentUser.email)
+                .doc(currentUser.email)
+                .collection("notes")
+                .doc(id)
+                .set({
+                    name,
+                    url,
+                    subject,
+                    type,
+                    uploadedAt: new Date().toDateString(),
+                    uploadedBy: currentUser.name,
+                })
+                .then((res) => console.log("update successfully", res))
+                .catch((err) => console.log(err.message || err));
+        });
+    };
+
+    const uploadNotesToSubjects = ({ subject, type, notes }: FormValues) => {
+        notes.map((note) => {
+            const { name, url } = note;
             const id = `${name} + random id: ${Math.floor(
                 Math.random() * 100
             )}`;
@@ -83,10 +118,16 @@ const Upload: FC<Props> = () => {
                 .set({
                     name,
                     url,
+                    subject,
+                    type,
+                    uploadedAt: new Date().toDateString(),
+                    uploadedBy: currentUser.name,
                 })
-                .then((res) => console.log("update successfully", res))
+                .then((res) => {
+                    console.log("update successfully", res);
+                    uploadNotesToFaculty(subject, type, notes, id);
+                })
                 .catch((err) => console.log(err.message || err));
-            console.log("ending......");
         });
     };
 
@@ -98,7 +139,7 @@ const Upload: FC<Props> = () => {
         setSubmitting(true);
         console.log(values);
 
-        uploadNotesToDb(values);
+        uploadNotesToSubjects(values);
 
         setSubmitting(false);
         // resetForm();

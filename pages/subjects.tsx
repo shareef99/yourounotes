@@ -106,8 +106,7 @@ const Subjects = (props: Props) => {
                                                 className="list-item list-disc "
                                             >
                                                 <Link
-                                                    href="subjects/[subject]"
-                                                    as={`subjects/${subject}`}
+                                                    href={`/subjects/${subject}?sem=${x.sem}&group=${x.group}`}
                                                 >
                                                     <a>{subject}</a>
                                                 </Link>

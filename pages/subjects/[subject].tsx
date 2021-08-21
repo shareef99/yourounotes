@@ -3,12 +3,15 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { db } from "../../firebase/firebase";
 import { Note } from "../admin/faculty/[faculty]";
+import details from "../../public/details.json";
+import Link from "next/link";
 
 interface Props {}
 
 const SubjectNotes = ({}: Props) => {
     const router = useRouter();
-    const subject = router.query.subject as string;
+    const { subject, sem, group }: any = router.query;
+
     const types: Array<string> = [
         "notes",
         "important questions",
@@ -41,8 +44,27 @@ const SubjectNotes = ({}: Props) => {
     }, []);
 
     useEffect(() => {
-        console.log(notes);
-    }, [notes]);
+        setNotes([]);
+        types.forEach((type) => {
+            db.collection("subjects")
+                .doc(subject)
+                .collection(type)
+                .onSnapshot((snap) => {
+                    setNotes((prevNotes) => [
+                        ...prevNotes,
+                        ...snap.docs.map((doc) => ({
+                            name: doc.data().name,
+                            subject: doc.data().subject,
+                            type: doc.data().type,
+                            uploadedAt: doc.data().uploadedAt,
+                            uploadedBy: doc.data().uploadedBy,
+                            url: doc.data().url,
+                            id: doc.id,
+                        })),
+                    ]);
+                });
+        });
+    }, [subject]);
 
     return (
         <>
@@ -58,16 +80,15 @@ const SubjectNotes = ({}: Props) => {
             </Head>
             <section className="container">
                 {notes.filter((x) => x.name).length === 0 && (
-                    <div className="colCenter h-screen -mt-16 px-8 py-4 space-y-4">
-                        <p>
-                            Sorry we don't have the notes of {subject} yet, We
-                            will notify you once someone uploaded the notes
-                        </p>
+                    <div className="colCenter px-8 py-4 h-64">
+                        <p>We don't have the notes of {subject}.</p>
                     </div>
                 )}
                 {notes
                     .filter((x) => x.name)
-                    .map((note, index) => (
+                    .sort()
+                    .filter((x, index, arr) => x?.id !== arr[index - 1]?.id)
+                    ?.map((note, index) => (
                         <div className="colCenter my-14" key={index}>
                             <div className="colCenter border-b-2 pb-4 space-y-4">
                                 <a
@@ -101,6 +122,28 @@ const SubjectNotes = ({}: Props) => {
                             </div>
                         </div>
                     ))}
+                <div className="colCenter">
+                    <ul className="mt-4 mb-8 space-y-2 ">
+                        <li className="font-semibold text-2xl">
+                            Similar Subjects
+                        </li>
+                        {details
+                            .find((x) => x.sem === sem && x.group === group)
+                            .subjects.filter((y) => y !== subject)
+                            .map((subject, index) => (
+                                <li key={index} className="list-item list-disc">
+                                    <Link
+                                        href={`/subjects/${subject}?sem=${sem}&group=${group}`}
+                                    >
+                                        <a>{subject}</a>
+                                    </Link>
+                                </li>
+                            ))}
+                        <li className="list-item list-disc font-medium underline">
+                            <Link href="/subjects">All Subjects</Link>
+                        </li>
+                    </ul>
+                </div>
             </section>
         </>
     );

@@ -31,7 +31,6 @@ const Main = (props: Props) => {
                             className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-center max-w-[90%] 
                                 mx-auto sm:max-w-none tracking-tighter"
                         >
-                            {/* Your needs in one place. */}
                             All "Your OU Notes" in one place.
                         </h1>
                     </div>
@@ -81,7 +80,7 @@ const Main = (props: Props) => {
                             color: btnText,
                         }}
                     >
-                        {currentUser ? (
+                        {Boolean(currentUser) ? (
                             <Link
                                 href="/admin/faculty/[faculty]"
                                 as={`/admin/faculty/${currentUser.name}`}

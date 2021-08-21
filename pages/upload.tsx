@@ -7,7 +7,6 @@ import {
     Select,
     Text,
 } from "@chakra-ui/react";
-import { FC } from "react";
 import details from "../public/details.json";
 import {
     FormikProps,
@@ -68,7 +67,7 @@ const Upload = (Props: Props) => {
 
     if (!currentUser) {
         const router = useRouter();
-        return router.push("/");
+        router.push("/");
     }
 
     const initialValues: FormValues = {

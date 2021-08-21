@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DeletePopup from "../../../components/faculty/DeletePopup";
 import { useAuth } from "../../../context/AuthContext";
@@ -23,6 +24,7 @@ export interface Note {
 }
 
 const DynamicFaculty = (props: Props) => {
+    const router = useRouter();
     const { currentUser, logout } = useAuth();
 
     // States
@@ -31,8 +33,10 @@ const DynamicFaculty = (props: Props) => {
 
     // Effects
     useEffect(() => {
+        let isMounted = true;
+
         db.collection("faculties")
-            .doc(currentUser.email)
+            .doc(currentUser?.email)
             .collection("notes")
             .onSnapshot((snapShot) => {
                 setNotes(
@@ -49,17 +53,21 @@ const DynamicFaculty = (props: Props) => {
             });
 
         db.collection("faculties")
-            .doc(currentUser.email)
+            .doc(currentUser?.email)
             .get()
-            .then((res) => setSubjects(res.data().subjects));
-    }, []);
+            .then((res) => setSubjects(res.data()?.subjects));
+
+        return () => {
+            isMounted = false;
+        };
+    }, [currentUser]);
 
     return (
         <section className="my-14 container">
-            <Heading mb={12}>Welcome {currentUser.name}</Heading>
+            <Heading mb={12}>Welcome {currentUser?.name}</Heading>
             <Box mb={6}>
                 <Text fontSize="2xl" fontWeight="medium" mb={3}>
-                    Subjects {currentUser.name} teach
+                    Subjects {currentUser?.name} teach
                 </Text>
                 <ul className="ml-4">
                     {subjects?.map((subject) => (
@@ -96,7 +104,7 @@ const DynamicFaculty = (props: Props) => {
                             </div>
                             <div>
                                 <DeletePopup
-                                    currentUserEmail={currentUser.email}
+                                    currentUserEmail={currentUser?.email}
                                     note={note}
                                 />
                             </div>
@@ -133,7 +141,11 @@ const DynamicFaculty = (props: Props) => {
                         transitionTimingFunction: "cubic-bezier(0.4, 0, 1, 1)",
                         transitionDuration: "500ms",
                     }}
-                    onClick={logout}
+                    onClick={() => {
+                        logout().then(() => {
+                            router.push("/");
+                        });
+                    }}
                 >
                     Log out
                 </Button>

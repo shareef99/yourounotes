@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import {
     useContext,
     useState,
@@ -79,6 +78,11 @@ export const AuthProvider = ({ children }: Props) => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             console.log(user);
+            if (!user) {
+                setLoading(false);
+                setCurrentUser(undefined);
+                return;
+            }
             const { email } = user;
             await db
                 .collection("users")

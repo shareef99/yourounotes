@@ -8,8 +8,10 @@ import {
     Text,
 } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 import { useAuth } from "../../context/AuthContext";
+import { db } from "../../firebase/firebase";
 import {
     borderColor,
     focusBorderColor,
@@ -17,7 +19,6 @@ import {
     submitBtnBgColor,
     submitBtnHoverBgColor,
 } from "../../helpers/colors";
-import { useRouter } from "next/router";
 
 interface Props {}
 
@@ -35,13 +36,17 @@ const validationSchema = yup.object().shape({
 });
 
 const FacultyLogin = (props: Props) => {
-    const router = useRouter();
     const initialValues: FormValues = {
         email: "",
         password: "",
     };
+    const [isLogin, setIsLogin] = useState<boolean>(true);
 
-    const { login } = useAuth();
+    function switchAuthModeHandler() {
+        setIsLogin((prevState) => !prevState);
+    }
+
+    const { login, signUp } = useAuth();
 
     const submitHandler = async (
         values: FormValues,
@@ -51,19 +56,40 @@ const FacultyLogin = (props: Props) => {
         const { resetForm, setSubmitting } = formikHelpers;
 
         setSubmitting(true);
-        // Log the user in
-        try {
-            const result = await login(email, password);
-            console.log(result);
-            router.push(`/admin/faculty/${result.user.email}`);
+        if (isLogin) {
+            // Log the user in
+            try {
+                // const result = await loginUser(email, password);
+                const result = await login(email, password);
+                console.log(result);
+                resetForm();
+            } catch (err) {
+                resetForm();
+                console.log(err.message || err);
+            }
             resetForm();
-        } catch (err) {
-            resetForm();
-            console.log(err.message);
+            setSubmitting(false);
+            return;
         }
-        resetForm();
+
+        // Signup the user (Create the user)
+        // Creating a new user
+
+        try {
+            // const result = await createUser(email, password);
+            const result = await signUp(email, password);
+            if (result) {
+                const { user } = result;
+                const { email, uid } = user;
+                db.collection("users").doc(email).set({
+                    email,
+                    uid,
+                });
+            }
+        } catch (err) {
+            console.log(err.message || err);
+        }
         setSubmitting(false);
-        return;
     };
 
     return (
@@ -75,7 +101,8 @@ const FacultyLogin = (props: Props) => {
                 className="w-full xs:w-9/10 sm:w-[30rem] bg-cardBg"
             >
                 <Heading mb={8} textAlign="center">
-                    Faculty login
+                    {isLogin ? "Login" : "Sign Up"}
+                    {/* Faculty login */}
                 </Heading>
                 <Formik
                     initialValues={initialValues}
@@ -152,9 +179,10 @@ const FacultyLogin = (props: Props) => {
                                     backgroundColor: submitBtnHoverBgColor,
                                 }}
                             >
-                                Log In
+                                {isLogin ? "Login" : "Create Account"}
+                                {/* Log In */}
                             </Button>
-                            {/* <Button
+                            <Button
                                 variant="link"
                                 isFullWidth
                                 onClick={switchAuthModeHandler}
@@ -163,7 +191,7 @@ const FacultyLogin = (props: Props) => {
                                 {isLogin
                                     ? "Create new account"
                                     : "Login with existing account"}
-                            </Button> */}
+                            </Button>
                             {/* <Button onClick={logout}>logout</Button> */}
                         </Form>
                     )}

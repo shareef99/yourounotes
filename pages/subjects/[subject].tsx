@@ -31,6 +31,7 @@ const SubjectNotes = ({}: Props) => {
                         ...prevNotes,
                         ...snap.docs.map((doc) => ({
                             name: doc.data().name,
+                            // Here subject is name of the subject
                             subject: doc.data().subject,
                             type: doc.data().type,
                             uploadedAt: doc.data().uploadedAt,

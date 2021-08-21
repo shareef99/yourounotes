@@ -1,15 +1,16 @@
 import {
+    Box,
     Button,
     Flex,
     FormControl,
     FormLabel,
     Heading,
-    Input,
+    Select,
     Text,
 } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
-import { useState } from "react";
 import * as yup from "yup";
+import Field from "../../components/auth/Field";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase/firebase";
 import {
@@ -19,76 +20,83 @@ import {
     submitBtnBgColor,
     submitBtnHoverBgColor,
 } from "../../helpers/colors";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 interface Props {}
 
 interface FormValues {
+    name: string;
     email: string;
     password: string;
+    confirmPassword: string;
+    department: string;
 }
 
 const validationSchema = yup.object().shape({
+    name: yup.string().required("Enter your name"),
     email: yup.string().email("Invalid Email").required("Required"),
     password: yup
         .string()
         .required("Enter password")
         .min(8, "Password must be 8 character"),
+    confirmPassword: yup
+        .string()
+        .required("Enter password again")
+        .oneOf([yup.ref("password")], "Passwords must match"),
+    department: yup
+        .string()
+        .required("Select Department")
+        .not(["---"], "Select Department"),
 });
 
 const FacultyLogin = (props: Props) => {
     const initialValues: FormValues = {
+        name: "",
         email: "",
         password: "",
+        confirmPassword: "",
+        department: "",
     };
-    const [isLogin, setIsLogin] = useState<boolean>(true);
 
-    function switchAuthModeHandler() {
-        setIsLogin((prevState) => !prevState);
-    }
+    const router = useRouter();
+    const { signUp } = useAuth();
 
-    const { login, signUp } = useAuth();
+    // States
+    const [error, setError] = useState<string>();
 
     const submitHandler = async (
         values: FormValues,
         formikHelpers: FormikHelpers<FormValues>
     ) => {
-        const { email, password } = values;
+        const { email, password, name, department } = values;
         const { resetForm, setSubmitting } = formikHelpers;
 
         setSubmitting(true);
-        if (isLogin) {
-            // Log the user in
-            try {
-                // const result = await loginUser(email, password);
-                const result = await login(email, password);
-                console.log(result);
-                resetForm();
-            } catch (err) {
-                resetForm();
-                console.log(err.message || err);
-            }
-            resetForm();
-            setSubmitting(false);
-            return;
-        }
-
-        // Signup the user (Create the user)
-        // Creating a new user
 
         try {
-            // const result = await createUser(email, password);
             const result = await signUp(email, password);
             if (result) {
                 const { user } = result;
                 const { email, uid } = user;
-                db.collection("users").doc(email).set({
+                await db.collection("users").doc(email).set({
                     email,
                     uid,
+                    name,
+                });
+                await db.collection("faculties").doc(email).set({
+                    name,
+                    department,
+                    email,
+                    role: "faculty",
                 });
             }
+
+            router.push(`/admin/faculty/${email}`);
         } catch (err) {
-            console.log(err.message || err);
+            setError(err.message);
         }
+        resetForm();
         setSubmitting(false);
     };
 
@@ -101,15 +109,11 @@ const FacultyLogin = (props: Props) => {
                 className="w-full xs:w-9/10 sm:w-[30rem] bg-cardBg"
             >
                 <Heading mb={8} textAlign="center">
-                    {isLogin ? "Login" : "Sign Up"}
-                    {/* Faculty login */}
+                    Sign Up
                 </Heading>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    validateOnChange={false}
-                    validateOnBlur={false}
-                    validateOnMount={false}
                     onSubmit={(
                         values: FormValues,
                         formikHelpers: FormikHelpers<FormValues>
@@ -124,50 +128,105 @@ const FacultyLogin = (props: Props) => {
                         handleReset,
                     }: FormikProps<FormValues>) => (
                         <Form>
-                            <FormControl id="email" isRequired mb={3}>
-                                <FormLabel>Email Address</FormLabel>
-                                <Input
+                            <Field
+                                id="name"
+                                label="Name"
+                                type="text"
+                                placeholder="Kratos"
+                                value={values.name}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                handleReset={handleReset}
+                                error={Boolean(errors.name)}
+                                errorMessage={errors.name}
+                            />
+                            <Field
+                                id="email"
+                                label="Email"
+                                type="email"
+                                placeholder="name@yourounotes.com"
+                                value={values.email}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                handleReset={handleReset}
+                                error={Boolean(errors.email)}
+                                errorMessage={errors.email}
+                            />
+                            <Field
+                                id="password"
+                                label="Password"
+                                type="password"
+                                placeholder="*********"
+                                value={values.password}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                handleReset={handleReset}
+                                error={Boolean(errors.password)}
+                                errorMessage={errors.password}
+                            />
+                            <Field
+                                id="confirmPassword"
+                                label="Confirm Password"
+                                type="password"
+                                placeholder="*********"
+                                value={values.confirmPassword}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                handleReset={handleReset}
+                                error={Boolean(errors.confirmPassword)}
+                                errorMessage={errors.confirmPassword}
+                            />
+                            <FormControl id="department" isRequired mb={3}>
+                                <FormLabel>Department</FormLabel>
+                                <Select
                                     _hover={{ borderColor: hoverBorderColor }}
                                     borderColor={borderColor}
                                     focusBorderColor={focusBorderColor}
-                                    type="email"
-                                    placeholder="name@yourounotes.com"
-                                    value={values.email}
+                                    name="department"
+                                    placeholder="---"
+                                    isRequired
+                                    value={values.department}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     onReset={handleReset}
-                                />
-                                {errors.email && (
+                                >
+                                    <option value="cse">
+                                        (CSE) Computer Science
+                                    </option>
+                                    <option value="it">
+                                        (IT) Information Technology
+                                    </option>
+                                    <option value="ece">
+                                        (ECE) Electronics and Communication
+                                        Engineering
+                                    </option>
+                                    <option value="mech">
+                                        Mechanical Engineering
+                                    </option>
+                                    <option value="civil">
+                                        Civil Engineering
+                                    </option>
+                                    <option value="eee">
+                                        (EEE) Electrical and Electronics
+                                        Engineering
+                                    </option>
+                                </Select>
+                                {errors.department && (
                                     <Text
                                         mb={3}
                                         className="font-medium text-error"
                                     >
-                                        {errors.email}
+                                        {errors.department}
                                     </Text>
                                 )}
                             </FormControl>
-                            <FormControl id="password" isRequired mb={3}>
-                                <FormLabel>Password</FormLabel>
-                                <Input
-                                    _hover={{ borderColor: hoverBorderColor }}
-                                    borderColor={borderColor}
-                                    focusBorderColor={focusBorderColor}
-                                    type="password"
-                                    placeholder="*********"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    onReset={handleReset}
-                                />
-                                {errors.password && (
-                                    <Text
-                                        mb={3}
-                                        className="font-medium text-error"
-                                    >
-                                        {errors.password}
+                            <Box>
+                                {error && (
+                                    <Text className="font-medium text-error">
+                                        {error}
                                     </Text>
                                 )}
-                            </FormControl>
+                            </Box>
                             <Button
                                 isFullWidth
                                 my={3}
@@ -179,20 +238,8 @@ const FacultyLogin = (props: Props) => {
                                     backgroundColor: submitBtnHoverBgColor,
                                 }}
                             >
-                                {isLogin ? "Login" : "Create Account"}
-                                {/* Log In */}
+                                Create Account
                             </Button>
-                            <Button
-                                variant="link"
-                                isFullWidth
-                                onClick={switchAuthModeHandler}
-                                isDisabled={isSubmitting}
-                            >
-                                {isLogin
-                                    ? "Create new account"
-                                    : "Login with existing account"}
-                            </Button>
-                            {/* <Button onClick={logout}>logout</Button> */}
                         </Form>
                     )}
                 </Formik>

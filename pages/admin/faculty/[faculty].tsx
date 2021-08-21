@@ -29,7 +29,6 @@ const DynamicFaculty = (props: Props) => {
 
     // States
     const [notes, setNotes] = useState<Array<Note>>([]);
-    const [subjects, setSubjects] = useState<Array<string>>([]);
 
     // Effects
     useEffect(() => {
@@ -52,11 +51,6 @@ const DynamicFaculty = (props: Props) => {
                 );
             });
 
-        db.collection("faculties")
-            .doc(currentUser?.email)
-            .get()
-            .then((res) => setSubjects(res.data()?.subjects));
-
         return () => {
             isMounted = false;
         };
@@ -65,16 +59,6 @@ const DynamicFaculty = (props: Props) => {
     return (
         <section className="my-14 container">
             <Heading mb={12}>Welcome {currentUser?.name}</Heading>
-            <Box mb={6}>
-                <Text fontSize="2xl" fontWeight="medium" mb={3}>
-                    Subjects {currentUser?.name} teach
-                </Text>
-                <ul className="ml-4">
-                    {subjects?.map((subject) => (
-                        <li key={subject}>{subject}</li>
-                    ))}
-                </ul>
-            </Box>
             <Box mb={6}>
                 <Text fontSize="2xl" fontWeight="medium" mb={3}>
                     Notes uploaded by you

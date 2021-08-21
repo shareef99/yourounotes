@@ -64,8 +64,7 @@ const Main = (props: Props) => {
                     alignItems="center"
                 >
                     <Text className="font-medium text-xl">
-                        {currentUser ? "Upload Notes" : "Faculty Login"}{" "}
-                        &#10230;{" "}
+                        {currentUser ? "Dashboard" : "Faculty Login"} &#10230;{" "}
                     </Text>
                     <Button
                         variant="outline"
@@ -87,7 +86,7 @@ const Main = (props: Props) => {
                                 href="/admin/faculty/[faculty]"
                                 as={`/admin/faculty/${currentUser.name}`}
                             >
-                                Upload
+                                Dashboard
                             </Link>
                         ) : (
                             <Link href="/auth/faculty-login">Log In</Link>

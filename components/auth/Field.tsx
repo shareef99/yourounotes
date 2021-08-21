@@ -12,6 +12,7 @@ interface Props {
     placeholder: string;
     type: string;
     value: string;
+    touch: boolean;
     error: boolean;
     errorMessage: string;
     handleChange: (e: ChangeEvent<any>) => void;
@@ -26,6 +27,7 @@ const Field = (props: Props) => {
         placeholder,
         type,
         value,
+        touch,
         error,
         errorMessage,
         handleChange,
@@ -47,7 +49,7 @@ const Field = (props: Props) => {
                 onBlur={handleBlur}
                 onReset={handleReset}
             />
-            {error && (
+            {error && touch && (
                 <Text mb={3} className="font-medium text-error">
                     {errorMessage}
                 </Text>

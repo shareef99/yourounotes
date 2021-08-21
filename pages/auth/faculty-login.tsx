@@ -35,12 +35,12 @@ const validationSchema = yup.object().shape({
 });
 
 const FacultyLogin = (props: Props) => {
-    const router = useRouter();
     const initialValues: FormValues = {
         email: "",
         password: "",
     };
 
+    const router = useRouter();
     const { login } = useAuth();
 
     const submitHandler = async (
@@ -48,20 +48,16 @@ const FacultyLogin = (props: Props) => {
         formikHelpers: FormikHelpers<FormValues>
     ) => {
         const { email, password } = values;
-        const { resetForm, setSubmitting } = formikHelpers;
-
+        const { resetForm, setSubmitting, setFieldError } = formikHelpers;
         setSubmitting(true);
-        // Log the user in
+
         try {
             const result = await login(email, password);
-            console.log(result);
-            router.push(`/admin/faculty/${result.user.email}`);
-            resetForm();
+            if (result) router.push(`/admin/faculty/${result.user.email}`);
         } catch (err) {
-            resetForm();
-            console.log(err.message);
+            setFieldError("password", err.message);
         }
-        resetForm();
+
         setSubmitting(false);
         return;
     };
@@ -80,9 +76,6 @@ const FacultyLogin = (props: Props) => {
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    validateOnChange={false}
-                    validateOnBlur={false}
-                    validateOnMount={false}
                     onSubmit={(
                         values: FormValues,
                         formikHelpers: FormikHelpers<FormValues>
@@ -92,6 +85,7 @@ const FacultyLogin = (props: Props) => {
                         isSubmitting,
                         errors,
                         values,
+                        touched,
                         handleBlur,
                         handleChange,
                         handleReset,
@@ -110,7 +104,7 @@ const FacultyLogin = (props: Props) => {
                                     onBlur={handleBlur}
                                     onReset={handleReset}
                                 />
-                                {errors.email && (
+                                {errors.email && touched.email && (
                                     <Text
                                         mb={3}
                                         className="font-medium text-error"
@@ -132,7 +126,7 @@ const FacultyLogin = (props: Props) => {
                                     onBlur={handleBlur}
                                     onReset={handleReset}
                                 />
-                                {errors.password && (
+                                {errors.password && touched.password && (
                                     <Text
                                         mb={3}
                                         className="font-medium text-error"
@@ -154,17 +148,6 @@ const FacultyLogin = (props: Props) => {
                             >
                                 Log In
                             </Button>
-                            {/* <Button
-                                variant="link"
-                                isFullWidth
-                                onClick={switchAuthModeHandler}
-                                isDisabled={isSubmitting}
-                            >
-                                {isLogin
-                                    ? "Create new account"
-                                    : "Login with existing account"}
-                            </Button> */}
-                            {/* <Button onClick={logout}>logout</Button> */}
                         </Form>
                     )}
                 </Formik>

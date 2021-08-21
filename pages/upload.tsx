@@ -141,7 +141,7 @@ const Upload = (Props: Props) => {
         uploadNotesToSubjects(values);
 
         setSubmitting(false);
-        // resetForm();
+        resetForm();
     };
 
     return (
@@ -158,9 +158,6 @@ const Upload = (Props: Props) => {
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    validateOnChange={false}
-                    validateOnBlur={false}
-                    validateOnMount={false}
                     onSubmit={(
                         values: FormValues,
                         formikHelpers: FormikHelpers<FormValues>
@@ -169,10 +166,11 @@ const Upload = (Props: Props) => {
                     {({
                         isSubmitting,
                         values,
+                        errors,
+                        touched,
                         handleBlur,
                         handleChange,
                         handleReset,
-                        errors,
                     }: FormikProps<FormValues>) => (
                         <Form
                             autoComplete="off"
@@ -197,7 +195,7 @@ const Upload = (Props: Props) => {
                                 <option value="forth">IVth</option>
                             </Select>
                             <Text mb={3} className="font-medium text-error">
-                                {errors.sem && errors.sem}
+                                {errors.sem && touched.sem && errors.sem}
                             </Text>
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
@@ -218,7 +216,7 @@ const Upload = (Props: Props) => {
                                 <option value="EEE">EEE</option>
                             </Select>
                             <Text mb={3} className="font-medium text-error">
-                                {errors.group && errors.group}
+                                {errors.group && touched.group && errors.group}
                             </Text>
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
@@ -244,7 +242,9 @@ const Upload = (Props: Props) => {
                                     ))}
                             </Select>
                             <Text mb={3} className="font-medium text-error">
-                                {errors.subject && errors.subject}
+                                {errors.subject &&
+                                    touched.subject &&
+                                    errors.subject}
                             </Text>
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
@@ -267,7 +267,7 @@ const Upload = (Props: Props) => {
                                 </option>
                             </Select>
                             <Text mb={3} className="font-medium text-error">
-                                {errors.type && errors.type}
+                                {errors.type && touched.type && errors.type}
                             </Text>
                             <Text fontSize="2xl" mb={1}>
                                 Notes Details

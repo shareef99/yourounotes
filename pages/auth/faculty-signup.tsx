@@ -122,6 +122,7 @@ const FacultyLogin = (props: Props) => {
                     {({
                         isSubmitting,
                         errors,
+                        touched,
                         values,
                         handleBlur,
                         handleChange,
@@ -137,6 +138,7 @@ const FacultyLogin = (props: Props) => {
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}
                                 handleReset={handleReset}
+                                touch={touched.name}
                                 error={Boolean(errors.name)}
                                 errorMessage={errors.name}
                             />
@@ -149,6 +151,7 @@ const FacultyLogin = (props: Props) => {
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}
                                 handleReset={handleReset}
+                                touch={touched.email}
                                 error={Boolean(errors.email)}
                                 errorMessage={errors.email}
                             />
@@ -161,6 +164,7 @@ const FacultyLogin = (props: Props) => {
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}
                                 handleReset={handleReset}
+                                touch={touched.password}
                                 error={Boolean(errors.password)}
                                 errorMessage={errors.password}
                             />
@@ -173,6 +177,7 @@ const FacultyLogin = (props: Props) => {
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}
                                 handleReset={handleReset}
+                                touch={touched.confirmPassword}
                                 error={Boolean(errors.confirmPassword)}
                                 errorMessage={errors.confirmPassword}
                             />
@@ -211,7 +216,7 @@ const FacultyLogin = (props: Props) => {
                                         Engineering
                                     </option>
                                 </Select>
-                                {errors.department && (
+                                {errors.department && touched.department && (
                                     <Text
                                         mb={3}
                                         className="font-medium text-error"

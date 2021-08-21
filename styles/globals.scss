@@ -50,13 +50,3 @@ ol {
 p {
     margin-bottom: 1rem;
 }
-
-select {
-    @apply bg-bg;
-    @apply text-heading;
-    option {
-        // scss-lint:disable css-semicolonexpected
-        @apply bg-cardBg;
-        @apply text-heading;
-    }
-}

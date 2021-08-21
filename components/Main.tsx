@@ -1,10 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button, Flex, Text } from "@chakra-ui/react";
+import { btnBorder, btnText, hoverBorderColor } from "../helpers/colors";
+import { useAuth } from "../context/AuthContext";
 
 interface Props {}
 
 const Main = (props: Props) => {
+    const { currentUser } = useAuth();
+
+    console.log(currentUser);
+
     return (
         <section>
             <div
@@ -24,7 +31,6 @@ const Main = (props: Props) => {
                             className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-center max-w-[90%] 
                                 mx-auto sm:max-w-none tracking-tighter"
                         >
-                            {/* Your needs in one place. */}
                             All "Your OU Notes" in one place.
                         </h1>
                     </div>
@@ -49,7 +55,46 @@ const Main = (props: Props) => {
                     </div>
                 </div>
             </div>
-            <div id="how-it-work" className="container colCenter mb-14 mt-28">
+
+            <div className="my-14 py-14 bg-cardBg">
+                <Flex
+                    className="container"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <Text className="font-medium text-xl">
+                        {currentUser ? "Dashboard" : "Faculty Login"} &#10230;{" "}
+                    </Text>
+                    <Button
+                        variant="outline"
+                        borderWidth={"2px"}
+                        borderColor={btnBorder}
+                        _hover={{
+                            backgroundColor: hoverBorderColor,
+                            borderColor: hoverBorderColor,
+                            transitionProperty:
+                                "background-color, border-color, color",
+                            transitionTimingFunction:
+                                "cubic-bezier(0.4, 0, 1, 1)",
+                            transitionDuration: "500ms",
+                            color: btnText,
+                        }}
+                    >
+                        {Boolean(currentUser) ? (
+                            <Link
+                                href="/admin/faculty/[faculty]"
+                                as={`/admin/faculty/${currentUser.name}`}
+                            >
+                                Dashboard
+                            </Link>
+                        ) : (
+                            <Link href="/auth/faculty-login">Log In</Link>
+                        )}
+                    </Button>
+                </Flex>
+            </div>
+
+            <div id="how-it-work" className="container colCenter mb-14">
                 <h2 className="md:text-4xl my-14">HOW IT WORK</h2>
                 <div className="colCenter md:flex-row md:items-baseline md:justify-around xl:justify-between flex-wrap">
                     <div className="colCenter sm:max-w-xs">

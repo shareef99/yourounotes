@@ -17,15 +17,6 @@ const Footer = (props: Props) => {
                         </Link>
                     </li>
                     <li className="underline hover:no-underline">
-                        <a
-                            href="https://onlineounotes.web.app/pages/request"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Request Notes
-                        </a>
-                    </li>
-                    <li className="underline hover:no-underline">
                         <Link href="/subjects">
                             <a>Subjects</a>
                         </Link>
@@ -34,15 +25,6 @@ const Footer = (props: Props) => {
                         <Link href="/about">
                             <a>About us</a>
                         </Link>
-                    </li>
-                    <li className="underline hover:no-underline">
-                        <a
-                            href="https://onlineounotes.web.app/pages/upload"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Upload Notes
-                        </a>
                     </li>
                     <li className="underline hover:no-underline">
                         <a

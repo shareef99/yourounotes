@@ -2,6 +2,8 @@ import "../styles/globals.scss";
 import "../styles/tailwind.css";
 import { Layout } from "../components/Layout";
 import Head from "next/head";
+import { AuthProvider } from "../context/AuthContext";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -46,9 +48,13 @@ function MyApp({ Component, pageProps }) {
                 <link rel="manifest" href="/icons/site.webmanifest" />
                 {/* Hotjar Tracking Code for https://yourounotes.vercel.app/  */}
             </Head>
-            <Layout head>
-                <Component {...pageProps} />
-            </Layout>
+            <AuthProvider>
+                <ChakraProvider>
+                    <Layout head>
+                        <Component {...pageProps} />
+                    </Layout>
+                </ChakraProvider>
+            </AuthProvider>
         </>
     );
 }

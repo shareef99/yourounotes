@@ -1,6 +1,5 @@
 import {
     Box,
-    Button,
     Flex,
     FormControl,
     FormLabel,
@@ -10,18 +9,18 @@ import {
 } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
 import * as yup from "yup";
-import Field from "../../components/auth/Field";
+import Field from "../../components/forms/Field";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase/firebase";
 import {
     borderColor,
     focusBorderColor,
     hoverBorderColor,
-    submitBtnBgColor,
-    submitBtnHoverBgColor,
 } from "../../helpers/colors";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { SolidButton } from "../../components/atoms/button";
+import ErrorMessage from "../../components/forms/ErrorMessage";
 
 interface Props {}
 
@@ -62,15 +61,12 @@ const FacultyLogin = (props: Props) => {
     const router = useRouter();
     const { signUp } = useAuth();
 
-    // States
-    const [error, setError] = useState<string>();
-
     const submitHandler = async (
         values: FormValues,
         formikHelpers: FormikHelpers<FormValues>
     ) => {
         const { email, password, name, department } = values;
-        const { resetForm, setSubmitting } = formikHelpers;
+        const { resetForm, setSubmitting, setFieldError } = formikHelpers;
 
         setSubmitting(true);
 
@@ -94,7 +90,7 @@ const FacultyLogin = (props: Props) => {
 
             router.push(`/admin/faculty/${email}`);
         } catch (err) {
-            setError(err.message);
+            setFieldError("department", err.message);
         }
         resetForm();
         setSubmitting(false);
@@ -216,35 +212,17 @@ const FacultyLogin = (props: Props) => {
                                         Engineering
                                     </option>
                                 </Select>
-                                {errors.department && touched.department && (
-                                    <Text
-                                        mb={3}
-                                        className="font-medium text-error"
-                                    >
-                                        {errors.department}
-                                    </Text>
-                                )}
+                                <ErrorMessage
+                                    touch={touched.department}
+                                    error={Boolean(errors.department)}
+                                    errMessage={errors.department}
+                                />
                             </FormControl>
-                            <Box>
-                                {error && (
-                                    <Text className="font-medium text-error">
-                                        {error}
-                                    </Text>
-                                )}
-                            </Box>
-                            <Button
-                                isFullWidth
-                                my={3}
-                                isDisabled={isSubmitting}
+                            <SolidButton
+                                label="Create Account"
+                                isDisable={isSubmitting}
                                 type="submit"
-                                className="text-btnText"
-                                backgroundColor={submitBtnBgColor}
-                                _hover={{
-                                    backgroundColor: submitBtnHoverBgColor,
-                                }}
-                            >
-                                Create Account
-                            </Button>
+                            />
                         </Form>
                     )}
                 </Formik>

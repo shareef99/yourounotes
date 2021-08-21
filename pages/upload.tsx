@@ -7,7 +7,14 @@ import {
     Select,
     Text,
 } from "@chakra-ui/react";
-import details from "../public/details.json";
+import {
+    borderColor,
+    focusBorderColor,
+    hoverBorderColor,
+    submitBtnBgColor,
+    submitBtnHoverBgColor,
+    placeholderColor,
+} from "../helpers/colors";
 import {
     FormikProps,
     Formik,
@@ -17,18 +24,12 @@ import {
     FieldArrayRenderProps,
 } from "formik";
 import * as yup from "yup";
-import { ArrayFieldErrorMessage } from "../components/ArrayFieldErrorMessage";
+import details from "../public/details.json";
+import { ArrayFieldErrorMessage } from "../components/forms/ArrayFieldErrorMessage";
 import { db } from "../firebase/firebase";
-import {
-    borderColor,
-    focusBorderColor,
-    hoverBorderColor,
-    submitBtnBgColor,
-    submitBtnHoverBgColor,
-    placeholderColor,
-} from "../helpers/colors";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
+import ErrorMessage from "../components/forms/ErrorMessage";
 
 interface Props {}
 
@@ -136,7 +137,6 @@ const Upload = (Props: Props) => {
     ) => {
         const { setSubmitting, resetForm } = formikHelpers;
         setSubmitting(true);
-        console.log(values);
 
         uploadNotesToSubjects(values);
 
@@ -184,6 +184,7 @@ const Upload = (Props: Props) => {
                                 focusBorderColor={focusBorderColor}
                                 name="sem"
                                 placeholder="Sem"
+                                mb={3}
                                 value={values.sem}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -194,15 +195,18 @@ const Upload = (Props: Props) => {
                                 <option value="third">IIIrd</option>
                                 <option value="forth">IVth</option>
                             </Select>
-                            <Text mb={3} className="font-medium text-error">
-                                {errors.sem && touched.sem && errors.sem}
-                            </Text>
+                            <ErrorMessage
+                                touch={touched.sem}
+                                error={Boolean(errors.sem)}
+                                errMessage={errors.sem}
+                            />
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
                                 borderColor={borderColor}
                                 focusBorderColor={focusBorderColor}
                                 name="group"
                                 placeholder="Group"
+                                mb={3}
                                 value={values.group}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -215,15 +219,18 @@ const Upload = (Props: Props) => {
                                 <option value="CE">CE</option>
                                 <option value="EEE">EEE</option>
                             </Select>
-                            <Text mb={3} className="font-medium text-error">
-                                {errors.group && touched.group && errors.group}
-                            </Text>
+                            <ErrorMessage
+                                touch={touched.group}
+                                error={Boolean(errors.group)}
+                                errMessage={errors.group}
+                            />
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
                                 borderColor={borderColor}
                                 focusBorderColor={focusBorderColor}
                                 name="subject"
                                 placeholder="Subject"
+                                mb={3}
                                 value={values.subject}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -241,17 +248,18 @@ const Upload = (Props: Props) => {
                                         </option>
                                     ))}
                             </Select>
-                            <Text mb={3} className="font-medium text-error">
-                                {errors.subject &&
-                                    touched.subject &&
-                                    errors.subject}
-                            </Text>
+                            <ErrorMessage
+                                touch={touched.subject}
+                                error={Boolean(errors.subject)}
+                                errMessage={errors.subject}
+                            />
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
                                 borderColor={borderColor}
                                 focusBorderColor={focusBorderColor}
                                 name="type"
                                 placeholder="Type"
+                                mb={3}
                                 value={values.type}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -266,9 +274,11 @@ const Upload = (Props: Props) => {
                                     Question Paper
                                 </option>
                             </Select>
-                            <Text mb={3} className="font-medium text-error">
-                                {errors.type && touched.type && errors.type}
-                            </Text>
+                            <ErrorMessage
+                                touch={touched.type}
+                                error={Boolean(errors.type)}
+                                errMessage={errors.type}
+                            />
                             <Text fontSize="2xl" mb={1}>
                                 Notes Details
                             </Text>
@@ -291,6 +301,7 @@ const Upload = (Props: Props) => {
                                                             focusBorderColor
                                                         }
                                                         name={`notes[${index}].name`}
+                                                        value={note.name}
                                                         placeholder="Name of the PDF"
                                                         _placeholder={{
                                                             color: placeholderColor,
@@ -315,6 +326,7 @@ const Upload = (Props: Props) => {
                                                         }
                                                         mt={3}
                                                         name={`notes[${index}].url`}
+                                                        value={note.url}
                                                         placeholder="Google Drive URL"
                                                         _placeholder={{
                                                             color: placeholderColor,

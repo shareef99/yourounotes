@@ -5,7 +5,7 @@ import {
     focusBorderColor,
     hoverBorderColor,
 } from "../../helpers/colors";
-import ErrorMessage from "../forms/ErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 
 interface Props {
     id: string;
@@ -37,7 +37,7 @@ const Field = (props: Props) => {
     } = props;
 
     return (
-        <FormControl id={id} mb={3}>
+        <FormControl id={id} mb={3} isRequired>
             <FormLabel>{label}</FormLabel>
             <Input
                 _hover={{ borderColor: hoverBorderColor }}

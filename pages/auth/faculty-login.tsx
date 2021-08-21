@@ -1,10 +1,10 @@
-import { Button, Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
 import * as yup from "yup";
 import { useAuth } from "../../context/AuthContext";
-import { submitBtnBgColor, submitBtnHoverBgColor } from "../../helpers/colors";
 import { useRouter } from "next/router";
-import Field from "../../components/auth/Field";
+import Field from "../../components/forms/Field";
+import { SolidButton } from "../../components/atoms/button";
 
 interface Props {}
 
@@ -55,7 +55,7 @@ const FacultyLogin = (props: Props) => {
                 direction="column"
                 p={12}
                 rounded={6}
-                className="w-full xs:w-9/10 sm:w-[30rem] bg-cardBg"
+                className="w-full xs:w-9/10 sm:w-[30rem] bg-cardBg shadow-md"
             >
                 <Heading mb={8} textAlign="center">
                     Faculty login
@@ -104,19 +104,11 @@ const FacultyLogin = (props: Props) => {
                                 touch={touched.password}
                                 errorMessage={errors.password}
                             />
-                            <Button
-                                isFullWidth
-                                my={3}
-                                isDisabled={isSubmitting}
+                            <SolidButton
+                                label="Log In"
+                                isDisable={isSubmitting}
                                 type="submit"
-                                className="text-btnText"
-                                backgroundColor={submitBtnBgColor}
-                                _hover={{
-                                    backgroundColor: submitBtnHoverBgColor,
-                                }}
-                            >
-                                Log In
-                            </Button>
+                            />
                         </Form>
                     )}
                 </Formik>

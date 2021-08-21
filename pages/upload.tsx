@@ -17,7 +17,7 @@ import {
     FieldArrayRenderProps,
 } from "formik";
 import * as yup from "yup";
-import { ErrorMessage } from "../components/ErrorMessage";
+import { ArrayFieldErrorMessage } from "../components/ArrayFieldErrorMessage";
 import { db } from "../firebase/firebase";
 import {
     borderColor,
@@ -303,7 +303,7 @@ const Upload = (Props: Props) => {
                                                         onBlur={handleBlur}
                                                         onReset={handleReset}
                                                     />
-                                                    <ErrorMessage
+                                                    <ArrayFieldErrorMessage
                                                         name={`notes[${index}].name`}
                                                     />
                                                     <Input
@@ -327,7 +327,7 @@ const Upload = (Props: Props) => {
                                                         onBlur={handleBlur}
                                                         onReset={handleReset}
                                                     />
-                                                    <ErrorMessage
+                                                    <ArrayFieldErrorMessage
                                                         name={`notes[${index}].url`}
                                                     />
                                                 </Box>

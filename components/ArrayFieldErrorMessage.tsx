@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import { Field, getIn } from "formik";
 
-export const ErrorMessage = ({ name }) => (
+export const ArrayFieldErrorMessage = ({ name }) => (
     <Field name={name}>
         {({ form }) => {
             const error = getIn(form.errors, name);

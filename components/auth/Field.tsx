@@ -5,6 +5,7 @@ import {
     focusBorderColor,
     hoverBorderColor,
 } from "../../helpers/colors";
+import ErrorMessage from "../forms/ErrorMessage";
 
 interface Props {
     id: string;
@@ -49,11 +50,11 @@ const Field = (props: Props) => {
                 onBlur={handleBlur}
                 onReset={handleReset}
             />
-            {error && touch && (
-                <Text mb={3} className="font-medium text-error">
-                    {errorMessage}
-                </Text>
-            )}
+            <ErrorMessage
+                error={error}
+                touch={touch}
+                errMessage={errorMessage}
+            />
         </FormControl>
     );
 };

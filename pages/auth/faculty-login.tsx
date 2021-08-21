@@ -1,23 +1,10 @@
-import {
-    Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    Heading,
-    Input,
-    Text,
-} from "@chakra-ui/react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
 import * as yup from "yup";
 import { useAuth } from "../../context/AuthContext";
-import {
-    borderColor,
-    focusBorderColor,
-    hoverBorderColor,
-    submitBtnBgColor,
-    submitBtnHoverBgColor,
-} from "../../helpers/colors";
+import { submitBtnBgColor, submitBtnHoverBgColor } from "../../helpers/colors";
 import { useRouter } from "next/router";
+import Field from "../../components/auth/Field";
 
 interface Props {}
 
@@ -48,7 +35,7 @@ const FacultyLogin = (props: Props) => {
         formikHelpers: FormikHelpers<FormValues>
     ) => {
         const { email, password } = values;
-        const { resetForm, setSubmitting, setFieldError } = formikHelpers;
+        const { setSubmitting, setFieldError } = formikHelpers;
         setSubmitting(true);
 
         try {
@@ -91,50 +78,32 @@ const FacultyLogin = (props: Props) => {
                         handleReset,
                     }: FormikProps<FormValues>) => (
                         <Form>
-                            <FormControl id="email" isRequired mb={3}>
-                                <FormLabel>Email Address</FormLabel>
-                                <Input
-                                    _hover={{ borderColor: hoverBorderColor }}
-                                    borderColor={borderColor}
-                                    focusBorderColor={focusBorderColor}
-                                    type="email"
-                                    placeholder="name@yourounotes.com"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    onReset={handleReset}
-                                />
-                                {errors.email && touched.email && (
-                                    <Text
-                                        mb={3}
-                                        className="font-medium text-error"
-                                    >
-                                        {errors.email}
-                                    </Text>
-                                )}
-                            </FormControl>
-                            <FormControl id="password" isRequired mb={3}>
-                                <FormLabel>Password</FormLabel>
-                                <Input
-                                    _hover={{ borderColor: hoverBorderColor }}
-                                    borderColor={borderColor}
-                                    focusBorderColor={focusBorderColor}
-                                    type="password"
-                                    placeholder="*********"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    onReset={handleReset}
-                                />
-                                {errors.password && touched.password && (
-                                    <Text
-                                        mb={3}
-                                        className="font-medium text-error"
-                                    >
-                                        {errors.password}
-                                    </Text>
-                                )}
-                            </FormControl>
+                            <Field
+                                id="email"
+                                label="Email"
+                                type="email"
+                                placeholder="name@yourounotes.com"
+                                value={values.email}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                handleReset={handleReset}
+                                error={Boolean(errors.email)}
+                                touch={touched.email}
+                                errorMessage={errors.email}
+                            />
+                            <Field
+                                id="password"
+                                label="Password"
+                                type="password"
+                                placeholder="*********"
+                                value={values.password}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                handleReset={handleReset}
+                                error={Boolean(errors.password)}
+                                touch={touched.password}
+                                errorMessage={errors.password}
+                            />
                             <Button
                                 isFullWidth
                                 my={3}

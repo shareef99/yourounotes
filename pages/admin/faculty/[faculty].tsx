@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -58,7 +59,7 @@ const DynamicFaculty = (props: Props) => {
 
     return (
         <section className="my-14 container">
-            <Heading>Welcome {currentUser?.name}</Heading>
+            <Heading mb={12}>Welcome {currentUser?.name}</Heading>
             <Box mb={6}>
                 <Text fontSize="2xl" fontWeight="medium" mb={3}>
                     Notes uploaded by you
@@ -95,7 +96,14 @@ const DynamicFaculty = (props: Props) => {
                         </li>
                     ))}
                     {notes.length === 0 && (
-                        <li>
+                        <li className="colCenter">
+                            <div className="m-2">
+                                <Image
+                                    src="/images/cactus.png"
+                                    width="64"
+                                    height="64"
+                                />
+                            </div>
                             It's like a desert in here! <br /> You haven't
                             uploaded any notes
                         </li>

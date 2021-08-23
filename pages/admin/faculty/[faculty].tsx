@@ -74,11 +74,8 @@ const DynamicFaculty = (props: Props) => {
                                 Name: {note.name}
                                 <br />
                                 URL:{" "}
-                                <a
-                                    target="_blank"
-                                    href="https://drive.google.com/file/d/1wEqfksAdJwi_LcnpKelS0i3Gjyl10gIl/view?usp=sharing"
-                                >
-                                    URL Link
+                                <a target="_blank" href={note.url}>
+                                    Visit {note.name}
                                 </a>
                                 <br />
                                 Uploaded at: {note.uploadedAt}

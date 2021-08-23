@@ -86,8 +86,8 @@ const SubjectNotes = ({}: Props) => {
                     </div>
                 )}
                 {notes
-                    .filter((x) => x.name)
-                    .sort((a, b) =>
+                    ?.filter((x) => x.name)
+                    ?.sort((a, b) =>
                         a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
                     )
                     ?.map((note, index) => (

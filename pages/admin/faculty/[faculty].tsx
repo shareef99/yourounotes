@@ -58,7 +58,7 @@ const DynamicFaculty = (props: Props) => {
 
     return (
         <section className="my-14 container">
-            <Heading mb={12}>Welcome {currentUser?.name}</Heading>
+            <Heading>Welcome {currentUser?.name}</Heading>
             <Box mb={6}>
                 <Text fontSize="2xl" fontWeight="medium" mb={3}>
                     Notes uploaded by you
@@ -95,7 +95,10 @@ const DynamicFaculty = (props: Props) => {
                         </li>
                     ))}
                     {notes.length === 0 && (
-                        <li>Looks like you have not uploaded any notes yet</li>
+                        <li>
+                            It's like a desert in here! <br /> You haven't
+                            uploaded any notes
+                        </li>
                     )}
                 </ul>
             </Box>

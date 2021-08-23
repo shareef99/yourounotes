@@ -83,7 +83,7 @@ const Main = (props: Props) => {
                         {Boolean(currentUser) ? (
                             <Link
                                 href="/admin/faculty/[faculty]"
-                                as={`/admin/faculty/${currentUser.name}`}
+                                as={`/admin/faculty/${currentUser.email}`}
                             >
                                 Dashboard
                             </Link>

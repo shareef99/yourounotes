@@ -69,12 +69,15 @@ const about = (props: Props) => {
                             alt="Image by Yvette W from Pixabay"
                         />
                         <h3
-                            className="md:hidden leading-relaxed text-center mt-4 text-heading-dark w-[80%] md:w-full
-                                text-3xl font-bold tracking-wider"
+                            className="md:hidden leading-relaxed text-center mt-4 text-heading-dark 
+                                w-[80%] md:w-full text-3xl font-bold tracking-wider"
                         >
                             We are students, determined to help students!
                         </h3>
-                        <h2 className="hidden md:block leading-relaxed text-center mt-4 text-heading-dark w-[80%] md:w-full">
+                        <h2
+                            className="hidden md:block leading-relaxed text-center mt-4 
+                            text-heading-dark w-[80%] md:w-full text-3xl font-bold tracking-wider"
+                        >
                             We are students, determined to help students!
                         </h2>
                     </div>

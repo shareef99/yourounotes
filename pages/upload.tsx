@@ -79,16 +79,16 @@ const Upload = (Props: Props) => {
         notes: [{ name: "", url: "" }],
     };
 
-    const uploadNotesToFaculty = (
+    const uploadNotesToFaculty = async (
         subject: string,
         type: string,
-        notes: Array<Note>,
+        name: string,
+        url: string,
         id: string
     ) => {
-        notes.map((note) => {
-            const { name, url } = note;
-            db.collection("faculties")
-                // .doc(currentUser.email)
+        try {
+            await db
+                .collection("faculties")
                 .doc(currentUser.email)
                 .collection("notes")
                 .doc(id)
@@ -99,35 +99,43 @@ const Upload = (Props: Props) => {
                     type,
                     uploadedAt: new Date().toDateString(),
                     uploadedBy: currentUser.name,
-                })
-                .then((res) => console.log("update successfully", res))
-                .catch((err) => console.log(err.message || err));
-        });
+                });
+            console.log("update successfully");
+        } catch (err) {
+            console.log(err.message || err);
+        }
     };
 
-    const uploadNotesToSubjects = ({ subject, type, notes }: FormValues) => {
-        notes.map((note) => {
+    const uploadNotesToSubjects = async ({
+        subject,
+        type,
+        notes,
+    }: FormValues) => {
+        notes.map(async (note) => {
             const { name, url } = note;
             const id = `${name} + random id: ${Math.floor(
                 Math.random() * 100
             )}`;
-            db.collection("subjects")
-                .doc(subject)
-                .collection(type)
-                .doc(id)
-                .set({
-                    name,
-                    url,
-                    subject,
-                    type,
-                    uploadedAt: new Date().toDateString(),
-                    uploadedBy: currentUser.name,
-                })
-                .then((res) => {
-                    console.log("update successfully", res);
-                    uploadNotesToFaculty(subject, type, notes, id);
-                })
-                .catch((err) => console.log(err.message || err));
+            try {
+                await db
+                    .collection("subjects")
+                    .doc(subject)
+                    .collection(type)
+                    .doc(id)
+                    .set({
+                        name,
+                        url,
+                        subject,
+                        type,
+                        uploadedAt: new Date().toDateString(),
+                        uploadedBy: currentUser.name,
+                    });
+                await uploadNotesToFaculty(subject, type, name, url, id);
+
+                console.log("update successfully");
+            } catch (err) {
+                console.log(err.message || err);
+            }
         });
     };
 

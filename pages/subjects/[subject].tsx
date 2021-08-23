@@ -21,28 +21,28 @@ const SubjectNotes = ({}: Props) => {
 
     const [notes, setNotes] = useState<Array<Note>>([]);
 
-    useEffect(() => {
-        types.forEach((type) => {
-            db.collection("subjects")
-                .doc(subject)
-                .collection(type)
-                .onSnapshot((snap) => {
-                    setNotes((prevNotes) => [
-                        ...prevNotes,
-                        ...snap.docs.map((doc) => ({
-                            name: doc.data().name,
-                            // Here subject is name of the subject
-                            subject: doc.data().subject,
-                            type: doc.data().type,
-                            uploadedAt: doc.data().uploadedAt,
-                            uploadedBy: doc.data().uploadedBy,
-                            url: doc.data().url,
-                            id: doc.id,
-                        })),
-                    ]);
-                });
-        });
-    }, []);
+    // useEffect(() => {
+    //     types.forEach((type) => {
+    //         db.collection("subjects")
+    //             .doc(subject)
+    //             .collection(type)
+    //             .onSnapshot((snap) => {
+    //                 setNotes((prevNotes) => [
+    //                     ...prevNotes,
+    //                     ...snap.docs.map((doc) => ({
+    //                         name: doc.data().name,
+    //                         // Here subject is name of the subject
+    //                         subject: doc.data().subject,
+    //                         type: doc.data().type,
+    //                         uploadedAt: doc.data().uploadedAt,
+    //                         uploadedBy: doc.data().uploadedBy,
+    //                         url: doc.data().url,
+    //                         id: doc.id,
+    //                     })),
+    //                 ]);
+    //             });
+    //     });
+    // }, []);
 
     useEffect(() => {
         setNotes([]);
@@ -87,8 +87,9 @@ const SubjectNotes = ({}: Props) => {
                 )}
                 {notes
                     .filter((x) => x.name)
-                    .sort()
-                    .filter((x, index, arr) => x?.id !== arr[index - 1]?.id)
+                    .sort((a, b) =>
+                        a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
+                    )
                     ?.map((note, index) => (
                         <div className="colCenter my-14" key={index}>
                             <div className="colCenter border-b-2 pb-4 space-y-4">

@@ -39,7 +39,7 @@ const Footer = (props: Props) => {
             </div>
             <div className="text-center pb-10 font-medium text-bg">
                 <p className="text-bg">
-                    Design and Coded by{" "}
+                    Design and Coded with 💖 by{" "}
                     <a
                         href="https://portfolio.shareef.vercel.app/"
                         className="font-semibold underline hover:no-underline"

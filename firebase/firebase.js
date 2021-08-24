@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/performance";
+import "firebase/analytics";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCdNLyy2P8YVXV_9ZtKMMFZiWDJmmsKh7M",
@@ -16,6 +18,9 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
+
+const perf = firebase.performance();
+const analytics = firebase.analytics();
 
 const db = firebase.firestore();
 const auth = firebase.auth();

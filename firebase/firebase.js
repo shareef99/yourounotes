@@ -19,8 +19,8 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
-const perf = firebase.performance();
-const analytics = firebase.analytics();
+firebase.performance();
+firebase.analytics();
 
 const db = firebase.firestore();
 const auth = firebase.auth();

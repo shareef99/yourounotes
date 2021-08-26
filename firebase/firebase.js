@@ -17,12 +17,12 @@ const firebaseConfig = {
 // Initialize Firebase
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    firebase.performance();
 }
 
-const db = firebase.firestore();
-const auth = firebase.auth();
+export const analytics = firebase.analytics;
+export const performance = firebase.performance;
 
-export { db, auth };
+export const db = firebase.firestore();
+export const auth = firebase.auth();
+
 export default firebaseConfig;

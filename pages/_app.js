@@ -4,8 +4,15 @@ import { Layout } from "../components/Layout";
 import Head from "next/head";
 import { AuthProvider } from "../context/AuthContext";
 import { ChakraProvider } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { analytics, performance } from "../firebase/firebase";
 
 function MyApp({ Component, pageProps }) {
+    useEffect(() => {
+        analytics();
+        performance();
+    }, []);
+
     return (
         <>
             <Head>
@@ -23,9 +30,10 @@ function MyApp({ Component, pageProps }) {
                 <meta name="owner" content="Nadeem Shareef" />
                 <meta
                     name="description"
-                    content="It is a web platform that will provide everything a BE student needs It is built by the 
-                        students for the students Our motive is to spread as much knowledge as we can in a best 
-                        possible way Sharing is Caring. Design and Coded by Nadeem Shareef"
+                    content="It is a web platform that will provide everything a BE student needs It 
+                        is built by the students for the students Our motive is to spread as much 
+                        knowledge as we can in a best possible way Sharing is Caring. Design and 
+                        Coded by Nadeem Shareef"
                 />
                 {/* Favicon */}
                 <link

@@ -30,6 +30,8 @@ import { db } from "../firebase/firebase";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import ErrorMessage from "../components/forms/ErrorMessage";
+import { useState } from "react";
+import Link from "next/link";
 
 interface Props {}
 
@@ -63,8 +65,9 @@ const validationSchema = yup.object().shape({
 });
 
 const Upload = (Props: Props) => {
-    // Context
     const { currentUser } = useAuth();
+
+    const [message, setMessage] = useState<string>();
 
     if (!currentUser) {
         const router = useRouter();
@@ -100,7 +103,7 @@ const Upload = (Props: Props) => {
                     uploadedAt: new Date().toDateString(),
                     uploadedBy: currentUser.name,
                 });
-            console.log("update successfully");
+            setMessage("Successfully Added");
         } catch (err) {
             console.log(err.message || err);
         }
@@ -131,8 +134,6 @@ const Upload = (Props: Props) => {
                         uploadedBy: currentUser.name,
                     });
                 await uploadNotesToFaculty(subject, type, name, url, id);
-
-                console.log("update successfully");
             } catch (err) {
                 console.log(err.message || err);
             }
@@ -413,6 +414,18 @@ const Upload = (Props: Props) => {
                         </Form>
                     )}
                 </Formik>
+                {Boolean(message) && (
+                    <Box className="colCenter py-4 space-y-2">
+                        <span className="font-medium text-[#28A745] text-lg">
+                            {message}
+                        </span>
+                        <Link href={`/admin/faculty/${currentUser.email}`}>
+                            <a className="font-medium underline hover:no-underline">
+                                Go to Dashboard
+                            </a>
+                        </Link>
+                    </Box>
+                )}
             </Flex>
         </Flex>
     );

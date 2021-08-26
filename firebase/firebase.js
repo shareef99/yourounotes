@@ -17,8 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    const analytics = firebase.analytics();
-    const performance = firebase.performance();
+    firebase.analytics();
+    firebase.performance();
 }
 
 const db = firebase.firestore();

@@ -17,6 +17,7 @@ interface User {
     name: string;
     role: string;
     department: string;
+    subjects: Array<string>;
 }
 
 interface authContextType {
@@ -39,6 +40,7 @@ const authContextDefaultValues: authContextType = {
         name: "",
         role: "",
         department: "",
+        subjects: [],
     },
     signUp: () => new Promise(() => {}),
     login: () => new Promise(() => {}),
@@ -99,6 +101,7 @@ export const AuthProvider = ({ children }: Props) => {
                         name: res.data().name,
                         role: res.data().role,
                         department: res.data().department,
+                        subjects: res.data().subjects,
                     });
                     setLoading(false);
                 })

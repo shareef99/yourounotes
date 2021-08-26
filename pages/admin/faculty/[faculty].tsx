@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DeletePopup from "../../../components/faculty/DeletePopup";
+import EditPopup from "../../../components/faculty/EditPopup";
 import { useAuth } from "../../../context/AuthContext";
 import { db } from "../../../firebase/firebase";
 import {
@@ -28,13 +29,10 @@ const DynamicFaculty = (props: Props) => {
     const router = useRouter();
     const { currentUser, logout } = useAuth();
 
-    // States
     const [notes, setNotes] = useState<Array<Note>>([]);
 
-    // Effects
     useEffect(() => {
         let isMounted = true;
-
         db.collection("faculties")
             .doc(currentUser?.email)
             .collection("notes")
@@ -65,9 +63,9 @@ const DynamicFaculty = (props: Props) => {
                     Notes uploaded by you
                 </Text>
                 <ul className="flex flex-wrap">
-                    {notes?.map((note) => (
+                    {notes?.map((note, index) => (
                         <li
-                            key={note.id}
+                            key={index}
                             className="bg-cardBg p-4 m-4 rounded-md shadow-md"
                         >
                             <div>
@@ -88,6 +86,10 @@ const DynamicFaculty = (props: Props) => {
                                 <DeletePopup
                                     currentUserEmail={currentUser?.email}
                                     note={note}
+                                />
+                                <EditPopup
+                                    note={note}
+                                    currentUserEmail={currentUser?.email}
                                 />
                             </div>
                         </li>

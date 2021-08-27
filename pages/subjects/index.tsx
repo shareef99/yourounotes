@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import details from "../public/details.json";
+import details from "../../public/details.json";
 
 interface Props {}
 

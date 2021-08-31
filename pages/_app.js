@@ -54,7 +54,6 @@ function MyApp({ Component, pageProps }) {
                     href="/icons/favicon-16x16.png"
                 />
                 <link rel="manifest" href="/icons/site.webmanifest" />
-                {/* Hotjar Tracking Code for https://yourounotes.vercel.app/  */}
             </Head>
             <AuthProvider>
                 <ChakraProvider>

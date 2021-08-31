@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { db } from "../firebase/firebase";
 import details from "../public/details.json";
 
 interface Props {}

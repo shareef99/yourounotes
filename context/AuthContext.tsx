@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }: Props) => {
             }
             const { email } = user;
             await db
-                .collection("unloaders")
+                .collection("uploaders")
                 .doc(email)
                 .get()
                 .then((res) => {

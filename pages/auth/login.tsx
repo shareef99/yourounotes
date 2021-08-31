@@ -40,7 +40,7 @@ const FacultyLogin = (props: Props) => {
 
         try {
             const result = await login(email, password);
-            if (result) router.push(`/admin/faculty/${result.user.email}`);
+            if (result) router.push(`/admin/${result.user.email}`);
         } catch (err) {
             setFieldError("password", err.message);
         }

@@ -1,11 +1,9 @@
 import {
-    Box,
     Flex,
     FormControl,
     FormLabel,
     Heading,
     Select,
-    Text,
 } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
 import * as yup from "yup";
@@ -18,7 +16,6 @@ import {
     hoverBorderColor,
 } from "../../helpers/colors";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { SolidButton } from "../../components/atoms/button";
 import ErrorMessage from "../../components/forms/ErrorMessage";
 
@@ -29,7 +26,6 @@ interface FormValues {
     email: string;
     password: string;
     confirmPassword: string;
-    department: string;
 }
 
 const validationSchema = yup.object().shape({
@@ -43,19 +39,14 @@ const validationSchema = yup.object().shape({
         .string()
         .required("Enter password again")
         .oneOf([yup.ref("password")], "Passwords must match"),
-    department: yup
-        .string()
-        .required("Select Department")
-        .not(["---"], "Select Department"),
 });
 
-const FacultyLogin = (props: Props) => {
+const Login = (props: Props) => {
     const initialValues: FormValues = {
         name: "",
         email: "",
         password: "",
         confirmPassword: "",
-        department: "",
     };
 
     const router = useRouter();
@@ -65,7 +56,7 @@ const FacultyLogin = (props: Props) => {
         values: FormValues,
         formikHelpers: FormikHelpers<FormValues>
     ) => {
-        const { email, password, name, department } = values;
+        const { email, password, name } = values;
         const { resetForm, setSubmitting, setFieldError } = formikHelpers;
 
         setSubmitting(true);
@@ -73,24 +64,17 @@ const FacultyLogin = (props: Props) => {
         try {
             const result = await signUp(email, password);
             if (result) {
-                const { user } = result;
-                const { email, uid } = user;
-                await db.collection("users").doc(email).set({
+                const email = result.user.email;
+                await db.collection("uploaders").doc(email).set({
                     email,
-                    uid,
                     name,
-                });
-                await db.collection("faculties").doc(email).set({
-                    name,
-                    department,
-                    email,
-                    role: "faculty",
+                    password,
                 });
             }
 
-            router.push(`/admin/faculty/${email}`);
+            router.push(`/admin/${email}`);
         } catch (err) {
-            setFieldError("department", err.message);
+            setFieldError("Upload", err.message);
         }
         resetForm();
         setSubmitting(false);
@@ -177,47 +161,6 @@ const FacultyLogin = (props: Props) => {
                                 error={Boolean(errors.confirmPassword)}
                                 errorMessage={errors.confirmPassword}
                             />
-                            <FormControl id="department" isRequired mb={3}>
-                                <FormLabel>Department</FormLabel>
-                                <Select
-                                    _hover={{ borderColor: hoverBorderColor }}
-                                    borderColor={borderColor}
-                                    focusBorderColor={focusBorderColor}
-                                    name="department"
-                                    placeholder="---"
-                                    isRequired
-                                    value={values.department}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    onReset={handleReset}
-                                >
-                                    <option value="cse">
-                                        (CSE) Computer Science
-                                    </option>
-                                    <option value="it">
-                                        (IT) Information Technology
-                                    </option>
-                                    <option value="ece">
-                                        (ECE) Electronics and Communication
-                                        Engineering
-                                    </option>
-                                    <option value="mech">
-                                        Mechanical Engineering
-                                    </option>
-                                    <option value="civil">
-                                        Civil Engineering
-                                    </option>
-                                    <option value="eee">
-                                        (EEE) Electrical and Electronics
-                                        Engineering
-                                    </option>
-                                </Select>
-                                <ErrorMessage
-                                    touch={touched.department}
-                                    error={Boolean(errors.department)}
-                                    errMessage={errors.department}
-                                />
-                            </FormControl>
                             <SolidButton
                                 label="Create Account"
                                 isDisable={isSubmitting}
@@ -231,4 +174,4 @@ const FacultyLogin = (props: Props) => {
     );
 };
 
-export default FacultyLogin;
+export default Login;

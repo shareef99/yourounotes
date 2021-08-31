@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { db } from "../../firebase/firebase";
-import { Note } from "../admin/faculty/[faculty]";
+import { Note } from "../admin/[user]";
 import details from "../../public/details.json";
 import Link from "next/link";
 
@@ -20,29 +20,6 @@ const SubjectNotes = ({}: Props) => {
     ];
 
     const [notes, setNotes] = useState<Array<Note>>([]);
-
-    // useEffect(() => {
-    //     types.forEach((type) => {
-    //         db.collection("subjects")
-    //             .doc(subject)
-    //             .collection(type)
-    //             .onSnapshot((snap) => {
-    //                 setNotes((prevNotes) => [
-    //                     ...prevNotes,
-    //                     ...snap.docs.map((doc) => ({
-    //                         name: doc.data().name,
-    //                         // Here subject is name of the subject
-    //                         subject: doc.data().subject,
-    //                         type: doc.data().type,
-    //                         uploadedAt: doc.data().uploadedAt,
-    //                         uploadedBy: doc.data().uploadedBy,
-    //                         url: doc.data().url,
-    //                         id: doc.id,
-    //                     })),
-    //                 ]);
-    //             });
-    //     });
-    // }, []);
 
     useEffect(() => {
         setNotes([]);

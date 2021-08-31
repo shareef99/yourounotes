@@ -13,11 +13,7 @@ interface Props {
 
 interface User {
     email: string;
-    uid: string;
     name: string;
-    role: string;
-    department: string;
-    subjects: Array<string>;
 }
 
 interface authContextType {
@@ -36,11 +32,7 @@ interface authContextType {
 const authContextDefaultValues: authContextType = {
     currentUser: {
         email: "",
-        uid: "",
         name: "",
-        role: "",
-        department: "",
-        subjects: [],
     },
     signUp: () => new Promise(() => {}),
     login: () => new Promise(() => {}),
@@ -91,17 +83,13 @@ export const AuthProvider = ({ children }: Props) => {
             }
             const { email } = user;
             await db
-                .collection("faculties")
+                .collection("unloaders")
                 .doc(email)
                 .get()
                 .then((res) => {
                     setCurrentUser({
                         email: res.data().email,
-                        uid: res.data().uid,
                         name: res.data().name,
-                        role: res.data().role,
-                        department: res.data().department,
-                        subjects: res.data().subjects,
                     });
                     setLoading(false);
                 })

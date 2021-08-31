@@ -10,8 +10,6 @@ interface Props {}
 const Main = (props: Props) => {
     const { currentUser } = useAuth();
 
-    console.log(currentUser);
-
     return (
         <section>
             <div
@@ -63,7 +61,7 @@ const Main = (props: Props) => {
                     alignItems="center"
                 >
                     <Text className="font-medium text-xl">
-                        {currentUser ? "Dashboard" : "Faculty Login"} &#10230;{" "}
+                        {currentUser ? "Dashboard" : "Login"} &#10230;{" "}
                     </Text>
                     <Button
                         variant="outline"
@@ -82,13 +80,13 @@ const Main = (props: Props) => {
                     >
                         {Boolean(currentUser) ? (
                             <Link
-                                href="/admin/faculty/[faculty]"
-                                as={`/admin/faculty/${currentUser.email}`}
+                                href="/admin/[faculty]"
+                                as={`/admin/${currentUser.email}`}
                             >
                                 Dashboard
                             </Link>
                         ) : (
-                            <Link href="/auth/faculty-login">Log In</Link>
+                            <Link href="/auth/login">Log In</Link>
                         )}
                     </Button>
                 </Flex>

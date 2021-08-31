@@ -32,6 +32,7 @@ import { useRouter } from "next/router";
 import ErrorMessage from "../components/forms/ErrorMessage";
 import { useState } from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 interface Props {}
 
@@ -155,6 +156,9 @@ const Upload = (Props: Props) => {
 
     return (
         <Flex alignItems="center" justifyContent="center" marginY={10}>
+            <Head>
+                <title>Upload Notes | Your OU Notes</title>
+            </Head>
             <Flex
                 direction="column"
                 p={12}

@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DeletePopup from "../../components/user/DeletePopup";
@@ -53,6 +54,9 @@ const DynamicUser = (props: Props) => {
 
     return (
         <section className="my-14 container">
+            <Head>
+                <title>{currentUser?.name} | Your OU Notes</title>
+            </Head>
             <Heading mb={12}>Welcome {currentUser?.name}</Heading>
             <Box mb={6}>
                 <Text fontSize="2xl" fontWeight="medium" mb={3}>

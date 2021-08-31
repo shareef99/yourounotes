@@ -1,23 +1,12 @@
-import {
-    Flex,
-    FormControl,
-    FormLabel,
-    Heading,
-    Select,
-} from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
 import * as yup from "yup";
 import Field from "../../components/forms/Field";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase/firebase";
-import {
-    borderColor,
-    focusBorderColor,
-    hoverBorderColor,
-} from "../../helpers/colors";
 import { useRouter } from "next/router";
 import { SolidButton } from "../../components/atoms/button";
-import ErrorMessage from "../../components/forms/ErrorMessage";
+import Head from "next/head";
 
 interface Props {}
 
@@ -82,6 +71,9 @@ const Login = (props: Props) => {
 
     return (
         <Flex alignItems="center" justifyContent="center" marginY={10}>
+            <Head>
+                <title>Signup | Your OU Notes</title>
+            </Head>
             <Flex
                 direction="column"
                 p={12}

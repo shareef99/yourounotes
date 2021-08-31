@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Flex, Heading } from "@chakra-ui/react";
 import { Formik, FormikHelpers, Form, FormikProps } from "formik";
 import * as yup from "yup";
@@ -51,6 +52,9 @@ const FacultyLogin = (props: Props) => {
 
     return (
         <Flex alignItems="center" justifyContent="center" marginY={10}>
+            <Head>
+                <title>Login | Your OU Notes</title>
+            </Head>
             <Flex
                 direction="column"
                 p={12}

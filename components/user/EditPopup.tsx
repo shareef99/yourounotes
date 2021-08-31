@@ -14,12 +14,12 @@ import {
     PopoverTrigger,
 } from "@chakra-ui/react";
 import { btnBorder } from "../../helpers/colors";
-import { Note } from "../../pages/admin/faculty/[faculty]";
+import { Note } from "../../pages/admin/[user]";
 import { useState } from "react";
 import * as yup from "yup";
 import ErrorMessage from "../forms/ErrorMessage";
 import { useRef } from "react";
-import { updateNameAndUrl } from "../../helpers/faculty";
+import { updateNameAndUrl } from "../../helpers/user";
 
 interface Props {
     note: Note;

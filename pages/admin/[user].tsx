@@ -3,15 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import DeletePopup from "../../../components/faculty/DeletePopup";
-import EditPopup from "../../../components/faculty/EditPopup";
-import { useAuth } from "../../../context/AuthContext";
-import { db } from "../../../firebase/firebase";
-import {
-    btnBackground,
-    btnText,
-    hoverBorderColor,
-} from "../../../helpers/colors";
+import DeletePopup from "../../components/user/DeletePopup";
+import EditPopup from "../../components/user/EditPopup";
+import { useAuth } from "../../context/AuthContext";
+import { db } from "../../firebase/firebase";
+import { btnBackground, btnText, hoverBorderColor } from "../../helpers/colors";
 
 interface Props {}
 
@@ -25,7 +21,7 @@ export interface Note {
     type: string;
 }
 
-const DynamicFaculty = (props: Props) => {
+const DynamicUser = (props: Props) => {
     const router = useRouter();
     const { currentUser, logout } = useAuth();
 
@@ -33,7 +29,7 @@ const DynamicFaculty = (props: Props) => {
 
     useEffect(() => {
         let isMounted = true;
-        db.collection("faculties")
+        db.collection("uploaders")
             .doc(currentUser?.email)
             .collection("notes")
             .onSnapshot((snapShot) => {
@@ -148,4 +144,4 @@ const DynamicFaculty = (props: Props) => {
     );
 };
 
-export default DynamicFaculty;
+export default DynamicUser;

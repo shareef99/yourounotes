@@ -12,10 +12,10 @@ import {
 import { MdDelete } from "react-icons/md";
 import { btnBorder } from "../../helpers/colors";
 import {
-    deleteNoteFromFaculty,
+    deleteNoteFromUploaders,
     deleteNoteFromSubjects,
-} from "../../helpers/faculty";
-import { Note } from "../../pages/admin/faculty/[faculty]";
+} from "../../helpers/user";
+import { Note } from "../../pages/admin/[user]";
 
 interface Props {
     note: Note;
@@ -25,7 +25,7 @@ interface Props {
 const DeletePopup = ({ note, currentUserEmail }: Props) => {
     const deleteNote = async (note: Note) => {
         await deleteNoteFromSubjects(note);
-        await deleteNoteFromFaculty(note.id, currentUserEmail);
+        await deleteNoteFromUploaders(note.id, currentUserEmail);
     };
 
     return (

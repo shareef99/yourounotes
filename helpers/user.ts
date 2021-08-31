@@ -1,5 +1,5 @@
 import { db } from "../firebase/firebase";
-import { Note } from "../pages/admin/faculty/[faculty]";
+import { Note } from "../pages/admin/[user]";
 
 export const deleteNoteFromSubjects = async ({ type, subject, id }: Note) => {
     try {
@@ -16,16 +16,16 @@ export const deleteNoteFromSubjects = async ({ type, subject, id }: Note) => {
     }
 };
 
-export const deleteNoteFromFaculty = async (id: string, email: string) => {
+export const deleteNoteFromUploaders = async (id: string, email: string) => {
     try {
         await db
-            .collection("faculties")
+            .collection("uploaders")
             .doc(email)
             .collection("notes")
             .doc(id)
             .delete();
 
-        console.log("Deleted from faculties");
+        console.log("Deleted from uploaders");
     } catch (err) {
         console.log(err);
     }
@@ -37,7 +37,7 @@ export const updateNameAndUrl = (
     newValues: { name: string; url: string }
 ) => {
     const { name, url } = newValues;
-    db.collection("faculties")
+    db.collection("uploaders")
         .doc(email)
         .collection("notes")
         .doc(note.id)

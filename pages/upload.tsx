@@ -82,7 +82,7 @@ const Upload = (Props: Props) => {
         notes: [{ name: "", url: "" }],
     };
 
-    const uploadNotesToFaculty = async (
+    const updateToUploaders = async (
         subject: string,
         type: string,
         name: string,
@@ -91,7 +91,7 @@ const Upload = (Props: Props) => {
     ) => {
         try {
             await db
-                .collection("faculties")
+                .collection("uploaders")
                 .doc(currentUser.email)
                 .collection("notes")
                 .doc(id)
@@ -133,7 +133,7 @@ const Upload = (Props: Props) => {
                         uploadedAt: new Date().toDateString(),
                         uploadedBy: currentUser.name,
                     });
-                await uploadNotesToFaculty(subject, type, name, url, id);
+                await updateToUploaders(subject, type, name, url, id);
             } catch (err) {
                 console.log(err.message || err);
             }
@@ -370,6 +370,8 @@ const Upload = (Props: Props) => {
                                                         size="xs"
                                                         _focus={{
                                                             outline: "none",
+                                                            backgroundColor:
+                                                                "#fff",
                                                         }}
                                                         variant="ghost"
                                                         fontSize="3xl"
@@ -386,6 +388,8 @@ const Upload = (Props: Props) => {
                                                         }
                                                         _focus={{
                                                             outline: "none",
+                                                            backgroundColor:
+                                                                "#fff",
                                                         }}
                                                         size="xs"
                                                         variant="ghost"
@@ -419,7 +423,7 @@ const Upload = (Props: Props) => {
                         <span className="font-medium text-[#28A745] text-lg">
                             {message}
                         </span>
-                        <Link href={`/admin/faculty/${currentUser.email}`}>
+                        <Link href={`/admin/${currentUser.email}`}>
                             <a className="font-medium underline hover:no-underline">
                                 Go to Dashboard
                             </a>

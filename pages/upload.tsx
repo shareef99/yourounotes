@@ -185,12 +185,7 @@ const Upload = (Props: Props) => {
                         handleChange,
                         handleReset,
                     }: FormikProps<FormValues>) => (
-                        <Form
-                            autoComplete="off"
-                            autoCapitalize="off"
-                            autoCorrect="off"
-                            autoSave="off"
-                        >
+                        <Form>
                             <Select
                                 _hover={{ borderColor: hoverBorderColor }}
                                 borderColor={borderColor}

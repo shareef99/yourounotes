@@ -283,7 +283,7 @@ const Upload = (Props: Props) => {
                                     Important Questions
                                 </option>
                                 <option value="syllabus">Syllabus</option>
-                                <option value="question paper">
+                                <option value="question papers">
                                     Question Paper
                                 </option>
                             </Select>

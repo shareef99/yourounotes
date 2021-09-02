@@ -28,13 +28,13 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta name="designer" content="Nadeem Shareef" />
                 <meta name="owner" content="Nadeem Shareef" />
-                {/* <meta
+                <meta
                     name="description"
                     content="It is a web platform that will provide everything a BE student needs It 
                         is built by the students for the students Our motive is to spread as much 
                         knowledge as we can in a best possible way Sharing is Caring. Design and 
                         Coded by Nadeem Shareef"
-                /> */}
+                />
                 {/* Favicon */}
                 <link
                     rel="apple-touch-icon"

@@ -48,13 +48,6 @@ const SubjectNotes = ({}: Props) => {
         <>
             <Head>
                 <title>{subject} | Your OU Notes</title>
-                <meta
-                    name="keywords"
-                    content={`${subject}, ${subject} question papers, ${subject} important questions,
-                    ${subject} syllabus, ${subject} notes, isl, notes, engineering, shareef,
-                    shareef99, ou, be, question papers, osmania university students, ou students,
-                    engineering notes, be notes, important questions, be syllabus`}
-                />
             </Head>
             <section className="container">
                 {notes.filter((x) => x.name).length === 0 && (

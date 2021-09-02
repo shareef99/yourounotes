@@ -21,11 +21,6 @@ const Subjects = (props: Props) => {
         <>
             <Head>
                 <title>Select Subject | Your OU Notes</title>
-                <meta
-                    name="keywords"
-                    content="isl, notes, engineering, shareef, shareef99, ou, be, question papers, osmania university
-                        students, ou students, engineering notes, be notes, important questions, be syllabus"
-                />
                 <meta name="description" content="description" />
             </Head>
             <section className="colCenter ">

@@ -17,7 +17,7 @@ const Main = (props: Props) => {
                 className="h-screen -mt-16 sm:mt-0 colCenter justify-around md:flex-row-reverse w-full 
                     md:w-9/10 mx-auto bg-bottom-4 xs:bg-bottom bg-contain bg-clip-padding bg-no-repeat"
                 style={{
-                    backgroundImage: "url(/images/books.png)",
+                    backgroundImage: "url(/images/books.webp)",
                 }}
             >
                 <div className="space-y-8 colCenter h-screen relative">

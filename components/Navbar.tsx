@@ -42,7 +42,7 @@ const Navbar = (prop: Props) => {
                         <Image
                             width="24"
                             height="24"
-                            src="/images/books.png"
+                            src="/images/books.webp"
                             alt="logo"
                         />
                         <span>Your OU Notes</span>

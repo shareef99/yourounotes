@@ -35,7 +35,7 @@ const Navbar = (prop: Props) => {
                         isAtTop &&
                         "fadeIn bg-btn text-bg z-20 border-b-2 shadow-xl"
                     } 
-                    ${route === "/" && `sm:hidden`}`}
+                    ${route === "/" && `hidden`}`}
             >
                 <Link href="/">
                     <a className="flexCenter space-x-2 text-xl">

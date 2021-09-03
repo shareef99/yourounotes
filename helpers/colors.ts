@@ -1,3 +1,5 @@
+export const heading = "#2b2c34";
+
 // Form colors
 export const borderColor = "gray.600";
 export const hoverBorderColor = "#6246ea";

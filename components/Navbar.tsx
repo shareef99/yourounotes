@@ -17,7 +17,8 @@ interface Props {}
 
 const Navbar = (prop: Props) => {
     const [isAtTop, setIsAtTop] = useState<any>();
-    const route = useRouter().route;
+    const router = useRouter();
+    const { route, push } = router;
     const { currentUser, logout } = useAuth();
 
     const handleScroll = () => {
@@ -82,7 +83,14 @@ const Navbar = (prop: Props) => {
                             </a>
                         </Link>
                         <MenuDivider />
-                        <MenuItem onClick={logout}>Logout</MenuItem>
+                        <MenuItem
+                            onClick={() => {
+                                logout();
+                                push("/");
+                            }}
+                        >
+                            Logout
+                        </MenuItem>
                     </MenuList>
                 </Menu>
             )}

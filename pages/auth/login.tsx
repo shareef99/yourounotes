@@ -62,7 +62,7 @@ const FacultyLogin = (props: Props) => {
                 className="w-full xs:w-9/10 sm:w-[30rem] bg-cardBg shadow-md"
             >
                 <Heading mb={8} textAlign="center">
-                    Faculty login
+                    login
                 </Heading>
                 <Formik
                     initialValues={initialValues}

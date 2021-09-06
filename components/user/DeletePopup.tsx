@@ -23,9 +23,10 @@ interface Props {
 }
 
 const DeletePopup = ({ note, currentUserEmail }: Props) => {
-    const deleteNote = async (note: Note) => {
+    const deleteNote = async (note: Note, closeHandler: () => void) => {
         await deleteNoteFromSubjects(note);
         await deleteNoteFromUploaders(note.id, currentUserEmail);
+        closeHandler();
     };
 
     return (
@@ -54,7 +55,7 @@ const DeletePopup = ({ note, currentUserEmail }: Props) => {
                         <PopoverCloseButton />
                         <PopoverHeader>Confirmation!</PopoverHeader>
                         <PopoverBody className="flex justify-between space-x-4">
-                            <Button onClick={() => deleteNote(note)}>
+                            <Button onClick={() => deleteNote(note, onClose)}>
                                 Delete
                             </Button>
                             <Button onClick={onClose}>Cancel</Button>

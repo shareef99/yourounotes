@@ -5,12 +5,16 @@ import { db } from "../../firebase/firebase";
 import { Note } from "../admin/[user]";
 import details from "../../public/details.json";
 import Link from "next/link";
+import EditPopup from "../../components/user/EditPopup";
+import { useAuth } from "../../context/AuthContext";
+import DeletePopup from "../../components/user/DeletePopup";
 
 interface Props {}
 
 const SubjectNotes = ({}: Props) => {
     const router = useRouter();
     const { subject, sem, group }: any = router.query;
+    const { currentUser } = useAuth();
 
     const types: Array<string> = [
         "notes",
@@ -91,6 +95,18 @@ const SubjectNotes = ({}: Props) => {
                                         </span>
                                     </p>
                                 </div>
+                                {currentUser && (
+                                    <div>
+                                        <DeletePopup
+                                            currentUserEmail={currentUser.email}
+                                            note={note}
+                                        />
+                                        <EditPopup
+                                            currentUserEmail={currentUser.email}
+                                            note={note}
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}

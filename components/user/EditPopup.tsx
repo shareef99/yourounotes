@@ -85,7 +85,7 @@ const EditPopup = ({ note, currentUserEmail }: Props) => {
                         <Button
                             mt={3}
                             variant="unstyled"
-                            className="float-right cursor-pointer"
+                            className="cursor-pointer"
                         >
                             <Icon as={MdModeEdit} boxSize="7" />
                         </Button>

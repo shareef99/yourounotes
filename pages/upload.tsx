@@ -141,15 +141,13 @@ const Upload = (Props: Props) => {
         });
     };
 
-    const submitHandler = (
+    const submitHandler = async (
         values: FormValues,
         formikHelpers: FormikHelpers<FormValues>
     ) => {
         const { setSubmitting, resetForm } = formikHelpers;
         setSubmitting(true);
-
-        uploadNotesToSubjects(values);
-
+        await uploadNotesToSubjects(values);
         setSubmitting(false);
         resetForm();
     };

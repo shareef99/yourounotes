@@ -44,7 +44,7 @@
             "Java",
             "Computer Organization",
             "DBMS (Database Management System)",
-            "Effect of technical communication"
+            "ETC (Effective Technical Communication in English)"
         ]
     },
     {
@@ -74,7 +74,7 @@
         "group": "IT",
         "subjects": [
             "IC (Indian Constitution)",
-            "Effective Technical Communication in English",
+            "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
             "BE (Basic Electronics)",
@@ -125,7 +125,7 @@
         "group": "ECE",
         "subjects": [
             "IC (Indian Constitution)",
-            "Effective Technical Communication in English",
+            "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
             "Elements of Mechanical Engineering",
@@ -176,7 +176,7 @@
         "group": "ME",
         "subjects": [
             "IC (Indian Constitution)",
-            "Effective Technical Communication in English",
+            "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
             "Engineering Mechanics",
@@ -242,7 +242,7 @@
         "group": "CE",
         "subjects": [
             "IC (Indian Constitution)",
-            "Effective Technical Communication in English",
+            "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
             "Elements of Mechanical Engineering",
@@ -293,7 +293,7 @@
         "group": "EEE",
         "subjects": [
             "IC (Indian Constitution)",
-            "Effective Technical Communication in English",
+            "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
             "Elements of Mechanical Engineering",

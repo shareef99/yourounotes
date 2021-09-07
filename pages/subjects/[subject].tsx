@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { db } from "../../firebase/firebase";
@@ -8,6 +8,14 @@ import Link from "next/link";
 import EditPopup from "../../components/user/EditPopup";
 import { useAuth } from "../../context/AuthContext";
 import DeletePopup from "../../components/user/DeletePopup";
+import {
+    Popover,
+    PopoverCloseButton,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+} from "@chakra-ui/popover";
+import { btnBorder } from "../../helpers/colors";
 
 interface Props {}
 
@@ -47,6 +55,12 @@ const SubjectNotes = ({}: Props) => {
                 });
         });
     }, [subject]);
+
+    const copyHandler = () => {
+        navigator.clipboard.writeText(
+            `https://yourounotes.vercel.app/subjects/${subject}?sem=${sem}&group=${group}`
+        );
+    };
 
     return (
         <>
@@ -135,6 +149,29 @@ const SubjectNotes = ({}: Props) => {
                         <li className="list-item list-disc font-medium underline">
                             <Link href="/subjects">All Subjects</Link>
                         </li>
+                        <Popover>
+                            <PopoverTrigger>
+                                <li
+                                    className="list-item list-disc font-medium cursor-pointer"
+                                    onClick={copyHandler}
+                                >
+                                    Share this page
+                                </li>
+                            </PopoverTrigger>
+                            <PopoverContent
+                                borderColor={btnBorder}
+                                borderWidth="2px"
+                                _focus={{
+                                    borderColor: btnBorder,
+                                    borderWidth: "2px",
+                                }}
+                            >
+                                <PopoverCloseButton />
+                                <PopoverHeader>
+                                    Link copied successfully
+                                </PopoverHeader>
+                            </PopoverContent>
+                        </Popover>
                     </ul>
                 </div>
             </section>

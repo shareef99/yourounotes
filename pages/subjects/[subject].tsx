@@ -62,6 +62,10 @@ const SubjectNotes = ({}: Props) => {
         );
     };
 
+    const copyNoteHandler = (noteUrl: string) => {
+        navigator.clipboard.writeText(noteUrl);
+    };
+
     return (
         <>
             <Head>
@@ -108,10 +112,35 @@ const SubjectNotes = ({}: Props) => {
                                             {note.type}
                                         </span>
                                     </p>
+                                    <Popover>
+                                        <PopoverTrigger>
+                                            <p
+                                                className="text-btn cursor-pointer font-medium text-center my-2"
+                                                onClick={() =>
+                                                    copyNoteHandler(note.url)
+                                                }
+                                            >
+                                                Share this pdf
+                                            </p>
+                                        </PopoverTrigger>
+                                        <PopoverContent
+                                            borderColor={btnBorder}
+                                            borderWidth="2px"
+                                            _focus={{
+                                                borderColor: btnBorder,
+                                                borderWidth: "2px",
+                                            }}
+                                        >
+                                            <PopoverCloseButton />
+                                            <PopoverHeader>
+                                                Link copied successfully
+                                            </PopoverHeader>
+                                        </PopoverContent>
+                                    </Popover>
                                 </div>
                                 {currentUser &&
                                     currentUser.name === note.uploadedBy && (
-                                        <div>
+                                        <div style={{ margin: "-10px" }}>
                                             <DeletePopup
                                                 currentUserEmail={
                                                     currentUser.email

@@ -24,8 +24,8 @@ interface Props {
 
 const DeletePopup = ({ note, currentUserEmail }: Props) => {
     const deleteNote = async (note: Note, closeHandler: () => void) => {
-        await deleteNoteFromSubjects(note);
         await deleteNoteFromUploaders(note.id, currentUserEmail);
+        await deleteNoteFromSubjects(note);
         closeHandler();
     };
 

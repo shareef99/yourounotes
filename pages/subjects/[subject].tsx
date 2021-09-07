@@ -95,18 +95,23 @@ const SubjectNotes = ({}: Props) => {
                                         </span>
                                     </p>
                                 </div>
-                                {currentUser && (
-                                    <div>
-                                        <DeletePopup
-                                            currentUserEmail={currentUser.email}
-                                            note={note}
-                                        />
-                                        <EditPopup
-                                            currentUserEmail={currentUser.email}
-                                            note={note}
-                                        />
-                                    </div>
-                                )}
+                                {currentUser &&
+                                    currentUser.name === note.uploadedBy && (
+                                        <div>
+                                            <DeletePopup
+                                                currentUserEmail={
+                                                    currentUser.email
+                                                }
+                                                note={note}
+                                            />
+                                            <EditPopup
+                                                currentUserEmail={
+                                                    currentUser.email
+                                                }
+                                                note={note}
+                                            />
+                                        </div>
+                                    )}
                             </div>
                         </div>
                     ))}

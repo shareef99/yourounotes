@@ -1,10 +1,8 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-import "firebase/analytics";
-import "firebase/performance";
+import { initializeApp, getApps } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyCdNLyy2P8YVXV_9ZtKMMFZiWDJmmsKh7M",
     authDomain: "onlineounotes.firebaseapp.com",
     projectId: "onlineounotes",
@@ -15,14 +13,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+if (!getApps().length) {
+    initializeApp(firebaseConfig);
 }
 
-export const analytics = firebase.analytics;
-export const performance = firebase.performance;
-
-export const db = firebase.firestore();
-export const auth = firebase.auth();
+export const db = getFirestore();
+export const auth = getAuth();
 
 export default firebaseConfig;

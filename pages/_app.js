@@ -1,4 +1,4 @@
-import "../styles/globals.scss";
+import "../styles/globals.css";
 import "../styles/tailwind.css";
 import { Layout } from "../components/Layout";
 import Head from "next/head";

@@ -11,10 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import { btnBorder } from "../../helpers/colors";
-import {
-    deleteNoteFromUploaders,
-    deleteNoteFromSubjects,
-} from "../../helpers/user";
+import { deleteNote } from "../../helpers/user";
 import { Note } from "../../pages/admin/[user]";
 
 interface Props {
@@ -23,9 +20,8 @@ interface Props {
 }
 
 const DeletePopup = ({ note, currentUserEmail }: Props) => {
-    const deleteNote = async (note: Note, closeHandler: () => void) => {
-        await deleteNoteFromUploaders(note.id, currentUserEmail);
-        await deleteNoteFromSubjects(note);
+    const deleteNoteHandler = async (note: Note, closeHandler: () => void) => {
+        await deleteNote(note, currentUserEmail);
         closeHandler();
     };
 
@@ -55,7 +51,9 @@ const DeletePopup = ({ note, currentUserEmail }: Props) => {
                         <PopoverCloseButton />
                         <PopoverHeader>Confirmation!</PopoverHeader>
                         <PopoverBody className="flex justify-between space-x-4">
-                            <Button onClick={() => deleteNote(note, onClose)}>
+                            <Button
+                                onClick={() => deleteNoteHandler(note, onClose)}
+                            >
                                 Delete
                             </Button>
                             <Button onClick={onClose}>Cancel</Button>

@@ -35,6 +35,7 @@ const EditPopup = ({ note, currentUserEmail }: Props) => {
     const [url, setUrl] = useState<string>(note.url);
     const [nameErr, setNameErr] = useState<string>();
     const [urlErr, setUrlErr] = useState<string>();
+    const [exceptionErr, setExceptionErr] = useState<string>();
 
     const closeHandler = (onClose: () => void) => {
         onClose();
@@ -50,6 +51,7 @@ const EditPopup = ({ note, currentUserEmail }: Props) => {
             return;
         }
         setNameErr("");
+        setExceptionErr("");
     };
 
     const updateUrl = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -65,16 +67,21 @@ const EditPopup = ({ note, currentUserEmail }: Props) => {
             return;
         }
         setUrlErr("");
+        setExceptionErr("");
     };
 
-    const saveHandler = (onClose: () => void) => {
+    const saveHandler = async (onClose: () => void) => {
         // If name and url are same as prev then close it
         if (note.name === name.trim() && note.url === url.trim()) {
             closeHandler(onClose);
             return;
         }
-        updateNameAndUrl(note, currentUserEmail, { name, url });
-        onClose();
+        try {
+            await updateNameAndUrl(note, currentUserEmail, { name, url });
+            onClose();
+        } catch (err) {
+            setExceptionErr(err.message);
+        }
     };
 
     return (
@@ -126,6 +133,11 @@ const EditPopup = ({ note, currentUserEmail }: Props) => {
                                         errMessage={urlErr}
                                         error={Boolean(urlErr)}
                                         touch={Boolean(urlErr)}
+                                    />
+                                    <ErrorMessage
+                                        errMessage={exceptionErr}
+                                        error={Boolean(exceptionErr)}
+                                        touch={Boolean(exceptionErr)}
                                     />
                                 </li>
                             </ul>

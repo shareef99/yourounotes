@@ -183,7 +183,7 @@ export const getServerSideProps: GetServerSideProps = async (
                 collection(db, "subjects", subject, type)
             );
             notesSnapshot.forEach((doc) => {
-                tempNotes.push(doc.data());
+                tempNotes.push({ ...doc.data(), id: doc.id });
             });
         } catch (err) {
             console.log(err.message || err);

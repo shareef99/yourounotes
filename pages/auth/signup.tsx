@@ -7,6 +7,7 @@ import { db } from "../../firebase/firebase";
 import { useRouter } from "next/router";
 import { SolidButton } from "../../components/atoms/button";
 import Head from "next/head";
+import { doc, setDoc } from "firebase/firestore";
 
 interface Props {}
 
@@ -53,15 +54,15 @@ const Login = (props: Props) => {
         try {
             const result = await signUp(email, password);
             if (result) {
-                const email = result.user.email;
-                await db.collection("uploaders").doc(email).set({
+                const { email, uid } = result.user;
+                await setDoc(doc(db, "uploaders", email), {
                     email,
                     name,
                     password,
+                    uid,
                 });
+                router.push(`/admin/${email}`);
             }
-
-            router.push(`/admin/${email}`);
         } catch (err) {
             setFieldError("Upload", err.message);
         }

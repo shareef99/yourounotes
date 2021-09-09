@@ -1,16 +1,15 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import DeletePopup from "../../components/user/DeletePopup";
 import EditPopup from "../../components/user/EditPopup";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase/firebase";
 import { btnBackground, btnText, hoverBorderColor } from "../../helpers/colors";
-
-interface Props {}
+import { getDocs, collection } from "firebase/firestore";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 
 export interface Note {
     id: string;
@@ -22,35 +21,13 @@ export interface Note {
     type: string;
 }
 
-const DynamicUser = (props: Props) => {
+interface Props {
+    notes: Array<Note>;
+}
+
+const DynamicUser = ({ notes }: Props) => {
     const router = useRouter();
     const { currentUser, logout } = useAuth();
-
-    const [notes, setNotes] = useState<Array<Note>>([]);
-
-    useEffect(() => {
-        let isMounted = true;
-        db.collection("uploaders")
-            .doc(currentUser?.email)
-            .collection("notes")
-            .onSnapshot((snapShot) => {
-                setNotes(
-                    snapShot.docs.map((doc) => ({
-                        id: doc.id,
-                        name: doc.data().name,
-                        url: doc.data().url,
-                        uploadedBy: doc.data().uploadedBy,
-                        uploadedAt: doc.data().uploadedAt,
-                        subject: doc.data().subject,
-                        type: doc.data().type,
-                    }))
-                );
-            });
-
-        return () => {
-            isMounted = false;
-        };
-    }, [currentUser]);
 
     return (
         <section className="my-14 container">
@@ -149,3 +126,35 @@ const DynamicUser = (props: Props) => {
 };
 
 export default DynamicUser;
+
+export const getServerSideProps: GetServerSideProps = async (
+    context: GetServerSidePropsContext
+) => {
+    const { query } = context;
+    const email = query.user as string;
+    const notesSnapshot = await getDocs(
+        collection(db, "uploaders", email, "notes")
+    );
+    let notes: Array<Note> = [];
+    try {
+        notesSnapshot.forEach((doc) =>
+            notes.push({
+                id: doc.id,
+                name: doc.data().name,
+                url: doc.data().url,
+                uploadedBy: doc.data().uploadedBy,
+                uploadedAt: doc.data().uploadedAt,
+                subject: doc.data().subject,
+                type: doc.data().type,
+            })
+        );
+    } catch (err) {
+        console.log(err.message || err);
+    }
+
+    return {
+        props: {
+            notes,
+        },
+    };
+};

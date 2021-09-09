@@ -7,7 +7,7 @@ import { db } from "../../firebase/firebase";
 import { useRouter } from "next/router";
 import { SolidButton } from "../../components/atoms/button";
 import Head from "next/head";
-import { doc, setDoc } from "@firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 interface Props {}
 

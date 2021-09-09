@@ -10,6 +10,7 @@ import {
     Button,
 } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
+import { useNotification } from "../../context/NotificationContext";
 import { btnBorder } from "../../helpers/colors";
 import { deleteNote } from "../../helpers/user";
 import { Note } from "../../pages/admin/[user]";
@@ -20,9 +21,29 @@ interface Props {
 }
 
 const DeletePopup = ({ note, currentUserEmail }: Props) => {
+    const { showNotification } = useNotification();
+
     const deleteNoteHandler = async (note: Note, closeHandler: () => void) => {
-        await deleteNote(note, currentUserEmail);
         closeHandler();
+        showNotification({
+            title: "Deleting 🪓🔨",
+            message: "Refresh to see changes",
+            state: "pending",
+        });
+        try {
+            await deleteNote(note, currentUserEmail);
+        } catch (err) {
+            showNotification({
+                title: "Error ♻",
+                message: err.message || "Unable to delete.",
+                state: "error",
+            });
+        }
+        showNotification({
+            title: "Deleted 🎉",
+            message: "Refresh to see changes",
+            state: "success",
+        });
     };
 
     return (

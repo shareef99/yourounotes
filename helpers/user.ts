@@ -13,10 +13,10 @@ export const deleteNote = async (note: Note, email: string) => {
             const subjectRef = doc(db, "subjects", subject, type, id);
             await deleteDoc(subjectRef);
         } catch (err) {
-            console.log(err.message);
+            throw Error(err.message);
         }
     } catch (err) {
-        console.log(err.message);
+        throw Error(err.message);
     }
 };
 

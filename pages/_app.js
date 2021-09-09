@@ -1,3 +1,4 @@
+import NotificationProvider from "../context/NotificationContext";
 import "../styles/globals.css";
 import "../styles/tailwind.css";
 import { Layout } from "../components/Layout";
@@ -56,11 +57,13 @@ function MyApp({ Component, pageProps }) {
                 <link rel="manifest" href="/icons/site.webmanifest" />
             </Head>
             <AuthProvider>
-                <ChakraProvider>
-                    <Layout head>
-                        <Component {...pageProps} />
-                    </Layout>
-                </ChakraProvider>
+                <NotificationProvider>
+                    <ChakraProvider>
+                        <Layout head>
+                            <Component {...pageProps} />
+                        </Layout>
+                    </ChakraProvider>
+                </NotificationProvider>
             </AuthProvider>
         </>
     );

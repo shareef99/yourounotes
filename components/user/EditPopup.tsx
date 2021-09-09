@@ -20,6 +20,7 @@ import * as yup from "yup";
 import ErrorMessage from "../forms/ErrorMessage";
 import { useRef } from "react";
 import { updateNameAndUrl } from "../../helpers/user";
+import { useNotification } from "../../context/NotificationContext";
 
 interface Props {
     note: Note;
@@ -29,6 +30,8 @@ interface Props {
 const urlValidation = yup.string().url("Must be URL");
 
 const EditPopup = ({ note, currentUserEmail }: Props) => {
+    const { showNotification, hideNotification } = useNotification();
+
     const nameRef = useRef<HTMLInputElement>(null);
 
     const [name, setName] = useState<string>(note.name);
@@ -77,10 +80,24 @@ const EditPopup = ({ note, currentUserEmail }: Props) => {
             return;
         }
         try {
-            await updateNameAndUrl(note, currentUserEmail, { name, url });
             onClose();
+            showNotification({
+                title: "Editing 🛠",
+                message: "Refresh to see change",
+                state: "pending",
+            });
+            await updateNameAndUrl(note, currentUserEmail, { name, url });
+            showNotification({
+                title: "Edited 🎉",
+                message: "Refresh to see change",
+                state: "success",
+            });
         } catch (err) {
-            setExceptionErr(err.message);
+            showNotification({
+                title: "Error ",
+                message: err.message || "Unable to edit.",
+                state: "error",
+            });
         }
     };
 

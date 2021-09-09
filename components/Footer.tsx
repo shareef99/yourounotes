@@ -28,7 +28,7 @@ const Footer = (props: Props) => {
                     </li>
                     <li className="underline hover:no-underline">
                         <a
-                            href="https://github.com/shareef99/ounotes#your-notes"
+                            href="https://github.com/shareef99/yourounotes"
                             target="_blank"
                             rel="noreferrer"
                         >

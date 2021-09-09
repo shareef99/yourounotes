@@ -1,16 +1,20 @@
-import "../styles/globals.scss";
+import "../styles/globals.css";
 import "../styles/tailwind.css";
 import { Layout } from "../components/Layout";
 import Head from "next/head";
 import { AuthProvider } from "../context/AuthContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { analytics, performance } from "../firebase/firebase";
+import NotificationProvider from "../context/NotificationContext";
+import { getAnalytics } from "firebase/analytics";
+import { getPerformance } from "firebase/performance";
 
 function MyApp({ Component, pageProps }) {
     useEffect(() => {
-        analytics();
-        performance();
+        if (process.env.NODE_ENV === "production") {
+            getAnalytics();
+        }
+        getPerformance();
     }, []);
 
     return (
@@ -56,11 +60,13 @@ function MyApp({ Component, pageProps }) {
                 <link rel="manifest" href="/icons/site.webmanifest" />
             </Head>
             <AuthProvider>
-                <ChakraProvider>
-                    <Layout head>
-                        <Component {...pageProps} />
-                    </Layout>
-                </ChakraProvider>
+                <NotificationProvider>
+                    <ChakraProvider>
+                        <Layout head>
+                            <Component {...pageProps} />
+                        </Layout>
+                    </ChakraProvider>
+                </NotificationProvider>
             </AuthProvider>
         </>
     );

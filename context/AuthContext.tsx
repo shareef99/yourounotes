@@ -5,7 +5,15 @@ import {
     createContext,
     ReactNode,
 } from "react";
+
+import {
+    UserCredential,
+    signOut,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 interface Props {
     children: ReactNode;
@@ -18,14 +26,8 @@ interface User {
 
 interface authContextType {
     currentUser: User;
-    signUp(
-        email: string,
-        password: string
-    ): Promise<firebase.default.auth.UserCredential>;
-    login(
-        email: string,
-        password: string
-    ): Promise<firebase.default.auth.UserCredential>;
+    signUp(email: string, password: string): Promise<UserCredential>;
+    login(email: string, password: string): Promise<UserCredential>;
     logout(): Promise<void>;
 }
 
@@ -50,52 +52,31 @@ export const AuthProvider = ({ children }: Props) => {
     const [loading, setLoading] = useState(true);
 
     async function signUp(email: string, password: string) {
-        return await auth.createUserWithEmailAndPassword(email, password);
+        return await createUserWithEmailAndPassword(auth, email, password);
     }
 
     async function login(email: string, password: string) {
-        return await auth.signInWithEmailAndPassword(email, password);
+        return await signInWithEmailAndPassword(auth, email, password);
     }
 
     function logout() {
-        return auth.signOut();
+        return signOut(auth);
     }
-
-    // function resetPassword(email) {
-    //     return auth.sendPasswordResetEmail(email);
-    // }
-
-    // function updateEmail(email) {
-    //     return currentUser.updateEmail(email);
-    // }
-
-    // function updatePassword(password) {
-    //     return currentUser.updatePassword(password);
-    // }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
-            console.log(user);
             if (!user) {
                 setLoading(false);
                 setCurrentUser(undefined);
                 return;
             }
             const { email } = user;
-            await db
-                .collection("uploaders")
-                .doc(email)
-                .get()
-                .then((res) => {
-                    setCurrentUser({
-                        email: res.data().email,
-                        name: res.data().name,
-                    });
-                    setLoading(false);
-                })
-                .catch((err) =>
-                    console.log("Error from auth", err.message || err)
-                );
+            const userRef = doc(db, "uploaders", email);
+            const res = await getDoc(userRef);
+            setCurrentUser({
+                email: res.data().email,
+                name: res.data().name,
+            });
             setLoading(false);
         });
 

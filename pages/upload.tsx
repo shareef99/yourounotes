@@ -33,6 +33,8 @@ import ErrorMessage from "../components/forms/ErrorMessage";
 import { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { doc, setDoc } from "firebase/firestore";
+import { useNotification } from "../context/NotificationContext";
 
 interface Props {}
 
@@ -67,6 +69,7 @@ const validationSchema = yup.object().shape({
 
 const Upload = (Props: Props) => {
     const { currentUser } = useAuth();
+    const { showNotification } = useNotification();
 
     const [message, setMessage] = useState<string>();
 
@@ -83,20 +86,21 @@ const Upload = (Props: Props) => {
         notes: [{ name: "", url: "" }],
     };
 
-    const updateToUploaders = async (
-        subject: string,
-        type: string,
-        name: string,
-        url: string,
-        id: string
-    ) => {
-        try {
-            await db
-                .collection("uploaders")
-                .doc(currentUser.email)
-                .collection("notes")
-                .doc(id)
-                .set({
+    const uploadNotes = async ({ subject, type, notes }: FormValues) => {
+        showNotification({
+            title: "Uploading 🙌",
+            message: "Uploading Notes",
+            state: "pending",
+        });
+
+        notes.map(async (note) => {
+            const { name, url } = note;
+            const id = `${name} + random id: ${Math.floor(
+                Math.random() * 10000
+            )}`;
+            try {
+                const subjectsRef = doc(db, "subjects", subject, type, id);
+                await setDoc(subjectsRef, {
                     name,
                     url,
                     subject,
@@ -104,29 +108,15 @@ const Upload = (Props: Props) => {
                     uploadedAt: new Date().toDateString(),
                     uploadedBy: currentUser.name,
                 });
-            setMessage("Successfully Added");
-        } catch (err) {
-            console.log(err.message || err);
-        }
-    };
-
-    const uploadNotesToSubjects = async ({
-        subject,
-        type,
-        notes,
-    }: FormValues) => {
-        notes.map(async (note) => {
-            const { name, url } = note;
-            const id = `${name} + random id: ${Math.floor(
-                Math.random() * 100
-            )}`;
-            try {
-                await db
-                    .collection("subjects")
-                    .doc(subject)
-                    .collection(type)
-                    .doc(id)
-                    .set({
+                try {
+                    const uploadersRef = doc(
+                        db,
+                        "uploaders",
+                        currentUser.email,
+                        "notes",
+                        id
+                    );
+                    await setDoc(uploadersRef, {
                         name,
                         url,
                         subject,
@@ -134,10 +124,26 @@ const Upload = (Props: Props) => {
                         uploadedAt: new Date().toDateString(),
                         uploadedBy: currentUser.name,
                     });
-                await updateToUploaders(subject, type, name, url, id);
+                } catch (err) {
+                    showNotification({
+                        title: "Failed 😢",
+                        message: "Failed to upload notes",
+                        state: "error",
+                    });
+                }
             } catch (err) {
-                console.log(err.message || err);
+                showNotification({
+                    title: "Failed 😢",
+                    message: "Failed to upload notes",
+                    state: "error",
+                });
             }
+        });
+
+        showNotification({
+            title: "Uploaded 🎉",
+            message: "Successfully uploaded",
+            state: "success",
         });
     };
 
@@ -147,7 +153,7 @@ const Upload = (Props: Props) => {
     ) => {
         const { setSubmitting, resetForm } = formikHelpers;
         setSubmitting(true);
-        await uploadNotesToSubjects(values);
+        await uploadNotes(values);
         setSubmitting(false);
         resetForm();
     };

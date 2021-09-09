@@ -7,15 +7,8 @@ import details from "../../public/details.json";
 import EditPopup from "../../components/user/EditPopup";
 import { useAuth } from "../../context/AuthContext";
 import DeletePopup from "../../components/user/DeletePopup";
-import {
-    Popover,
-    PopoverCloseButton,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverHeader,
-} from "@chakra-ui/popover";
-import { btnBorder } from "../../helpers/colors";
 import { collection, getDocs } from "firebase/firestore";
+import { useNotification } from "../../context/NotificationContext";
 
 interface Props {
     sem: string;
@@ -27,15 +20,26 @@ interface Props {
 
 const SubjectNotes = ({ sem, group, subject, notes, subjects }: Props) => {
     const { currentUser } = useAuth();
+    const { showNotification } = useNotification();
 
     const copyHandler = () => {
         navigator.clipboard.writeText(
             `https://yourounotes.vercel.app/subjects/${subject}?sem=${sem}&group=${group}`
         );
+        showNotification({
+            title: "Link copied ✨",
+            message: "Share this link with your mates",
+            state: "success",
+        });
     };
 
     const copyNoteHandler = (noteUrl: string) => {
         navigator.clipboard.writeText(noteUrl);
+        showNotification({
+            title: "Link copied ✨",
+            message: "Share this link with your mates",
+            state: "success",
+        });
     };
 
     return (
@@ -79,31 +83,12 @@ const SubjectNotes = ({ sem, group, subject, notes, subjects }: Props) => {
                                         {note.type}
                                     </span>
                                 </p>
-                                <Popover>
-                                    <PopoverTrigger>
-                                        <p
-                                            className="text-btn cursor-pointer font-medium text-center my-2"
-                                            onClick={() =>
-                                                copyNoteHandler(note.url)
-                                            }
-                                        >
-                                            Share this pdf
-                                        </p>
-                                    </PopoverTrigger>
-                                    <PopoverContent
-                                        borderColor={btnBorder}
-                                        borderWidth="2px"
-                                        _focus={{
-                                            borderColor: btnBorder,
-                                            borderWidth: "2px",
-                                        }}
-                                    >
-                                        <PopoverCloseButton />
-                                        <PopoverHeader>
-                                            Link copied successfully
-                                        </PopoverHeader>
-                                    </PopoverContent>
-                                </Popover>
+                                <p
+                                    className="text-btn cursor-pointer font-medium text-center my-2"
+                                    onClick={() => copyNoteHandler(note.url)}
+                                >
+                                    Share this pdf
+                                </p>
                             </div>
                             {currentUser &&
                                 currentUser.name === note.uploadedBy && (
@@ -138,29 +123,12 @@ const SubjectNotes = ({ sem, group, subject, notes, subjects }: Props) => {
                         <li className="list-item list-disc font-medium underline">
                             <Link href="/subjects">All Subjects</Link>
                         </li>
-                        <Popover>
-                            <PopoverTrigger>
-                                <li
-                                    className="list-item list-disc font-medium cursor-pointer"
-                                    onClick={copyHandler}
-                                >
-                                    Share this page
-                                </li>
-                            </PopoverTrigger>
-                            <PopoverContent
-                                borderColor={btnBorder}
-                                borderWidth="2px"
-                                _focus={{
-                                    borderColor: btnBorder,
-                                    borderWidth: "2px",
-                                }}
-                            >
-                                <PopoverCloseButton />
-                                <PopoverHeader>
-                                    Link copied successfully
-                                </PopoverHeader>
-                            </PopoverContent>
-                        </Popover>
+                        <li
+                            className="list-item list-disc font-medium cursor-pointer"
+                            onClick={copyHandler}
+                        >
+                            Share this page
+                        </li>
                     </ul>
                 </div>
             </section>

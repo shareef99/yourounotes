@@ -138,15 +138,14 @@
         "sem": "forth",
         "group": "ECE",
         "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
             "Industrial Psychology",
             "Biology for Engineers",
             "Signal and System",
             "Analog Electronic Circuits",
             "Electromagnetic Theory and Transmission Lines",
             "Pulse and Linear Integrated Circuits",
-            "Computer Organisation and Architecture"
+            "Computer Organisation and Architecture",
+            "HVPE (Human Values and Professional Ethics)"
         ]
     },
     {

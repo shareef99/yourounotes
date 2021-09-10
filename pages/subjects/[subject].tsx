@@ -83,6 +83,7 @@ const SubjectNotes = ({ sem, group, subject, notes, subjects }: Props) => {
                         emptyColor="gray.200"
                         color={primary}
                         size="xl"
+                        label="Loading...💫"
                     />
                 </div>
             ) : (

@@ -1,4 +1,5 @@
 export const heading = "#2b2c34";
+export const primary = "#6246ea";
 
 // Form colors
 export const borderColor = "gray.600";

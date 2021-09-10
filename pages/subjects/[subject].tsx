@@ -1,14 +1,18 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import Router from "next/router";
 import Head from "next/head";
 import Link from "next/link";
-import { db } from "../../firebase/firebase";
-import { Note } from "../admin/[user]";
 import details from "../../public/details.json";
 import EditPopup from "../../components/user/EditPopup";
-import { useAuth } from "../../context/AuthContext";
 import DeletePopup from "../../components/user/DeletePopup";
-import { collection, getDocs } from "firebase/firestore";
+import { Note } from "../admin/[user]";
+import { Spinner } from "@chakra-ui/spinner";
+import { primary } from "../../helpers/colors";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import { useNotification } from "../../context/NotificationContext";
+import { db } from "../../firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 interface Props {
     sem: string;
@@ -21,6 +25,27 @@ interface Props {
 const SubjectNotes = ({ sem, group, subject, notes, subjects }: Props) => {
     const { currentUser } = useAuth();
     const { showNotification } = useNotification();
+
+    const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        const start = () => {
+            setLoading(true);
+        };
+        const end = () => {
+            setLoading(false);
+        };
+
+        Router.events.on("routeChangeStart", start);
+        Router.events.on("routeChangeComplete", end);
+        Router.events.on("routeChangeError", end);
+
+        return () => {
+            Router.events.off("routeChangeStart", start);
+            Router.events.off("routeChangeComplete", end);
+            Router.events.off("routeChangeError", end);
+        };
+    }, []);
 
     const copyHandler = () => {
         navigator.clipboard.writeText(
@@ -47,91 +72,112 @@ const SubjectNotes = ({ sem, group, subject, notes, subjects }: Props) => {
             <Head>
                 <title>{subject} | Your OU Notes</title>
             </Head>
-            <section className="container">
-                {notes.length === 0 && (
-                    <div className="colCenter px-8 py-4 h-64">
-                        <p>We don't have the notes of {subject}.</p>
-                    </div>
-                )}
-                {notes.map((note, index) => (
-                    <div className="colCenter my-14" key={index}>
-                        <div className="colCenter border-b-2 pb-4 space-y-4">
-                            <a
-                                href={note.url}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="font-medium"
-                            >
-                                {note.name}➚
-                            </a>
-                            <div>
-                                <p className="text-btn">
-                                    Uploaded At:{" "}
-                                    <span className="text-para">
-                                        {note.uploadedAt}
-                                    </span>
-                                </p>
-                                <p className="text-btn">
-                                    Uploaded by: {"   "}
-                                    <span className="text-para">
-                                        {note.uploadedBy}
-                                    </span>
-                                </p>
-                                <p className="text-btn">
-                                    Type: {"   "}
-                                    <span className="text-para">
-                                        {note.type}
-                                    </span>
-                                </p>
-                                <p
-                                    className="text-btn cursor-pointer font-medium text-center my-2"
-                                    onClick={() => copyNoteHandler(note.url)}
-                                >
-                                    Share this pdf
-                                </p>
-                            </div>
-                            {currentUser &&
-                                currentUser.name === note.uploadedBy && (
-                                    <div style={{ margin: "-10px" }}>
-                                        <DeletePopup
-                                            currentUserEmail={currentUser.email}
-                                            note={note}
-                                        />
-                                        <EditPopup
-                                            currentUserEmail={currentUser.email}
-                                            note={note}
-                                        />
-                                    </div>
-                                )}
-                        </div>
-                    </div>
-                ))}
-                <div className="colCenter">
-                    <ul className="mt-4 mb-8 space-y-2 ">
-                        <li className="font-semibold text-2xl">
-                            Similar Subjects
-                        </li>
-                        {subjects?.map((subject, index) => (
-                            <li key={index} className="list-item list-disc">
-                                <Link
-                                    href={`/subjects/${subject}?sem=${sem}&group=${group}`}
-                                >
-                                    <a>{subject}</a>
-                                </Link>
-                            </li>
-                        ))}
-                        <li className="list-item list-disc font-medium underline">
-                            <Link href="/subjects">All Subjects</Link>
-                        </li>
-                        <li
-                            className="list-item list-disc font-medium cursor-pointer"
-                            onClick={copyHandler}
-                        >
-                            Share this page
-                        </li>
-                    </ul>
+            {loading ? (
+                <div
+                    className="colCenter"
+                    style={{ height: "calc(100vh - 288px)" }}
+                >
+                    <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color={primary}
+                        size="xl"
+                    />
                 </div>
-            </section>
+            ) : (
+                <section className="container">
+                    {notes.length === 0 && (
+                        <div className="colCenter px-8 py-4 h-64">
+                            <p>We don't have the notes of {subject}.</p>
+                        </div>
+                    )}
+                    {notes.map((note, index) => (
+                        <div className="colCenter my-14" key={index}>
+                            <div className="colCenter border-b-2 pb-4 space-y-4">
+                                <a
+                                    href={note.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="font-medium"
+                                >
+                                    {note.name}➚
+                                </a>
+                                <div>
+                                    <p className="text-btn">
+                                        Uploaded At:{" "}
+                                        <span className="text-para">
+                                            {note.uploadedAt}
+                                        </span>
+                                    </p>
+                                    <p className="text-btn">
+                                        Uploaded by: {"   "}
+                                        <span className="text-para">
+                                            {note.uploadedBy}
+                                        </span>
+                                    </p>
+                                    <p className="text-btn">
+                                        Type: {"   "}
+                                        <span className="text-para">
+                                            {note.type}
+                                        </span>
+                                    </p>
+                                    <p
+                                        className="text-btn cursor-pointer font-medium text-center my-2"
+                                        onClick={() =>
+                                            copyNoteHandler(note.url)
+                                        }
+                                    >
+                                        Share this pdf
+                                    </p>
+                                </div>
+                                {currentUser &&
+                                    currentUser.name === note.uploadedBy && (
+                                        <div style={{ margin: "-10px" }}>
+                                            <DeletePopup
+                                                currentUserEmail={
+                                                    currentUser.email
+                                                }
+                                                note={note}
+                                            />
+                                            <EditPopup
+                                                currentUserEmail={
+                                                    currentUser.email
+                                                }
+                                                note={note}
+                                            />
+                                        </div>
+                                    )}
+                            </div>
+                        </div>
+                    ))}
+                    <div className="colCenter">
+                        <ul className="mt-4 mb-8 space-y-2 ">
+                            <li className="font-semibold text-2xl">
+                                Similar Subjects
+                            </li>
+                            {subjects?.map((subject, index) => (
+                                <li key={index} className="list-item list-disc">
+                                    <Link
+                                        href={`/subjects/${subject}?sem=${sem}&group=${group}`}
+                                    >
+                                        <a>{subject}</a>
+                                    </Link>
+                                </li>
+                            ))}
+                            <li className="list-item list-disc font-medium underline">
+                                <Link href="/subjects">All Subjects</Link>
+                            </li>
+                            <li
+                                className="list-item list-disc font-medium cursor-pointer"
+                                onClick={copyHandler}
+                            >
+                                Share this page
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            )}
         </>
     );
 };

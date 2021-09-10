@@ -11,9 +11,7 @@ import { getPerformance } from "firebase/performance";
 
 function MyApp({ Component, pageProps }) {
     useEffect(() => {
-        if (process.env.NODE_ENV === "production") {
-            getAnalytics();
-        }
+        getAnalytics();
         getPerformance();
     }, []);
 

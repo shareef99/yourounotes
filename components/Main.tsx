@@ -1,9 +1,8 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { btnBorder, btnText, hoverBorderColor } from "../helpers/colors";
+import { Flex, Text } from "@chakra-ui/react";
 import { useAuth } from "../context/AuthContext";
+import { OutlineButton } from "./atoms/button";
 
 interface Props {}
 
@@ -63,35 +62,48 @@ const Main = (props: Props) => {
                     <Text className="font-medium text-xl">
                         {currentUser ? "Dashboard" : "Login"} &#10230;{" "}
                     </Text>
-                    <Button
-                        variant="outline"
-                        borderWidth={"2px"}
-                        borderColor={btnBorder}
-                        _hover={{
-                            backgroundColor: hoverBorderColor,
-                            borderColor: hoverBorderColor,
-                            transitionProperty:
-                                "background-color, border-color, color",
-                            transitionTimingFunction:
-                                "cubic-bezier(0.4, 0, 1, 1)",
-                            transitionDuration: "500ms",
-                            color: btnText,
-                        }}
-                    >
-                        {Boolean(currentUser) ? (
-                            <Link
-                                href="/admin/[faculty]"
-                                as={`/admin/${currentUser.email}`}
-                            >
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <Link href="/auth/login">Log In</Link>
-                        )}
-                    </Button>
+                    {Boolean(currentUser) ? (
+                        <Link
+                            href="/admin/[faculty]"
+                            as={`/admin/${currentUser.email}`}
+                        >
+                            <a>
+                                <OutlineButton
+                                    isDisable={false}
+                                    label="Dashboard"
+                                    type="button"
+                                    isFullWidth={false}
+                                />
+                            </a>
+                        </Link>
+                    ) : (
+                        <Link href="/auth/login">
+                            <OutlineButton
+                                isDisable={false}
+                                label="Log In"
+                                type="button"
+                                isFullWidth={false}
+                            />
+                        </Link>
+                    )}
                 </Flex>
             </div>
-
+            {/* <div className="container colCenter mb-14">
+                <h2 className="md:text-4xl my-14 font-medium">
+                    YOUROUNOTES IS GROWING QUICKLY.
+                </h2>
+                <div className="colCenter md:flex-row md:items-baseline md:justify-around xl:justify-between flex-wrap">
+                    <div>
+                        <p>100+ Notes</p>
+                    </div>
+                    <div>
+                        <p>Daily notes</p>
+                    </div>
+                    <div>
+                        <p>Hey</p>
+                    </div>
+                </div>
+            </div> */}
             <div id="how-it-work" className="container colCenter mb-14">
                 <h2 className="md:text-4xl my-14">HOW IT WORK</h2>
                 <div className="colCenter md:flex-row md:items-baseline md:justify-around xl:justify-between flex-wrap">

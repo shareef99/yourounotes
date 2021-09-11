@@ -226,14 +226,13 @@
         "subjects": [
             "EVS (Environmental Science)",
             "EITK (Essence of Indian Traditions)",
-            "Overview of Civil Engineering",
-            "Industrial Psychology",
-            "Biology for Engineers",
-            "Engineering Mechanics",
-            "Energy Sciences and Engineering",
-            "Solid Mechanics",
-            "Engineering Geology",
-            "Surveying and Geomatics"
+            "IP (Industrial Psychology)",
+            "Bio (Biology for Engineers)",
+            "EM (Engineering Mechanics)",
+            "ESE (Energy Sciences and Engineering)",
+            "SM (Solid Mechanics)",
+            "EG (Engineering Geology)",
+            "SG (Surveying and Geomatics)"
         ]
     },
     {

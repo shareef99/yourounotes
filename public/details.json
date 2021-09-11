@@ -51,7 +51,7 @@
         "sem": "first",
         "group": "IT",
         "subjects": [
-            "Indian Constitution",
+            "IC (Indian Constitution)",
             "Physics",
             "Mathematics (M-I)",
             "Basic Electrical Engineering"
@@ -102,7 +102,7 @@
         "sem": "first",
         "group": "ECE",
         "subjects": [
-            "Indian Constitution",
+            "IC (Indian Constitution)",
             "Physics",
             "Mathematics (M-I)",
             "Basic Electrical Engineering"
@@ -152,7 +152,7 @@
         "sem": "first",
         "group": "ME",
         "subjects": [
-            "Indian Constitution",
+            "IC (Indian Constitution)",
             "Physics",
             "Mathematics (M-I)",
             "Basic Electrical Engineering"

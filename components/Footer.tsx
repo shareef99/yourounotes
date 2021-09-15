@@ -27,6 +27,11 @@ const Footer = (props: Props) => {
                         </Link>
                     </li>
                     <li className="underline hover:no-underline">
+                        <Link href="/privacy-policy">
+                            <a>Privacy policy</a>
+                        </Link>
+                    </li>
+                    <li className="underline hover:no-underline">
                         <a
                             href="https://github.com/shareef99/yourounotes"
                             target="_blank"

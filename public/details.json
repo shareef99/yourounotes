@@ -128,7 +128,7 @@
             "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
-            "Elements of Mechanical Engineering",
+            "EME (Elements of Mechanical Engineering)",
             "DE (Digital Electronics)",
             "Electronic Devices",
             "Network Theory"
@@ -138,7 +138,7 @@
         "sem": "forth",
         "group": "ECE",
         "subjects": [
-            "Industrial Psychology",
+            "IP (Industrial Psychology)",
             "Biology for Engineers",
             "Signal and System",
             "Analog Electronic Circuits",
@@ -178,8 +178,8 @@
             "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
-            "Engineering Mechanics",
-            "Basic Electronics",
+            "EM (Engineering Mechanics)",
+            "BE (Basic Electronics)",
             "Metallurgy and Material Science",
             "Thermodynamics"
         ]
@@ -190,9 +190,9 @@
         "subjects": [
             "EVS (Environmental Science)",
             "EITK (Essence of Indian Traditions)",
-            "Industrial Psychology",
+            "IP (Industrial Psychology)",
             "Biology for Engineers",
-            "Energy Sciences and Engineering",
+            "ESE (Energy Sciences and Engineering)",
             "Mechanics of Materials",
             "Applied Thermodynamics",
             "Kinematics of Machinery",
@@ -217,7 +217,7 @@
             "English",
             "Mathematics (M-II)",
             "Physics",
-            "Engineering Mechanics"
+            "EM (Engineering Mechanics)"
         ]
     },
     {
@@ -227,7 +227,7 @@
             "EVS (Environmental Science)",
             "EITK (Essence of Indian Traditions)",
             "IP (Industrial Psychology)",
-            "Bio (Biology for Engineers)",
+            "Biology for Engineers",
             "EM (Engineering Mechanics)",
             "ESE (Energy Sciences and Engineering)",
             "SM (Solid Mechanics)",
@@ -277,10 +277,10 @@
         "subjects": [
             "EVS (Environmental Science)",
             "EITK (Essence of Indian Traditions)",
-            "Industrial Psychology",
+            "IP (Industrial Psychology)",
             "Biology for Engineers",
-            "Engineering Mechanics",
-            "Energy Sciences and Engineering",
+            "EM (Engineering Mechanics)",
+            "ESE (Energy Sciences and Engineering)",
             "Electrical Circuit Analysis",
             "Electromagnetic Fields",
             "Analog Electronics"
@@ -294,7 +294,7 @@
             "ETC (Effective Technical Communication in English)",
             "Finance and Accounting",
             "Mathematics (M-III)",
-            "Elements of Mechanical Engineering",
+            "EME (Elements of Mechanical Engineering)",
             "Electrical Machines – I",
             "Digital Electronics and Logic Design",
             "Power Electronics"

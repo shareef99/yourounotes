@@ -48,8 +48,10 @@ const SubjectNotes = ({ sem, group, subject, notes, subjects }: Props) => {
     }, []);
 
     const copyHandler = () => {
+        const urlSubject = subject.replaceAll(" ", "%20");
+
         navigator.clipboard.writeText(
-            `https://yourounotes.vercel.app/subjects/${subject}?sem=${sem}&group=${group}`
+            `https://yourounotes.vercel.app/subjects/${urlSubject}?sem=${sem}&group=${group}`
         );
         showNotification({
             title: "Link copied ✨",

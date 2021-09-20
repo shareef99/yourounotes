@@ -4,12 +4,40 @@ import { Layout } from "../components/Layout";
 import Head from "next/head";
 import { AuthProvider } from "../context/AuthContext";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NotificationProvider from "../context/NotificationContext";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
+import Router from "next/router";
+import { Spinner } from "@chakra-ui/spinner";
+import { primary } from "../helpers/colors";
 
 function MyApp({ Component, pageProps }) {
+    const customLoadingPages = ["/subjects/[subject]", "/subjects"];
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (customLoadingPages.includes(Router.route)) return;
+
+        const start = () => {
+            setLoading(true);
+        };
+        const end = () => {
+            setLoading(false);
+        };
+
+        Router.events.on("routeChangeStart", start);
+        Router.events.on("routeChangeComplete", end);
+        Router.events.on("routeChangeError", end);
+
+        return () => {
+            Router.events.off("routeChangeStart", start);
+            Router.events.off("routeChangeComplete", end);
+            Router.events.off("routeChangeError", end);
+        };
+    }, []);
+
     useEffect(() => {
         getAnalytics();
         getPerformance();
@@ -60,9 +88,25 @@ function MyApp({ Component, pageProps }) {
             <AuthProvider>
                 <NotificationProvider>
                     <ChakraProvider>
-                        <Layout head>
-                            <Component {...pageProps} />
-                        </Layout>
+                        {loading ? (
+                            <div
+                                className="colCenter"
+                                style={{ height: "calc(100vh - 288px)" }}
+                            >
+                                <Spinner
+                                    thickness="4px"
+                                    speed="0.65s"
+                                    emptyColor="gray.200"
+                                    color={primary}
+                                    size="xl"
+                                    label="Loading...💫"
+                                />
+                            </div>
+                        ) : (
+                            <Layout head>
+                                <Component {...pageProps} />
+                            </Layout>
+                        )}
                     </ChakraProvider>
                 </NotificationProvider>
             </AuthProvider>

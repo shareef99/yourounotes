@@ -88,22 +88,6 @@ const Main = (props: Props) => {
                     )}
                 </Flex>
             </div>
-            {/* <div className="container colCenter mb-14">
-                <h2 className="md:text-4xl my-14 font-medium">
-                    YOUROUNOTES IS GROWING QUICKLY.
-                </h2>
-                <div className="colCenter md:flex-row md:items-baseline md:justify-around xl:justify-between flex-wrap">
-                    <div>
-                        <p>100+ Notes</p>
-                    </div>
-                    <div>
-                        <p>Daily notes</p>
-                    </div>
-                    <div>
-                        <p>Hey</p>
-                    </div>
-                </div>
-            </div> */}
             <div id="how-it-work" className="container colCenter mb-14">
                 <h2 className="md:text-4xl my-14">HOW IT WORK</h2>
                 <div className="colCenter md:flex-row md:items-baseline md:justify-around xl:justify-between flex-wrap">
@@ -141,7 +125,7 @@ const Main = (props: Props) => {
                                 We are students, we collect our resources from
                                 our fellow students and some great teachers help
                                 us with resources and we put all of them under
-                                one root for better accessibility.
+                                one roof for better accessibility.
                             </p>
                         </div>
                     </div>

@@ -77,13 +77,15 @@ const Main = (props: Props) => {
                             </a>
                         </Link>
                     ) : (
-                        <Link href="/auth/login">
-                            <OutlineButton
-                                isDisable={false}
-                                label="Log In"
-                                type="button"
-                                isFullWidth={false}
-                            />
+                        <Link href="/auth/login" as="/auth/login">
+                            <a>
+                                <OutlineButton
+                                    isDisable={false}
+                                    label="Log In"
+                                    type="button"
+                                    isFullWidth={false}
+                                />
+                            </a>
                         </Link>
                     )}
                 </Flex>

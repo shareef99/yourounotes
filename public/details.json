@@ -1,303 +1,315 @@
 [
-    {
-        "sem": "first",
-        "group": "CSE",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "Mathematics (M-I)",
-            "Chemistry",
-            "PPS (Programming for problem solving)"
-        ]
-    },
-    {
-        "sem": "second",
-        "group": "CSE",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "English",
-            "Mathematics (M-II)",
-            "Physics",
-            "BEE (Basic Electronic Engineering)"
-        ]
-    },
-    {
-        "sem": "third",
-        "group": "CSE",
-        "subjects": [
-            "OR (Operation Research)",
-            "Biology for Engineers",
-            "BE (Basic Electronics)",
-            "DE (Digital Electronics)",
-            "DSA (Data Structures and Algorithms)",
-            "DM (Discrete Mathematics)",
-            "PL (Programming Language)"
-        ]
-    },
-    {
-        "sem": "forth",
-        "group": "CSE",
-        "subjects": [
-            "Finance and Accounting",
-            "Mathematics (M-III)",
-            "Signal and System",
-            "Java",
-            "Computer Organization",
-            "DBMS (Database Management System)",
-            "ETC (Effective Technical Communication in English)"
-        ]
-    },
-    {
-        "sem": "first",
-        "group": "IT",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "Physics",
-            "Mathematics (M-I)",
-            "BEE (Basic Electronic Engineering)"
-        ]
-    },
-    {
-        "sem": "second",
-        "group": "IT",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "English",
-            "Mathematics (M-II)",
-            "Chemistry",
-            "PPS (Programming for problem solving)"
-        ]
-    },
-    {
-        "sem": "third",
-        "group": "IT",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "ETC (Effective Technical Communication in English)",
-            "Finance and Accounting",
-            "Mathematics (M-III)",
-            "BE (Basic Electronics)",
-            "DE (Digital Electronics)",
-            "DSA (Data Structures and Algorithms)",
-            "Mathematical Foundations of Information Technology"
-        ]
-    },
-    {
-        "sem": "forth",
-        "group": "IT",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "OR (Operation Research)",
-            "Biology for Engineers",
-            "Signal and System",
-            "Java",
-            "Database Systems",
-            "Computer Organization and Microprocessor",
-            "Data Communications"
-        ]
-    },
-    {
-        "sem": "first",
-        "group": "ECE",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "Physics",
-            "Mathematics (M-I)",
-            "BEE (Basic Electronic Engineering)"
-        ]
-    },
-    {
-        "sem": "second",
-        "group": "ECE",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "English",
-            "Mathematics (M-II)",
-            "Chemistry",
-            "PPS (Programming for problem solving)"
-        ]
-    },
-    {
-        "sem": "third",
-        "group": "ECE",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "ETC (Effective Technical Communication in English)",
-            "Finance and Accounting",
-            "Mathematics (M-III)",
-            "EME (Elements of Mechanical Engineering)",
-            "DE (Digital Electronics)",
-            "Electronic Devices",
-            "Network Theory"
-        ]
-    },
-    {
-        "sem": "forth",
-        "group": "ECE",
-        "subjects": [
-            "IP (Industrial Psychology)",
-            "Biology for Engineers",
-            "Signal and System",
-            "Analog Electronic Circuits",
-            "Electromagnetic Theory and Transmission Lines",
-            "Pulse and Linear Integrated Circuits",
-            "Computer Organisation and Architecture",
-            "HVPE (Human Values and Professional Ethics)"
-        ]
-    },
-    {
-        "sem": "first",
-        "group": "ME",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "Physics",
-            "Mathematics (M-I)",
-            "BEE (Basic Electronic Engineering)"
-        ]
-    },
-    {
-        "sem": "second",
-        "group": "ME",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "English",
-            "Mathematics (M-II)",
-            "Chemistry",
-            "PPS (Programming for problem solving)"
-        ]
-    },
-    {
-        "sem": "third",
-        "group": "ME",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "ETC (Effective Technical Communication in English)",
-            "Finance and Accounting",
-            "Mathematics (M-III)",
-            "EM (Engineering Mechanics)",
-            "BE (Basic Electronics)",
-            "Metallurgy and Material Science",
-            "Thermodynamics"
-        ]
-    },
-    {
-        "sem": "forth",
-        "group": "ME",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "IP (Industrial Psychology)",
-            "Biology for Engineers",
-            "ESE (Energy Sciences and Engineering)",
-            "Mechanics of Materials",
-            "Applied Thermodynamics",
-            "Kinematics of Machinery",
-            "Manufacturing Processes"
-        ]
-    },
-    {
-        "sem": "first",
-        "group": "CE",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "Mathematics (M-I)",
-            "Chemistry",
-            "PPS (Programming for problem solving)"
-        ]
-    },
-    {
-        "sem": "second",
-        "group": "CE",
-        "subjects": [
-            "English",
-            "Mathematics (M-II)",
-            "Physics",
-            "EM (Engineering Mechanics)"
-        ]
-    },
-    {
-        "sem": "third",
-        "group": "CE",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "IP (Industrial Psychology)",
-            "Biology for Engineers",
-            "EM (Engineering Mechanics)",
-            "ESE (Energy Sciences and Engineering)",
-            "SM (Solid Mechanics)",
-            "EG (Engineering Geology)",
-            "SG (Surveying and Geomatics)"
-        ]
-    },
-    {
-        "sem": "forth",
-        "group": "CE",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "ETC (Effective Technical Communication in English)",
-            "Finance and Accounting",
-            "Mathematics (M-III)",
-            "EME (Elements of Mechanical Engineering)",
-            "MOMS (Mechanics of Materials and Structures)",
-            "FM (Fluid Mechanics)",
-            "MTE (Materials: Testing and Evaluation)"
-        ]
-    },
-    {
-        "sem": "first",
-        "group": "EEE",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "English",
-            "Mathematics (M-I)",
-            "Chemistry"
-        ]
-    },
-    {
-        "sem": "second",
-        "group": "EEE",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "English",
-            "Mathematics (M-II)",
-            "Physics",
-            "BEE (Basic Electronic Engineering)"
-        ]
-    },
-    {
-        "sem": "third",
-        "group": "EEE",
-        "subjects": [
-            "EVS (Environmental Science)",
-            "EITK (Essence of Indian Traditions)",
-            "IP (Industrial Psychology)",
-            "Biology for Engineers",
-            "EM (Engineering Mechanics)",
-            "ESE (Energy Sciences and Engineering)",
-            "Electrical Circuit Analysis",
-            "Electromagnetic Fields",
-            "Analog Electronics"
-        ]
-    },
-    {
-        "sem": "forth",
-        "group": "EEE",
-        "subjects": [
-            "IC (Indian Constitution)",
-            "ETC (Effective Technical Communication in English)",
-            "Finance and Accounting",
-            "Mathematics (M-III)",
-            "EME (Elements of Mechanical Engineering)",
-            "Electrical Machines – I",
-            "Digital Electronics and Logic Design",
-            "Power Electronics"
-        ]
-    }
+  {
+    "sem": "first",
+    "group": "CSE",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "Mathematics (M-I)",
+      "Chemistry",
+      "PPS (Programming for problem solving)"
+    ]
+  },
+  {
+    "sem": "second",
+    "group": "CSE",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "English",
+      "Mathematics (M-II)",
+      "Physics",
+      "BEE (Basic Electronic Engineering)"
+    ]
+  },
+  {
+    "sem": "third",
+    "group": "CSE",
+    "subjects": [
+      "OR (Operation Research)",
+      "Biology for Engineers",
+      "BE (Basic Electronics)",
+      "DE (Digital Electronics)",
+      "DSA (Data Structures and Algorithms)",
+      "DM (Discrete Mathematics)",
+      "PL (Programming Language)"
+    ]
+  },
+  {
+    "sem": "forth",
+    "group": "CSE",
+    "subjects": [
+      "Finance and Accounting",
+      "Mathematics (M-III)",
+      "Signal and System",
+      "Java",
+      "Computer Organization",
+      "DBMS (Database Management System)",
+      "ETC (Effective Technical Communication in English)"
+    ]
+  },
+  {
+    "sem": "fifth",
+    "group": "CSE",
+    "subjects": [
+      "SE (Software Engineering)",
+      "OS (Operating System)",
+      "AI (Artificial Intelligence)",
+      "W&IT (Web and Information Technology)",
+      "SC (Soft Computing)",
+      "ALC (Automata and Logic Computing)"
+    ]
+  },
+  {
+    "sem": "first",
+    "group": "IT",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "Physics",
+      "Mathematics (M-I)",
+      "BEE (Basic Electronic Engineering)"
+    ]
+  },
+  {
+    "sem": "second",
+    "group": "IT",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "English",
+      "Mathematics (M-II)",
+      "Chemistry",
+      "PPS (Programming for problem solving)"
+    ]
+  },
+  {
+    "sem": "third",
+    "group": "IT",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "ETC (Effective Technical Communication in English)",
+      "Finance and Accounting",
+      "Mathematics (M-III)",
+      "BE (Basic Electronics)",
+      "DE (Digital Electronics)",
+      "DSA (Data Structures and Algorithms)",
+      "Mathematical Foundations of Information Technology"
+    ]
+  },
+  {
+    "sem": "forth",
+    "group": "IT",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "OR (Operation Research)",
+      "Biology for Engineers",
+      "Signal and System",
+      "Java",
+      "Database Systems",
+      "Computer Organization and Microprocessor",
+      "Data Communications"
+    ]
+  },
+  {
+    "sem": "first",
+    "group": "ECE",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "Physics",
+      "Mathematics (M-I)",
+      "BEE (Basic Electronic Engineering)"
+    ]
+  },
+  {
+    "sem": "second",
+    "group": "ECE",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "English",
+      "Mathematics (M-II)",
+      "Chemistry",
+      "PPS (Programming for problem solving)"
+    ]
+  },
+  {
+    "sem": "third",
+    "group": "ECE",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "ETC (Effective Technical Communication in English)",
+      "Finance and Accounting",
+      "Mathematics (M-III)",
+      "EME (Elements of Mechanical Engineering)",
+      "DE (Digital Electronics)",
+      "Electronic Devices",
+      "Network Theory"
+    ]
+  },
+  {
+    "sem": "forth",
+    "group": "ECE",
+    "subjects": [
+      "IP (Industrial Psychology)",
+      "Biology for Engineers",
+      "Signal and System",
+      "Analog Electronic Circuits",
+      "Electromagnetic Theory and Transmission Lines",
+      "Pulse and Linear Integrated Circuits",
+      "Computer Organisation and Architecture",
+      "HVPE (Human Values and Professional Ethics)"
+    ]
+  },
+  {
+    "sem": "first",
+    "group": "ME",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "Physics",
+      "Mathematics (M-I)",
+      "BEE (Basic Electronic Engineering)"
+    ]
+  },
+  {
+    "sem": "second",
+    "group": "ME",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "English",
+      "Mathematics (M-II)",
+      "Chemistry",
+      "PPS (Programming for problem solving)"
+    ]
+  },
+  {
+    "sem": "third",
+    "group": "ME",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "ETC (Effective Technical Communication in English)",
+      "Finance and Accounting",
+      "Mathematics (M-III)",
+      "EM (Engineering Mechanics)",
+      "BE (Basic Electronics)",
+      "Metallurgy and Material Science",
+      "Thermodynamics"
+    ]
+  },
+  {
+    "sem": "forth",
+    "group": "ME",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "IP (Industrial Psychology)",
+      "Biology for Engineers",
+      "ESE (Energy Sciences and Engineering)",
+      "Mechanics of Materials",
+      "Applied Thermodynamics",
+      "Kinematics of Machinery",
+      "Manufacturing Processes"
+    ]
+  },
+  {
+    "sem": "first",
+    "group": "CE",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "Mathematics (M-I)",
+      "Chemistry",
+      "PPS (Programming for problem solving)"
+    ]
+  },
+  {
+    "sem": "second",
+    "group": "CE",
+    "subjects": [
+      "English",
+      "Mathematics (M-II)",
+      "Physics",
+      "EM (Engineering Mechanics)"
+    ]
+  },
+  {
+    "sem": "third",
+    "group": "CE",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "IP (Industrial Psychology)",
+      "Biology for Engineers",
+      "EM (Engineering Mechanics)",
+      "ESE (Energy Sciences and Engineering)",
+      "SM (Solid Mechanics)",
+      "EG (Engineering Geology)",
+      "SG (Surveying and Geomatics)"
+    ]
+  },
+  {
+    "sem": "forth",
+    "group": "CE",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "ETC (Effective Technical Communication in English)",
+      "Finance and Accounting",
+      "Mathematics (M-III)",
+      "EME (Elements of Mechanical Engineering)",
+      "MOMS (Mechanics of Materials and Structures)",
+      "FM (Fluid Mechanics)",
+      "MTE (Materials: Testing and Evaluation)"
+    ]
+  },
+  {
+    "sem": "first",
+    "group": "EEE",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "English",
+      "Mathematics (M-I)",
+      "Chemistry"
+    ]
+  },
+  {
+    "sem": "second",
+    "group": "EEE",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "English",
+      "Mathematics (M-II)",
+      "Physics",
+      "BEE (Basic Electronic Engineering)"
+    ]
+  },
+  {
+    "sem": "third",
+    "group": "EEE",
+    "subjects": [
+      "EVS (Environmental Science)",
+      "EITK (Essence of Indian Traditions)",
+      "IP (Industrial Psychology)",
+      "Biology for Engineers",
+      "EM (Engineering Mechanics)",
+      "ESE (Energy Sciences and Engineering)",
+      "Electrical Circuit Analysis",
+      "Electromagnetic Fields",
+      "Analog Electronics"
+    ]
+  },
+  {
+    "sem": "forth",
+    "group": "EEE",
+    "subjects": [
+      "IC (Indian Constitution)",
+      "ETC (Effective Technical Communication in English)",
+      "Finance and Accounting",
+      "Mathematics (M-III)",
+      "EME (Elements of Mechanical Engineering)",
+      "Electrical Machines – I",
+      "Digital Electronics and Logic Design",
+      "Power Electronics"
+    ]
+  }
 ]

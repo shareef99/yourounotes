@@ -200,7 +200,7 @@ const Upload = (Props: Props) => {
                 onBlur={handleBlur}
                 onReset={handleReset}
               >
-                {values.group === "CSE" ? (
+                {Boolean(values.group) === false || values.group === "CSE" ? (
                   <>
                     <option value="first">Ist</option>
                     <option value="second">IInd</option>

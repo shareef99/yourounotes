@@ -54,13 +54,13 @@ const about = (props: Props) => {
     {
       id: 1,
       name: "Uzma Begum",
-      role: "Designer",
+      role: "Resources Manager",
       imgURL: "/images/team/nikhat.png",
     },
     {
       id: 2,
       name: "Ahmed Hassan",
-      role: "Resources Manager",
+      role: "Designer",
       imgURL: "/images/team/mirza.png",
     },
   ];

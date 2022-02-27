@@ -22,6 +22,12 @@ const Subjects = (props: Props) => {
       <Head>
         <title>Select Subject | Your OU Notes</title>
         <meta name="description" content="List of all the subjects" />
+        {/* Google Auto Ad Link */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7019308769438850"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <section className="colCenter ">
         <form action="" className="mt-14 space-x-4">

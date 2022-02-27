@@ -160,6 +160,12 @@ const Upload = (Props: Props) => {
     <Flex alignItems="center" justifyContent="center" marginY={10}>
       <Head>
         <title>Upload Notes | Your OU Notes</title>
+        {/* Google Auto Ad Link */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7019308769438850"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <Flex
         direction="column"

@@ -206,23 +206,17 @@ const Upload = (Props: Props) => {
                 onBlur={handleBlur}
                 onReset={handleReset}
               >
+                <option value="first">Ist</option>
+                <option value="second">IInd</option>
+                <option value="third">IIIrd</option>
+                <option value="forth">IVth</option>
                 {Boolean(values.group) === false ||
                 values.group === "CSE" ||
-                values.group === "IT" ? (
-                  <>
-                    <option value="first">Ist</option>
-                    <option value="second">IInd</option>
-                    <option value="third">IIIrd</option>
-                    <option value="forth">IVth</option>
-                    <option value="fifth">Vth</option>
-                  </>
+                values.group === "IT" ||
+                values.group === "ECE" ? (
+                  <option value="fifth">Vth</option>
                 ) : (
-                  <>
-                    <option value="first">Ist</option>
-                    <option value="second">IInd</option>
-                    <option value="third">IIIrd</option>
-                    <option value="forth">IVth</option>
-                  </>
+                  <></>
                 )}
               </Select>
               <ErrorMessage
@@ -246,6 +240,7 @@ const Upload = (Props: Props) => {
                   <>
                     <option value="CSE">CSE</option>
                     <option value="IT">IT</option>
+                    <option value="ECE">ECE</option>
                   </>
                 ) : (
                   <>

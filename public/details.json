@@ -173,6 +173,18 @@
     ]
   },
   {
+    "sem": "fifth",
+    "group": "ECE",
+    "subjects": [
+      "AC (Analog Communication)",
+      "DSP (Digital Signal Processing)",
+      "ACS (Automatic Control Systems)",
+      "AWP (Antenna and wave Propagation)",
+      "MM (Microprocessors & Micro controllers)",
+      "GS (Gender Sensitization)"
+    ]
+  },
+  {
     "sem": "first",
     "group": "ME",
     "subjects": [

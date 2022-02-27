@@ -111,6 +111,18 @@
     ]
   },
   {
+    "sem": "fifth",
+    "group": "IT",
+    "subjects": [
+      "WAD (Web Application Development)",
+      "OS IT (Operating System IT)",
+      "AT (Automata Theory)",
+      "CN (Computer Networks)",
+      "SE IT (Software Engineering IT)",
+      "AI IT (Artificial Intelligence IT)"
+    ]
+  },
+  {
     "sem": "first",
     "group": "ECE",
     "subjects": [

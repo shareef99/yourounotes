@@ -206,7 +206,9 @@ const Upload = (Props: Props) => {
                 onBlur={handleBlur}
                 onReset={handleReset}
               >
-                {Boolean(values.group) === false || values.group === "CSE" ? (
+                {Boolean(values.group) === false ||
+                values.group === "CSE" ||
+                values.group === "IT" ? (
                   <>
                     <option value="first">Ist</option>
                     <option value="second">IInd</option>
@@ -241,7 +243,10 @@ const Upload = (Props: Props) => {
                 onReset={handleReset}
               >
                 {values.sem === "fifth" ? (
-                  <option value="CSE">CSE</option>
+                  <>
+                    <option value="CSE">CSE</option>
+                    <option value="IT">IT</option>
+                  </>
                 ) : (
                   <>
                     <option value="CSE">CSE</option>

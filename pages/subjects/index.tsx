@@ -58,7 +58,7 @@ const Subjects = (props: Props) => {
               <option value="second">IInd</option>
               <option value="third">IIIrd</option>
               <option value="forth">IVth</option>
-              <option value="fifth">IVth</option>
+              <option value="fifth">Vth</option>
             </select>
           </label>
         </form>

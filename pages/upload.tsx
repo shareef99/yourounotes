@@ -213,7 +213,8 @@ const Upload = (Props: Props) => {
                 {Boolean(values.group) === false ||
                 values.group === "CSE" ||
                 values.group === "IT" ||
-                values.group === "ECE" ? (
+                values.group === "ECE" ||
+                values.group === "CE" ? (
                   <option value="fifth">Vth</option>
                 ) : (
                   <></>
@@ -241,6 +242,7 @@ const Upload = (Props: Props) => {
                     <option value="CSE">CSE</option>
                     <option value="IT">IT</option>
                     <option value="ECE">ECE</option>
+                    <option value="CE">CE</option>
                   </>
                 ) : (
                   <>

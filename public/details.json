@@ -286,6 +286,18 @@
     ]
   },
   {
+    "sem": "fifth",
+    "group": "CE",
+    "subjects": [
+      "SA (Structural Analysis - I)",
+      "HE (Hydraulic Engineering)",
+      "SEDD (Structural Engineering Design and Detailing)",
+      "GE (Geo Technical Engineering)",
+      "HWRE (Hydrology & Water Resources Engineering)",
+      "TE (Transportation Engineering)"
+    ]
+  },
+  {
     "sem": "first",
     "group": "EEE",
     "subjects": [

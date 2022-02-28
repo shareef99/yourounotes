@@ -3,51 +3,51 @@
 @tailwind utilities;
 
 @layer base {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply text-heading;
-    }
-    h2 {
-        @apply text-3xl font-bold tracking-wider;
-    }
-    h2::after {
-        content: "";
-        @apply block m-0 w-full pt-1 border-b-2 border-heading;
-        /**** How it Works ****/
-        /**** 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-heading;
+  }
+  h2 {
+    @apply text-3xl font-bold tracking-wider;
+  }
+  h2::after {
+    content: "";
+    @apply block m-0 w-full pt-1 border-b-2 border-heading;
+    /**** How it Works ****/
+    /**** 
             block :- will put the pseudo element on its own line.
             m-0 :- center the border.
             w-full :- width of the line change to whatever you want.
             pt-1 :- This creates some space between the element and the border.
             border-b-2 :- This creates the border. Replace color with whatever color you want.
         ****/
-    }
-    p {
-        @apply text-para;
-    }
+  }
+  p {
+    @apply text-para;
+  }
 }
 
 @layer components {
-    .flexCenter {
-        @apply flex justify-center items-center;
-    }
-    .colCenter {
-        @apply flexCenter flex-col;
-    }
-    .rowCenter {
-        @apply flexCenter flex-row;
-    }
-    .bgGrad {
-        @apply bg-gradient-to-br from-blue-500 via-indigo-500 to-indigo-700;
-    }
-    .subHeadingSpace {
-        @apply mb-4 mt-8;
-    }
-    .fadeIn {
-        @apply transition duration-500 ease-in;
-    }
+  .flexCenter {
+    @apply flex justify-center items-center;
+  }
+  .colCenter {
+    @apply flexCenter flex-col;
+  }
+  .rowCenter {
+    @apply flexCenter flex-row;
+  }
+  .bgGrad {
+    @apply bg-gradient-to-br from-blue-500 via-indigo-500 to-indigo-700;
+  }
+  .subHeadingSpace {
+    @apply mb-4 mt-8;
+  }
+  .fadeIn {
+    @apply transition duration-500 ease-in;
+  }
 }

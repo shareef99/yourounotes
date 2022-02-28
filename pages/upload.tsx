@@ -214,7 +214,8 @@ const Upload = (Props: Props) => {
                 values.group === "CSE" ||
                 values.group === "IT" ||
                 values.group === "ECE" ||
-                values.group === "CE" ? (
+                values.group === "CE" ||
+                values.group === "EEE" ? (
                   <option value="fifth">Vth</option>
                 ) : (
                   <></>
@@ -243,6 +244,7 @@ const Upload = (Props: Props) => {
                     <option value="IT">IT</option>
                     <option value="ECE">ECE</option>
                     <option value="CE">CE</option>
+                    <option value="EEE">EEE</option>
                   </>
                 ) : (
                   <>

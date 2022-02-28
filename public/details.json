@@ -347,5 +347,17 @@
       "Digital Electronics and Logic Design",
       "Power Electronics"
     ]
+  },
+  {
+    "sem": "fifth",
+    "group": "EEE",
+    "subjects": [
+      "PS (Power Systems-II)",
+      "Electrical Machines-II",
+      "EMI (Electrical Measurements and Instrumentation)",
+      "LCS (Linear Control Systems)",
+      "DSPA (Digital Signal Processing and Applications)",
+      "GS (Gender Sensitization)"
+    ]
   }
 ]

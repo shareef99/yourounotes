@@ -210,16 +210,7 @@ const Upload = (Props: Props) => {
                 <option value="second">IInd</option>
                 <option value="third">IIIrd</option>
                 <option value="forth">IVth</option>
-                {Boolean(values.group) === false ||
-                values.group === "CSE" ||
-                values.group === "IT" ||
-                values.group === "ECE" ||
-                values.group === "CE" ||
-                values.group === "EEE" ? (
-                  <option value="fifth">Vth</option>
-                ) : (
-                  <></>
-                )}
+                <option value="fifth">Vth</option>
               </Select>
               <ErrorMessage
                 touch={touched.sem}
@@ -238,24 +229,12 @@ const Upload = (Props: Props) => {
                 onBlur={handleBlur}
                 onReset={handleReset}
               >
-                {values.sem === "fifth" ? (
-                  <>
-                    <option value="CSE">CSE</option>
-                    <option value="IT">IT</option>
-                    <option value="ECE">ECE</option>
-                    <option value="CE">CE</option>
-                    <option value="EEE">EEE</option>
-                  </>
-                ) : (
-                  <>
-                    <option value="CSE">CSE</option>
-                    <option value="IT">IT</option>
-                    <option value="ECE">ECE</option>
-                    <option value="ME">ME</option>
-                    <option value="CE">CE</option>
-                    <option value="EEE">EEE</option>
-                  </>
-                )}
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="ECE">ECE</option>
+                <option value="ME">ME</option>
+                <option value="CE">CE</option>
+                <option value="EEE">EEE</option>
               </Select>
               <ErrorMessage
                 touch={touched.group}

@@ -236,6 +236,17 @@
     ]
   },
   {
+    "sem": "fifth",
+    "group": "ME",
+    "subjects": [
+      "FMHM (Fluid Mechanics and Hydraulic Machines)",
+      "DME (Design of Machine Elements)",
+      "DM (Dynamics of Machines)",
+      "MCMT (Metal Cutting and Machine Tools)",
+      "HT (Heat Transfer)"
+    ]
+  },
+  {
     "sem": "first",
     "group": "CE",
     "subjects": [

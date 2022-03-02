@@ -12,55 +12,35 @@ export type teamMember = {
 };
 
 const about = (props: Props) => {
-  // const teamMembers: teamMember[] = [
-  //     {
-  //         id: 0,
-  //         name: "Nadeem Shareef",
-  //         role: "Designer and Coder",
-  //         imgURL: "/images/team/nadeem.png",
-  //     },
-  //     {
-  //         id: 1,
-  //         name: "Noor Ahmed",
-  //         role: "Ideas, Feedback",
-  //         imgURL: "/images/team/noor.png",
-  //     },
-  //     {
-  //         id: 2,
-  //         name: "Nikhath Sultana",
-  //         role: "Resources Provider",
-  //         imgURL: "/images/team/nikhat.png",
-  //     },
-  //     {
-  //         id: 3,
-  //         name: "Shoaib Ahmed",
-  //         role: "Ideas, Feedback",
-  //         imgURL: "/images/team/shoaib.png",
-  //     },
-  //     {
-  //         id: 4,
-  //         name: "Mirza Baig",
-  //         role: "Resources Provider",
-  //         imgURL: "/images/team/mirza.png",
-  //     },
-  // ];
   const teamMembers: teamMember[] = [
     {
       id: 0,
       name: "Nadeem Shareef",
-      role: "Coder",
+      role: "Designer and Coder",
       imgURL: "/images/team/nadeem.png",
     },
     {
       id: 1,
-      name: "Uzma Begum",
-      role: "Resources Manager",
-      imgURL: "/images/team/nikhat.png",
+      name: "Noor Ahmed",
+      role: "Ideas, Feedback",
+      imgURL: "/images/team/noor.png",
     },
     {
       id: 2,
-      name: "Ahmed Hassan",
-      role: "Designer",
+      name: "Nikhath Sultana",
+      role: "Resources Provider",
+      imgURL: "/images/team/nikhat.png",
+    },
+    {
+      id: 3,
+      name: "Shoaib Ahmed",
+      role: "Ideas, Feedback",
+      imgURL: "/images/team/shoaib.png",
+    },
+    {
+      id: 4,
+      name: "Mirza Baig",
+      role: "Resources Provider",
       imgURL: "/images/team/mirza.png",
     },
   ];

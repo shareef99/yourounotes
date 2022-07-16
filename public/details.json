@@ -207,6 +207,18 @@
     ]
   },
   {
+    "sem": "sixth",
+    "group": "ECE",
+    "subjects": [
+      "DC (Digital Communication)",
+      "DSDV (Digital System Design with Verilog)",
+      "DCCN (Data Communication and Computer Networking)",
+      "EMI (Electronic Measurements and Instrumentation)",
+      "OC PE-I (Optical Communication)",
+      "DMM OE-I (Disaster Mitigation Management)"
+    ]
+  },
+  {
     "sem": "first",
     "group": "ME",
     "subjects": [
@@ -269,6 +281,18 @@
     ]
   },
   {
+    "sem": "sixth",
+    "group": "ME",
+    "subjects": [
+      "MD (Machine Design)",
+      "M&I (Metrology and Instrumentation)",
+      "FEA (Finite Element Analysis)",
+      "POM Production and Operation Management",
+      "MMFM PE-I (Modern Machining and Forming Methods)",
+      "DMM OE-I (Disaster Mitigation Management)"
+    ]
+  },
+  {
     "sem": "first",
     "group": "CE",
     "subjects": [
@@ -328,6 +352,17 @@
       "GE (Geo Technical Engineering)",
       "HWRE (Hydrology & Water Resources Engineering)",
       "TE (Transportation Engineering)"
+    ]
+  },
+  {
+    "sem": "sixth",
+    "group": "CE",
+    "subjects": [
+      "EE (Environmental Engineering)",
+      "ES (Estimation and Specifications)",
+      "SA-II PE-I (Structural Analysis - II)",
+      "SCM PE-II (Sustainable Construction Methods)",
+      "SS PE-III (Steel Structures)"
     ]
   },
   {

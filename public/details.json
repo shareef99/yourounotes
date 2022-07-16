@@ -60,6 +60,17 @@
     ]
   },
   {
+    "sem": "sixth",
+    "group": "CSE",
+    "subjects": [
+      "CD (Compiler Design)",
+      "CN CSE (Computer Networks)",
+      "DAA (Design and Analysis of Algorithms)",
+      "ML PE-IV (Machine Learning)",
+      "DF PE-IV (Digital Forensics)"
+    ]
+  },
+  {
     "sem": "first",
     "group": "IT",
     "subjects": [

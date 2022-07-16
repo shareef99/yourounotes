@@ -211,6 +211,7 @@ const Upload = (Props: Props) => {
                 <option value="third">IIIrd</option>
                 <option value="forth">IVth</option>
                 <option value="fifth">Vth</option>
+                <option value="sixth">VIth</option>
               </Select>
               <ErrorMessage
                 touch={touched.sem}

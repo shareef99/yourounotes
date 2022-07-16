@@ -59,6 +59,7 @@ const Subjects = (props: Props) => {
               <option value="third">IIIrd</option>
               <option value="forth">IVth</option>
               <option value="fifth">Vth</option>
+              <option value="sixth">VIth</option>
             </select>
           </label>
         </form>
@@ -96,6 +97,8 @@ const Subjects = (props: Props) => {
                       ? "IVth"
                       : x.sem === "fifth"
                       ? "Vth"
+                      : x.sem === "sixth"
+                      ? "VIth"
                       : ""}{" "}
                     sem
                   </h2>

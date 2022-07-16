@@ -65,8 +65,8 @@
     "subjects": [
       "CD (Compiler Design)",
       "CN CSE (Computer Networks)",
-      "DAA (Design and Analysis of Algorithms)",
-      "ML PE-IV (Machine Learning)",
+      "DAA CSE (Design and Analysis of Algorithms)",
+      "ML CSE PE-IV (Machine Learning)",
       "DF PE-IV (Digital Forensics)"
     ]
   },
@@ -131,6 +131,17 @@
       "CN (Computer Networks)",
       "SE IT (Software Engineering IT)",
       "AI IT (Artificial Intelligence IT)"
+    ]
+  },
+  {
+    "sem": "sixth",
+    "group": "IT",
+    "subjects": [
+      "ES (Embedded Systems)",
+      "DAA IT (Design and Analysis of Algorithms)",
+      "DM IT PE-II (Data Mining)",
+      "ML IT PE-III (Machine Learning)",
+      "ASN PE-IV (Adhoc and Sensor Networks)"
     ]
   },
   {
